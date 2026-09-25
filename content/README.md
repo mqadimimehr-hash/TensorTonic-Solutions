@@ -16,7 +16,7 @@ Each topic folder has three parts:
 | # | Topic | Status |
 |---|-------|--------|
 | 01 | Softmax (+ numerical stability) | ✅ done |
-| 02 | Sigmoid & binary cross-entropy | todo |
+| 02 | Sigmoid & binary cross-entropy | ✅ done |
 | 03 | Linear regression with gradient descent | todo |
 | 04 | Logistic regression | todo |
 | 05 | K-means clustering | todo |
