@@ -17,7 +17,7 @@ Each topic folder has three parts:
 |---|-------|--------|
 | 01 | Softmax (+ numerical stability) | ✅ done |
 | 02 | Sigmoid & binary cross-entropy | ✅ done |
-| 03 | Linear regression with gradient descent | todo |
+| 03 | Linear regression with gradient descent | ✅ done |
 | 04 | Logistic regression | todo |
 | 05 | K-means clustering | todo |
 | 06 | Cross-entropy loss (with softmax) | todo |
