@@ -33,10 +33,10 @@ Predatory-venue screen: all nine candidates are long-established society or majo
 
 ## Pre-submission checklist (Elsevier generic; confirm against the journal's current Guide for Authors, which could not be opened from this environment)
 
-- [ ] Title, abstract (≤ 250 words is typical; v4 abstract is ≈ 310 words and should be trimmed to the journal cap) and 3–5 highlights (≤ 85 characters each, including spaces)
-- [ ] Graphical abstract (rebuilt Figure 2 is suitable after adding a one-line title)
+- [x] Title, abstract (243 words) and five highlights of ≤ 85 characters (submission/Highlights.md)
+- [x] Graphical abstract (figures/Graphical_Abstract.png, 1535 × 590 px at 300 dpi; check the journal's current pixel requirement)
 - [ ] All [AUTHOR ACTION] markers resolved and the revision-note paragraph deleted
-- [ ] Figures 1, 4, S1 and S3 regenerated with the corrected labels; stale Figures 3/4 of the FINAL draft not used anywhere
+- [ ] Figures 1, 4, S1, S2 and S3 regenerated from raw data (interim label patches are in place for 1, 4, S1 and S2); stale Figures 3/4 of the FINAL draft not used anywhere
 - [ ] Reference list in the journal's style (currently ACS-like); DOIs present for all 49 entries; the four unverified entries checked against the publisher record
 - [ ] Declarations present: CRediT, competing interests, data availability, funding, generative-AI use (all drafted in v4)
 - [ ] Data package deposited (Zenodo) with DOI inserted; include UPF files, inputs, outputs, ACF.dat, PDOS data, scripts, Table S10
