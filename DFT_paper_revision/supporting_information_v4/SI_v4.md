@@ -16,13 +16,13 @@ The pristine anatase V~O~ reference reported in Table 2 of the main text (E~f~ =
 
 **S2.1 Pr_VO with dopant channels.** Figure S1 shows the PDOS of the Pr_VO cell with the Pr-5d and Pr-5p channels plotted separately from Ti-3d and O-2p. The conduction band is dominated by Ti-3d; the Fermi level lies inside the conduction band because the cell carries one net excess electron (Table 1 of the main text). The Pr.pbe-spdn-kjpaw_psl.1.0.0 dataset has Z~val~ = 11 (5s^2^5p^6^5d^1^6s^2^) with the 4f electrons frozen in the core, so no 4f projection exists; the "Pr 4f" curve present in the earlier version of this figure was an empty channel and must be removed. **[AUTHOR ACTION: regenerate Figure S1 from projwfc.x output with channels Ti-3d, O-2p, Pr-5d, Pr-5p and total only; state the Gaussian broadening; remove the green text box.]** The small residual between the total DOS and the sum of the projected channels arises from the incompleteness of the atomic projectors, not from a missing 4f channel.
 
-![](../figures/FigS1_PrVO_PDOS_relabel_required.png)
+![](../figures/FigS1_PrVO_PDOS_relabel_required.png){width=100%}
 
 *Figure S1. Projected density of states of the Pr_VO cell (PBE+U, U(Ti-3d) = 3.5 eV, 2×2×2 non-self-consistent, E~F~ = 10.306 eV). Channels: Ti-3d summed over 15 Ti; O-2p summed over 31 O; Pr-5d; Pr-5p; total. (Artwork to be regenerated as noted above.)*
 
 **S2.2 Total DOS, Pr_VO versus Rb_VO.** Figure S2 shows the non-spin-resolved companion of Figure 4 of the main text. Pr_VO: E~F~ = 10.31 eV inside the Ti-3d conduction band. Rb_VO: E~F~ = 7.14 eV at the top of the O-2p valence band, with a small occupied feature at E~F~.
 
-![](../figures/FigS2_total_PDOS.png)
+![](../figures/FigS2_total_PDOS.png){width=100%}
 
 *Figure S2. Projected density of states of Pr_VO (top) and Rb_VO (bottom) without spin decomposition. Filled: Ti-3d; red: O-2p; purple: dopant d; grey: total.*
 
@@ -177,6 +177,6 @@ Derived differences: E~f~(Pr) − E~f~(Pristine) = −3.453 eV; E~f~(Rb) − E~f
 
 ### S11. Force-convergence trajectories
 
-![](../figures/FigS3_force_convergence_relabel_required.png)
+![](../figures/FigS3_force_convergence_relabel_required.png){width=100%}
 
 *Figure S3. Maximum-force trajectories of the Pr_VO (left, last 14 BFGS steps after restart) and Rb_VO (right, last 5 steps) relaxations. Dashed green: the 0.005 Ry/Bohr threshold of this work. Final values 0.0042 and 0.0040 Ry/Bohr (0.108 and 0.103 eV/Å). **[AUTHOR ACTION: regenerate with a secondary axis or labels in eV/Å, remove the unsourced "0.01 Ry/Bohr (lit. std)" line, and show the complete trajectories.]***

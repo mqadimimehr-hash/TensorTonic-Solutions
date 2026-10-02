@@ -70,7 +70,7 @@ where E(O~2~) is the total energy of an isolated O~2~ molecule in a 12 Å cubic 
 
 All four doped supercells relaxed to maximum forces below the 0.005 Ry/Bohr threshold (Section 2.6; trajectories in Figure S3). The pristine V~O~ cell, which required a modified mixing scheme to converge (Section S1), was stopped at 0.0056 Ry/Bohr, slightly above the threshold. The relaxed Pr_VO and Rb_VO cells are shown in Figure 1. The production vacancy is the oxygen nearest the dopant in both cells. **[AUTHOR ACTION: add one sentence on the relaxed first-shell dopant–O distances and the outward relaxation of the six O neighbours around Pr and Rb relative to Ti–O = 1.94/1.97 Å in the pristine cell, from Table S8.]** Because the residual forces (0.07–0.11 eV/Å) are larger than the 0.01–0.03 eV/Å typically used for defect energetics, bond lengths quoted here are indicative, and the sensitivity of the energetics to tighter relaxation has not been tested (Section 5).
 
-![](../figures/Fig1_structures_relabel_required.png)
+![](../figures/Fig1_structures_relabel_required.png){width=100%}
 
 *Figure 1. Relaxed 2×2×1 anatase supercells with one substitutional dopant and one oxygen vacancy (PBE+U, U(Ti-3d) = 3.5 eV, Γ-only). (a) Pr~Ti~ + V~O~ (PrTi~15~O~31~, 47 atoms), non-magnetic solution (m = 0). (b) Rb~Ti~ + V~O~ (RbTi~15~O~31~, 47 atoms), m = −0.97 μ~B~, m~abs~ = 1.21 μ~B~. Grey: Ti; red: O; green: Pr; maroon: Rb; dashed circle: vacancy position; dashed box: supercell. **[AUTHOR ACTION: regenerate the artwork from the relaxed coordinates with the panel subtitles changed to the text above; remove "singlet, no Ti^3+^ trap" and "Ti^3+^/O hole trap"; add the vacancy atom index and dopant–V~O~ distance to each panel.]***
 
@@ -89,7 +89,7 @@ Table 2 lists the neutral V~O~ formation energies at the oxygen-rich reference �
 
 *^a^ The pristine 2×2×2 single points were not computed.* **[AUTHOR ACTION: compute E(Pristine_perfect) and E(Pristine_VO) at 2×2×2 on the Γ geometries, or state in the table that they were not computed.]**
 
-![](../figures/Fig2_formation_energies_v4.png)
+![](../figures/Fig2_formation_energies_v4.png){width=100%}
 
 *Figure 2. Neutral oxygen-vacancy formation energies at the oxygen-rich reference μ~O~ = ½E(O~2~) for pristine, Pr-substituted and Rb-substituted anatase (PBE+U, U(Ti-3d) = 3.5 eV). Bars: Γ-only relaxed cells (this work; Table 2). Dashed ticks: single-point values at 2×2×2 on the Γ geometries. Both substitutions lower the formation energy relative to pristine; the Pr cell stays positive and the Rb cell becomes negative.*
 
@@ -114,7 +114,7 @@ The Rb cells behave differently. Rb_perfect converged to m = 1.00 μ~B~ (m~abs~ 
 
 *^b^* **[AUTHOR ACTION: insert E~F~ of Pr_perfect and Rb_perfect from the production output files.]**
 
-![](../figures/Fig3_magnetisation_v4.png)
+![](../figures/Fig3_magnetisation_v4.png){width=100%}
 
 *Figure 3. Total (|m|) and absolute (m~abs~) magnetisation of the production cells and of the O~2~ reference (single-U(Ti-3d) PBE+U relaxations). The Pr cells and the pristine cell converge to non-magnetic solutions; both Rb cells carry one unpaired spin, and Rb_VO shows m~abs~ > |m|.*
 
@@ -144,7 +144,7 @@ Relaxations of Pr_VO and Rb_VO at q = +1 and +2 (uniform background, no finite-s
 
 *Projected densities of states.* Figure 4 shows the spin-resolved projected densities of states of Pr_VO and Rb_VO from 2×2×2 non-self-consistent calculations on the relaxed cells. In Pr_VO the occupied states near E~F~ are conduction-band states of Ti-3d character, the O-2p valence band lies about 3 eV lower, no feature appears inside the gap at the broadening used, and the Pr-5d projection is small at both band edges; the Pr-4f states are frozen in the core and cannot appear (Section 2.1). In Rb_VO the Fermi level lies at the top of the valence band and a spin-split feature with both O-2p and Ti-3d weight is present within about 0.3 eV of E~F~ (inset); it is occupied in one spin channel and empty in the other, which accounts for the unpaired spin of Table 3. The projection does not by itself fix the orbital character of the hole; the Bader differences of Section 3.7 and the dual-U result of Section 3.4 indicate that it is predominantly O-2p. The Fermi energy of Pr_VO in Figure 4 (10.31 eV, 2×2×2 non-self-consistent) differs from the Γ-only self-consistent value (9.99 eV) because of the k-mesh dependence of the conduction-band filling; the pristine and Rb_VO Fermi energies are mesh-stable.
 
-![](../figures/Fig4_PDOS_relabel_required.png)
+![](../figures/Fig4_PDOS_relabel_required.png){width=100%}
 
 *Figure 4. Spin-resolved projected densities of states of Pr_VO (top) and Rb_VO (bottom) from non-self-consistent 2×2×2 calculations on the relaxed cells (PBE+U, U(Ti-3d) = 3.5 eV). Spin-up plotted upward, spin-down downward. Filled blue: Ti-3d; red: O-2p; purple: dopant 5d (Pr) or 4d (Rb); grey: total. Energies are relative to each cell's Fermi level. Inset: gap region of Rb_VO showing the spin-split occupied state with mixed O-2p/Ti-3d weight. **[AUTHOR ACTION: regenerate from the projwfc.x output with the figure title changed to the caption text, the "Ti^3+^ trap" labels removed from the title and inset, the broadening and band count stated, and the source run identifiers recorded in the figure script.]***
 

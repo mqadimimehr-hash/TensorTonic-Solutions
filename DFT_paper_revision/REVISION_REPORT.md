@@ -73,9 +73,9 @@ A bulk DFT+U two-dopant study with explicit limitations is a good paper for a so
 | Path | What it is |
 |---|---|
 | `REVISION_REPORT.md` / `.docx` | this report |
-| `manuscript_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.docx` (+ `.md`, `.pdf`) | revised manuscript with [AUTHOR ACTION] markers |
+| `manuscript_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.docx` (+ `.md`, `_PREVIEW.pdf`) | revised manuscript with [AUTHOR ACTION] markers; the PDF is a reading preview rendered from the Markdown source, not from the Word file |
 | `manuscript_v4/part1…part3*.md`, `refs.py`, `build_refs.py` | editable sources; re-run `build_refs.py` after edits to renumber references |
-| `supporting_information_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_Supporting_Information.docx` (+ `.md`) | revised SI with new energy ledger (S9) and run manifest (S10) |
+| `supporting_information_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_Supporting_Information.docx` (+ `.md`, `_PREVIEW.pdf`) | revised SI with new energy ledger (S9) and run manifest (S10) |
 | `response_to_audit/Response_to_Audit_v4.docx` (+ `.md`) | point-by-point response to R01–R18, E1–E13, figure and reference audits; reusable as the reviewer response letter |
 | `figures/` | rebuilt Figures 2 and 3 (PNG + PDF), generating script, staged originals with the names used in v4, stale figures quarantined |
 | `submission/Journal_Shortlist.md` / `.docx` | nine candidates with tiers, metrics, sources and a pre-submission checklist |
@@ -84,4 +84,4 @@ A bulk DFT+U two-dopant study with explicit limitations is a good paper for a so
 
 ## 8. What I could not do
 
-I cannot run Quantum ESPRESSO here, open your archive, or read your output files, so nothing in v4 is a new result. I cannot submit on your behalf: submission must be made by the corresponding author through the journal's portal after all co-authors approve. Publisher, Scimago and DOI landing pages were blocked from this environment, so journal metrics and the four flagged references rest on secondary sources and need your confirmation.
+The six Word files pass the Office Open XML schema validator; LibreOffice is not functional in the preparation environment, so their page layout was checked on a Chromium render of the same Markdown source (the `_PREVIEW.pdf` files). Open each `.docx` in Word once before editing. I cannot run Quantum ESPRESSO here, open your archive, or read your output files, so nothing in v4 is a new result. I cannot submit on your behalf: submission must be made by the corresponding author through the journal's portal after all co-authors approve. Publisher, Scimago and DOI landing pages were blocked from this environment, so journal metrics and the four flagged references rest on secondary sources and need your confirmation.
