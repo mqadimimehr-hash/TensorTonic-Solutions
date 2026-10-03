@@ -350,3 +350,18 @@ Sources used in this round, all supplied by the authors: the run spreadsheet (QE
 | R3-17 | minor | §2.8 | projwfc.x broadening (0.01 Ry), bands (260/226), tetrahedra, energy step and spilling stated. | Filled. |
 | R3-18 | minor | refs.py | Vural 2023 vol. 613; Bai 2020 vol. 503; Polliotto pages 49–57; Ahmad first page 2709; Chen 2012 DOI 10.1016/j.physb.2012.01.085; Torres DOI 10.1021/acsomega.1c02761 and Rodríguez-Pineda — all from the first pages of the authors' PDFs. Mazierski author list flagged incomplete. | Corrected; VERIFY notes added. |
 | R3-19 | minor | SI S9, S10 | Ledger extended to 46 runs (energy_ledger.csv + check_ledger.py); Table S10 rebuilt as a settings table by run family. | Done. |
+
+### Round 3b: citation claims checked against the authors' PDFs (Google Drive)
+
+| ID | Reference | Finding | Action |
+|---|---|---|---|
+| R3-20 | Arrigoni & Madsen 2020 | Neutral V~O~ energies only in Fig. 5; U = 5.8 eV; Γ-only grid used only for HSE15 (confirmed); ε∞ 5.82 is the experimental in-plane value they tabulate; they find PBE+U agrees *worst* with HSE15 (no "agreement after alignment" claim may be attributed to them). | §2.4 marker removed; §3.2 numerical comparison withdrawn; Limitation (viii) wording made exact. |
+| R3-21 | Boonchun et al. 2016 | HSE06, 108-atom cell; neutral V~O~ energy only in Fig. 1. | §3.2 cites it for protocol only; numbers withdrawn. |
+| R3-22 | Vural et al. 2023 | Pr adsorption on clean anatase (101); oxygen vacancies are not discussed. | Pr–V~O~ association sentence deleted (§4.2); Introduction now says "adsorbate on the (101) surface". |
+| R3-23 | Ahmad et al. 2020 | Rutile Gd-doped nanorods; no compensation discussion; pages 2709–2719. | Removed from the Introduction citation; record corrected. |
+| R3-24 | Polliotto et al. 2020 | Ce-doped ZrTiO~4~; hole vs V~O~ compensation considered, EPR indicates V~O~; co-author Agnoli missing. | Introduction sentence rewritten to what the paper shows; record corrected. |
+| R3-25 | Chen et al. 2012 | Ce, Pr, Eu, Gd in anatase, DFT+U (Ti 7.8, Pr 7.0 eV); Pr with V~O~ studied. | Cited for that in the Introduction. |
+| R3-26 | Mazierski et al. 2020; Yin et al. 2020 | U(Ti-3d) = 3.5 eV confirmed in both; Mazierski author list completed (nine authors); Yin initials as printed. | §2.2 marker narrowed to Deák only; records corrected. |
+| R3-27 | Raghav et al. 2020 | 55 Ry and U = 4.2 eV confirmed (spin-unpolarised calculations). | No change needed. |
+| R3-28 | Torres et al. 2021 | PBEsol-D3 with U = 3 eV for the defective (001) surface. | §2.8 wording made exact. |
+| R3-29 | Bai et al. 2020 | Authors Hu, X. and Li, J. missing; volume 503. | Record corrected. |
