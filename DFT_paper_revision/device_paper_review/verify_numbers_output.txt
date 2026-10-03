@@ -1,0 +1,232 @@
+
+==============================================================================
+A. Simple ratios quoted in abstract / text
+==============================================================================
+kT/q at 300 K                       = 25.852 mV  (MS: 25.85 mV)
+R_sh ratio 6.05e5/6.05e3            = 100.0x  (MS: 100x)
+J0 ratio 7.939e-16/1.430e-17        = 55.517x (MS: 55.5x)
+J0 ratio 7.941e-16/1.431e-17 (eqs)  = 55.493x  [eq. images use 7.941/1.431, Table 2 uses 7.939/1.430]
+Voc gain LED 1.115-0.232            = 0.883 V (MS: 883 mV)
+PCE fold LED 13.62/0.713            = 19.10x (MS: 19.1x)
+AM1.5G PCE gain 8.16/5.69           = 1.434x (MS: 1.43x)
+lambda_g = 1239.84/2.30             = 539.06 nm (MS: 539 / 539.06 nm)
+Indoor/outdoor contrast 100/0.3119  = 321-fold (MS: >300-fold)
+Useful photon-flux range 5.59e16/3.40e14 = 164x = 2.22 decades (MS: 'two orders')
+S_n = sigma*v_th*N_it : 1.0e+05 (control), 1.0e+03 cm/s (doped) (MS: 1e5 -> 1e3)
+IoT growth 21.1/18.5                = 14.1 % (MS: 14 %)
+
+==============================================================================
+B. Ideal-diode Voc gain from J0 suppression (Eq. 19) and the '5.5 %' claim
+==============================================================================
+dVoc_theory = n VT ln(55.52)        = 155.76 mV (MS: 155.7 mV)
+  text sec 3.2.1 '145 mV'               :  145.0 mV, deviation from theory = -6.9 %
+  Table 4 1.315-1.150                   :  165.0 mV, deviation from theory = +5.9 %
+  Fig 8 text 1.316-1.150 = '166 mV'     :  166.0 mV, deviation from theory = +6.6 %
+  sec 2.6 'full model 164.1 mV'         :  164.1 mV, deviation from theory = +5.4 %
+  NOTE: 1.315 - 1.150 = 0.165 V, not 145 mV.
+Voc roll-off n VT ln10              = 89.3 mV/dec (MS: 89.3; sec 3.2.1 says '~60 mV/dec')
+  60 mV/dec corresponds to n = 1.01
+  Jsc AM1.5G->LED: 2.216 decades -> predicted dVoc = 198 mV; MS: 1.320-1.115 = 205 mV; table 1.315-1.115 = 200 mV
+
+==============================================================================
+C. Single-diode model (Eq. 14) -- does it reproduce Table 4 exactly?
+==============================================================================
+dev  src      | EQE=Jsc/Jmax | Voc calc  Voc MS | FF calc  FF MS | PCE calc  PCE MS | JscVocFF/Pin
+ctrl AM1.5G   |       0.7029 |    1.151   1.150 |   0.785  0.787 |    5.694   5.690 |        5.695
+ctrl CFL      |       0.7040 |    0.414   0.414 |   0.250  0.250 |    1.293   1.295 |        1.296
+ctrl LED      |       0.7040 |    0.232   0.232 |   0.250  0.250 |    0.712   0.713 |        0.713
+ctrl MH       |       0.7040 |    0.157   0.157 |   0.250  0.250 |    0.311   0.312 |        0.311
+ctrl Halogen  |       0.7039 |    0.146   0.146 |   0.250  0.250 |    0.106   0.106 |        0.107
+ctrl INC      |       0.7040 |    0.938   0.938 |   0.290  0.291 |    0.291   0.292 |        0.292
+dop  AM1.5G   |       0.8500 |    1.315   1.315 |   0.816  0.816 |    8.160   8.160 |        8.166
+dop  CFL      |       0.8497 |    1.139   1.139 |   0.837  0.838 |   14.409  14.420 |       14.427
+dop  LED      |       0.8502 |    1.115   1.115 |   0.822  0.823 |   13.614  13.620 |       13.622
+dop  MH       |       0.8503 |    1.100   1.100 |   0.807  0.808 |    8.493   8.490 |        8.503
+dop  Halogen  |       0.8499 |    1.097   1.097 |   0.804  0.804 |    3.107   3.110 |        3.108
+dop  INC      |       0.8501 |    1.177   1.177 |   0.850  0.852 |    1.292   1.290 |        1.295
+=> Every Table 4 entry is reproduced (to rounding) by the lumped single-diode Eq. 14 with
+   Jsc = EQE x Jsc,max (EQE fixed at 0.85 / 0.704), J0 and R_sh taken from Table 2, n = 1.5, Rs = 10.
+   No Poisson / drift-diffusion / Fermi-Dirac / Einstein-relation output enters these numbers.
+   Control indoor Voc = Jsc*Rsh check: LED 0.232 V, CFL 0.414 V, MH 0.157 V, Halogen 0.146 V (pure resistor, FF = 0.25)
+
+==============================================================================
+C2. Decomposition of the AM1.5G Voc gain (full Eq. 14)
+==============================================================================
+control Voc = 1.1506 V, doped Voc = 1.3149 V, total dVoc = 164.2 mV
+  J0 only                 : +155.6 mV
+  + Rsh (6.05e3 -> 6.05e5): +1.34 mV
+  + EQE 0.704 -> 0.85     : +7.31 mV  (analytic n VT ln(0.85/0.704) = 7.31 mV)
+=> The ~8 mV beyond the J0 term comes from the ASSUMED EQE change, not from R_sh (MS: '~8.6 mV from improved R_sh').
+
+==============================================================================
+C3. Sensitivity of the headline LED result to the assumed R_sh(N_it) mapping (Eq. 1)
+==============================================================================
+  control (all control params)  : Voc=0.232 V FF=0.250 PCE=  0.71 %
+  J0 doped only                 : Voc=0.232 V FF=0.250 PCE=  0.71 %
+  EQE doped only                : Voc=0.280 V FF=0.250 PCE=  1.04 %
+  Rsh doped only                : Voc=0.952 V FF=0.804 PCE=  9.42 %
+  J0+EQE doped, Rsh control     : Voc=0.280 V FF=0.250 PCE=  1.04 %
+  all doped                     : Voc=1.115 V FF=0.822 PCE= 13.61 %
+  Full 2^3 factorial (c = control value, d = doped value) under 1000-lx LED:
+    EQE=c J0=c Rsh=c : Voc=0.232 V FF=0.250 PCE=  0.71 %
+    EQE=c J0=c Rsh=d : Voc=0.952 V FF=0.804 PCE=  9.42 %
+    EQE=c J0=d Rsh=c : Voc=0.232 V FF=0.250 PCE=  0.71 %
+    EQE=c J0=d Rsh=d : Voc=1.108 V FF=0.816 PCE= 11.11 %
+    EQE=d J0=c Rsh=c : Voc=0.280 V FF=0.250 PCE=  1.04 %
+    EQE=d J0=c Rsh=d : Voc=0.960 V FF=0.810 PCE= 11.54 %
+    EQE=d J0=d Rsh=c : Voc=0.280 V FF=0.250 PCE=  1.04 %
+    EQE=d J0=d Rsh=d : Voc=1.115 V FF=0.822 PCE= 13.61 %
+  R_sh proportional to N_it^-beta (beta = assumed exponent), all other doped params fixed:
+    beta=0.00  Rsh=6.050e+03  LED PCE=  1.04 %  (gain vs control   1.5x)
+    beta=0.25  Rsh=1.913e+04  LED PCE=  3.28 %  (gain vs control   4.6x)
+    beta=0.50  Rsh=6.050e+04  LED PCE=  9.12 %  (gain vs control  12.8x)
+    beta=0.75  Rsh=1.913e+05  LED PCE= 12.51 %  (gain vs control  17.5x)
+    beta=1.00  Rsh=6.050e+05  LED PCE= 13.61 %  (gain vs control  19.1x)
+
+==============================================================================
+C4. Shunt-current statements
+==============================================================================
+  LED     : ctrl Jsc=  38.34 uA  vs  J_sh(0.5V)=82.6 uA -> exceeds Jsc: True;  doped J_sh(0.5V)/Jsc = 1.78 %
+  CFL     : ctrl Jsc=  68.35 uA  vs  J_sh(0.5V)=82.6 uA -> exceeds Jsc: True;  doped J_sh(0.5V)/Jsc = 1.00 %
+  MH      : ctrl Jsc=  26.00 uA  vs  J_sh(0.5V)=82.6 uA -> exceeds Jsc: True;  doped J_sh(0.5V)/Jsc = 2.63 %
+  Halogen : ctrl Jsc=  24.10 uA  vs  J_sh(0.5V)=82.6 uA -> exceeds Jsc: True;  doped J_sh(0.5V)/Jsc = 2.84 %
+  INC     : ctrl Jsc= 180.20 uA  vs  J_sh(0.5V)=82.6 uA -> exceeds Jsc: False;  doped J_sh(0.5V)/Jsc = 0.38 %
+  (MS lists LED, MH, halogen only; CFL also satisfies J_sh > Jsc. The '<=3.4 %' equals 0.83/24.10 = 3.43 %, i.e. doped J_sh divided by the CONTROL halogen Jsc.)
+  AM1.5G V/Rsh at Voc: control 3.02 % of Jsc, doped 0.029 % (MS: <= 2.6 %)
+
+==============================================================================
+D. Fermi-Dirac integrals, eta = 3.03, 78.3 meV, 2.44 and 1.56
+==============================================================================
+n/Nc = 1e19/2.2e18                  = 4.5455
+solve F_1/2(eta)[2/sqrt(pi) norm] = n/Nc -> eta = 3.0311  (MS: 3.03)
+F_1/2(3.03) normalised              = 4.5433  (MS: 4.543)
+F_-1/2(3.03) normalised (1/sqrt(pi))= 1.8642  (MS: 1.864)
+ratio F_1/2/F_-1/2 (both normalised)= 2.4371  (MS: 2.44)
+unnormalised F_1/2(3.03)            = 4.0264; F_-1/2 = 3.3043; ratio = 1.2185
+  -> the 2.44 ratio is only correct if BOTH integrals use the 1/Gamma(j+1) normalisation;
+     the printed Eq. 7 defines F_1/2 with 2/sqrt(pi) but F_-1/2 is never defined.
+sqrt(2.44)                          = 1.5620  (MS Eq. 9: 1.56; text sec 2.3 says L enhanced by '2.44')
+eta*kT = 3.03 x 25.852 meV        = 78.33 meV  (MS: 78.3 meV)
+Boltzmann estimate ln(n/Nc)         = 1.514 -> E_F-E_C = 39.1 meV
+AS PRINTED Eq. 7, F_1/2 = Nc/n = 0.220 -> eta = -1.437 (non-degenerate!)  => Eq. 7 is inverted
+Is Fermi level 'within ~3 kT of band edge'? It is 3.03 kT INSIDE the band (degenerate).
+
+==============================================================================
+E. Work functions in Table 1
+==============================================================================
+ETL: phi = chi + (Ec-Ef) = 4.50 - 0.0783 = 4.4217 eV  (MS 4.422) OK
+CsPbBr3: phi = chi+Eg-(Ef-Ev) = 3.35+2.30-0.1743 = 5.476 eV (MS 5.357)
+   MS value needs Ef-Ev = 0.293 eV -> N_A = Nv*exp(-0.293/kT) = 1.01e+14 cm-3 (Table: 1e16)
+Co3O4: phi = 3.45+2.10-0.1191 = 5.431 eV (MS 5.05)
+CBO SnO2/CsPbBr3 = 4.50-3.35 = 1.15 eV; ETL CBM is BELOW absorber CBM -> 'cliff', not 'spike'
+
+==============================================================================
+F. EIS (Table 5, Eqs. 20-21)
+==============================================================================
+control : Eq.21 at V=0: R_rec = nVT/J0 = 4.884e+13 Ohm cm2  vs Table 5 308  (factor 1.6e+11)
+          parallel with R_sh -> R_LF(dark,0V) = 6.050e+03 Ohm cm2 (= R_sh)
+          tau = 54.5 us, f2 = 2919 Hz, f1 = 9595 Hz, f1/f2 = 3.3
+          Bode-phase maxima at f = ['3.35e+04'] Hz (phase ['69.3'] deg); -Z'' maxima at ['3.41e+03'] Hz
+doped   : Eq.21 at V=0: R_rec = nVT/J0 = 2.712e+15 Ohm cm2  vs Table 5 17109  (factor 1.6e+11)
+          parallel with R_sh -> R_LF(dark,0V) = 6.050e+05 Ohm cm2 (= R_sh)
+          tau = 402.1 us, f2 = 396 Hz, f1 = 36461 Hz, f1/f2 = 92.1
+          Bode-phase maxima at f = ['9.56e+03'] Hz (phase ['85.0'] deg); -Z'' maxima at ['396'] Hz
+R_rec ratio 17109/308 = 55.55; C_mu ratio 177/23.5 = 7.53 (vs 100x N_it); tau ratio = 7.38
+C1 = eps0*9.86/50nm (ETL)        = 174.6 nF/cm2 (MS 175)
+C_geo = eps0*6.5/500nm (absorber)= 11.5 nF/cm2 (a degenerate ETL is a conductor, not a dielectric)
+
+==============================================================================
+G. J0 bulk/interface partition ('irreducible ~1.8 %')
+==============================================================================
+Assume J0 = J0b + J0i*(N_it/1e13): J0i = 7.875e-16, J0b = 6.425e-18 A/cm2
+  J0b/J0(control) = 0.81 %, J0b/J0(doped) = 44.9 %; 1/55.5 = 1.80 %
+  -> the '1.8 %' is simply J0(doped)/J0(control); under the paper's own linear picture ~55 % of the doped J0 is still interfacial.
+
+==============================================================================
+H. Table 3 internal consistency  (f_use = Jsc,max*<E>/Pin ; Phi = Jsc,max/q ; Pin = 1000 lx/LER)
+==============================================================================
+  AM1.5G  : Pin calc 100.0000 (MS 100.0000) | f_use calc  24.52 % (MS 24.52) | Phi calc 5.588e+16 (MS 5.59e+16)
+  LED     : Pin calc   0.3119 (MS   0.3119) | f_use calc  45.89 % (MS 45.89) | Phi calc 3.399e+14 (MS 3.40e+14)
+  CFL     : Pin calc   0.5459 (MS   0.5458) | f_use calc  48.83 % (MS 48.83) | Phi calc 6.060e+14 (MS 6.06e+14)
+  MH      : Pin calc   0.3282 (MS   0.3282) | f_use calc  29.31 % (MS 29.32) | Phi calc 2.305e+14 (MS 2.31e+14)
+  Halogen : Pin calc   0.8257 (MS   0.8257) | f_use calc  10.73 % (MS 10.73) | Phi calc 2.137e+14 (MS 2.14e+14)
+  INC     : Pin calc  16.8350 (MS  16.8460) | f_use calc   4.05 % (MS 4.05) | Phi calc 1.598e+15 (MS 1.60e+15)
+  Text sec 3.2.1 quotes f_useful(AM1.5G) = 20.6 % and INC = 4.06 %; Table 3 gives 24.52 % and 4.05 %.
+  Intro: 200-1000 lx 'approx 10-100 uW/cm2' vs MS LED LER: 200 lx = 62 uW/cm2, 1000 lx = 312 uW/cm2
+         '200 lux ~ 1 uW/cm2' -> actual (LED) 62 uW/cm2, i.e. ~62x larger
+
+==============================================================================
+I. External reference spectra: AM1.5G (ASTM G173 via pvlib) and CIE illuminants (colour-science)
+==============================================================================
+AM1.5G: integral = 1000.4 W/m2; Jsc,max(lambda<=539.06 nm) = 8.954 mA/cm2 (MS 8.953)
+        f_use (power fraction) = 24.52 % (MS 24.52; text 20.6), <E_ph> = 2.740 eV (MS 2.739), LER = 109.5 lm/W (MS 109.45)
+NOTE: CIE LED-B1..B5 span f_use 19.5-46.8 %; the MS LED (45.89 %) matches only a cool-white (~6500 K) LED.
+Detailed balance Eg=2.30 eV: J0,rad = 5.09e-36 A/cm2; AM1.5G: Voc_SQ = 1.979 V, PCE_SQ = 16.5 %
+   -> MS J0(doped)=1.43e-17 with n=1.5 is 2.8e+18 x J0,rad (fitted, not derived)
+CIE 015:2018 sources scaled to 1000 lx (spectral range of the CIE tables, 380-780 nm unless noted):
+  LED-B1   (380-780 nm): LER= 311.8 lm/W  Pin= 320.7 uW/cm2  Jsc,max= 24.52 uA/cm2  f_use= 19.5 %  PCE_SQ(2.30 eV)= 12.9 %
+  LED-B2   (380-780 nm): LER= 313.9 lm/W  Pin= 318.5 uW/cm2  Jsc,max= 28.08 uA/cm2  f_use= 22.5 %  PCE_SQ(2.30 eV)= 14.9 %
+  LED-B3   (380-780 nm): LER= 317.0 lm/W  Pin= 315.5 uW/cm2  Jsc,max= 41.84 uA/cm2  f_use= 34.2 %  PCE_SQ(2.30 eV)= 22.6 %
+  LED-B4   (380-780 nm): LER= 319.3 lm/W  Pin= 313.2 uW/cm2  Jsc,max= 46.96 uA/cm2  f_use= 39.0 %  PCE_SQ(2.30 eV)= 25.6 %
+  LED-B5   (380-780 nm): LER= 305.3 lm/W  Pin= 327.6 uW/cm2  Jsc,max= 58.67 uA/cm2  f_use= 46.8 %  PCE_SQ(2.30 eV)= 30.7 %
+  LED-BH1  (380-780 nm): LER= 345.3 lm/W  Pin= 289.6 uW/cm2  Jsc,max= 27.11 uA/cm2  f_use= 23.9 %  PCE_SQ(2.30 eV)= 15.9 %
+  FL3.15   (380-780 nm): LER= 236.6 lm/W  Pin= 422.7 uW/cm2  Jsc,max= 76.35 uA/cm2  f_use= 48.2 %  PCE_SQ(2.30 eV)= 31.1 %
+  FL11     (380-780 nm): LER= 336.9 lm/W  Pin= 296.8 uW/cm2  Jsc,max= 32.96 uA/cm2  f_use= 30.1 %  PCE_SQ(2.30 eV)= 18.9 %
+  FL2      (380-780 nm): LER= 336.8 lm/W  Pin= 296.9 uW/cm2  Jsc,max= 42.71 uA/cm2  f_use= 38.6 %  PCE_SQ(2.30 eV)= 24.5 %
+  HP1      (380-780 nm): LER= 395.2 lm/W  Pin= 253.0 uW/cm2  Jsc,max=  8.77 uA/cm2  f_use=  9.1 %  PCE_SQ(2.30 eV)=  5.8 %
+  HP3      (380-780 nm): LER= 301.1 lm/W  Pin= 332.1 uW/cm2  Jsc,max= 32.83 uA/cm2  f_use= 26.0 %  PCE_SQ(2.30 eV)= 16.8 %
+  HP5      (380-780 nm): LER= 257.9 lm/W  Pin= 387.7 uW/cm2  Jsc,max= 50.48 uA/cm2  f_use= 34.4 %  PCE_SQ(2.30 eV)= 22.3 %
+  A        (300-780 nm): LER= 155.1 lm/W  Pin= 644.8 uW/cm2  Jsc,max= 33.84 uA/cm2  f_use= 13.7 %  PCE_SQ(2.30 eV)=  8.9 %
+
+==============================================================================
+J. Thermal (Planck) sources: LER, usable fraction, IR fraction vs integration window
+==============================================================================
+T=2400 K: [380-780] LER= 128.2 f_use= 8.38% IR>800= 0.0% | [350-800] LER= 112.7 f_use= 7.50% IR>800= 0.0% | [300-1100] LER=  32.2 f_use= 2.16% IR>800=71.4% | [300-2500] LER=   8.4 f_use= 0.56% IR>800=92.6% | [200-30000] LER=   6.2 f_use= 0.41% IR>800=94.5%
+T=2700 K: [380-780] LER= 147.7 f_use=11.90% IR>800= 0.0% | [350-800] LER= 132.3 f_use=10.94% IR>800= 0.0% | [300-1100] LER=  46.4 f_use= 3.89% IR>800=64.9% | [300-2500] LER=  15.6 f_use= 1.31% IR>800=88.2% | [200-30000] LER=  12.4 f_use= 1.04% IR>800=90.6%
+T=2856 K: [380-780] LER= 156.2 f_use=13.82% IR>800= 0.0% | [350-800] LER= 140.9 f_use=12.87% IR>800= 0.0% | [300-1100] LER=  53.9 f_use= 5.01% IR>800=61.6% | [300-2500] LER=  20.2 f_use= 1.87% IR>800=85.7% | [200-30000] LER=  16.4 f_use= 1.53% IR>800=88.3%
+T=3000 K: [380-780] LER= 163.1 f_use=15.62% IR>800= 0.0% | [350-800] LER= 148.0 f_use=14.70% IR>800= 0.0% | [300-1100] LER=  60.8 f_use= 6.18% IR>800=58.8% | [300-2500] LER=  24.8 f_use= 2.52% IR>800=83.2% | [200-30000] LER=  20.7 f_use= 2.11% IR>800=86.0%
+T=3200 K: [380-780] LER= 171.3 f_use=18.12% IR>800= 0.0% | [350-800] LER= 156.3 f_use=17.29% IR>800= 0.0% | [300-1100] LER=  70.0 f_use= 7.97% IR>800=55.0% | [300-2500] LER=  31.6 f_use= 3.60% IR>800=79.7% | [200-30000] LER=  27.1 f_use= 3.10% IR>800=82.6%
+  MS: Halogen LER 121.11 lm/W, f_use 10.73 %; INC LER 5.94 lm/W, f_use 4.05 %; '>85 % of energy at >800 nm'.
+
+==============================================================================
+K. Tauc absorption (Eq. 11) with A_Tauc = 6.7e11 cm-1 eV^1/2
+==============================================================================
+  A=6.7e+11: alpha(470 nm) = 1.477e+11 cm-1   (MS Table 1: 1.8e5 cm-1)
+  A=6.7e+05: alpha(470 nm) = 1.477e+05 cm-1   (MS Table 1: 1.8e5 cm-1)
+  A needed for 1.8e5 at 470 nm = 8.168e+05 cm-1 eV^1/2
+
+==============================================================================
+L. Literature rows of the comparison table (Jsc*Voc*FF vs PCE) and Jsc,max bound
+==============================================================================
+  [34] Tong : Jsc*Voc*FF =  10.92 % (listed 10.91); Jsc/Jsc,max(2.30 eV, 8.953) = 1.21
+  [35] Li   : Jsc*Voc*FF =  10.45 % (listed 10.45); Jsc/Jsc,max(2.30 eV, 8.953) = 0.92
+  [36] Teng : Jsc*Voc*FF =  11.36 % (listed 11.23); Jsc/Jsc,max(2.30 eV, 8.953) = 0.92
+  [37] Patel: Jsc*Voc*FF =   4.92 % (listed 4.97); Jsc/Jsc,max(2.30 eV, 8.953) = 0.89
+
+==============================================================================
+M. Figure 8 / Table 4 / text mismatches (AM1.5G)
+==============================================================================
+  control: Table 6.293*1.150*0.787 = 5.695 %, Fig 8 6.283*1.150*0.7855 = 5.676 %
+  doped  : Table 7.610*1.315*0.816 = 8.166 %, Fig 8 7.610*1.316*0.815 = 8.162 %
+  Jsc gain 7.610/6.283 = 1.211 ('21 %'); 7.201->8.695 quoted in sec 2.6 = 1.207 (appears nowhere else)
+  PCE fold ranges: CFL 11.1x, LED 19.1x, MH 27.2x, Halogen 29.3x, INC 4.42x
+  Voc recovery: Halogen 0.951 V, MH 0.943 V, LED 0.883 V, CFL 0.725 V
+
+==============================================================================
+N. Bulk SRH lifetime / diffusion length from Table 1 and the applicability of Eq. 12 (Jsc = qG(Ln+Lp))
+==============================================================================
+CsPbBr3: tau_SRH = 100 ns, Ln = 3.60 um, Lp = 1.61 um, thickness = 0.50 um
+  If G is uniform with q*G*d = Jsc,max(AM1.5G) = 8.953 mA/cm2, Eq. 12 gives qG(Ln+Lp) = 93 mA/cm2 > Jsc,max -> Eq. 12 is not applicable to a 500-nm absorber with L >> d.
+  Doped-ETL electron L enhancement sqrt(2.44) = 1.56 refers to the ETL (majority carriers), not the absorber Ln of Eq. 12.
+
+==============================================================================
+O. Can J0 be derived from Table 1? (intrinsic density and order-of-magnitude J0 estimates)
+==============================================================================
+CsPbBr3 n_i = sqrt(Nc Nv) exp(-Eg/2kT) = 9.810e-02 cm-3
+  n=2 depletion SRH estimate J0 ~ q n_i d /(2 tau) = 3.93e-18 A/cm2 (tau = 100 ns, d = 500 nm)
+  n=1 interface estimate J0 ~ q S n_i^2 / N_A (S = 1e+05 cm/s) = 1.54e-32 A/cm2
+  n=1 interface estimate J0 ~ q S n_i^2 / N_A (S = 1e+03 cm/s) = 1.54e-34 A/cm2
+  -> the n = 1.5 values 7.939e-16 / 1.430e-17 A/cm2 are phenomenological; their 55.5 ratio cannot be
+     obtained from N_it or S_n with the stated parameters (the paper gives no derivation; Fig. 6 caption: 'J0 fixed from AM1.5G fit').
+  Non-degeneracy margins: CsPbBr3 (E_F-E_V)/kT = ln(Nv/NA) = 6.74; Co3O4 = 4.61 (so eta_p=(E_V-E_F)/kT is NEGATIVE)
+  Rs = 10 Ohm cm2 drop at AM1.5G MPP: Rs*Jmp ~ 73 mV (~6.5 % of Vmp)
