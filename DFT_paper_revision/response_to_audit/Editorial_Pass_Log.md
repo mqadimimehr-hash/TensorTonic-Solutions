@@ -365,3 +365,12 @@ Sources used in this round, all supplied by the authors: the run spreadsheet (QE
 | R3-27 | Raghav et al. 2020 | 55 Ry and U = 4.2 eV confirmed (spin-unpolarised calculations). | No change needed. |
 | R3-28 | Torres et al. 2021 | PBEsol-D3 with U = 3 eV for the defective (001) surface. | §2.8 wording made exact. |
 | R3-29 | Bai et al. 2020 | Authors Hu, X. and Li, J. missing; volume 503. | Record corrected. |
+
+### Round 3c: remaining citation items
+
+| ID | Reference | Finding | Action |
+|---|---|---|---|
+| R3-30 | Deák et al. 2014 | Not in the authors' library; the U ≈ 3.5 eV statement could not be verified. | Replaced by Orhan & O'Regan 2020 (authors' 65.pdf, Table II: linear-response U = 3.57 eV, U~eff~ = 3.28 eV for anatase Ti-3d; U~eff~ = 7.66 eV for O-2p, LDA); O-2p value added as a benchmark for the transferred 5.5 eV. |
+| R3-31 | Bahmanrokh et al. 2020 | Formalism includes ionic (V~O~) and electronic (h•, e′, Ti^4+^/Ti^3+^ redox) compensation (Table 3). Nine authors. | Marker removed; record completed. |
+| R3-32 | Chen et al. 2014 | Plain GGA (CASTEP), 12-atom cell, 4f in valence, no U, no compensation discussion. | Described as such; marker removed. |
+| R3-33 | Pecunia et al. 2021 | Not in the authors' library; full text not reachable from this environment. | [NEEDS CITATION] kept. |
