@@ -2,7 +2,7 @@
 oxygen vacancy, (a) at ideal anatase positions with the lattice parameters of this work and
 (b) in the relaxed Rb_VO cell, read from the pw.x output header (data/nscf_Rb_VO.out; the
 NSCF run re-used the final coordinates of the production relaxation).  Arrows show the
-displacement of each in-plane atom from its ideal site (after removing the mean displacement
+displacement of each in-plane atom (where larger than 0.2 Å) from its ideal site (after removing the mean displacement
 of all atoms); the spin-carrying oxygen is coloured by its Loewdin moment (data/lowdin_Rb_VO.csv).
 
 If data/nscf_Pr_VO.out (or any pw.x output of the relaxed Pr_VO cell) is added, a panel (c)
@@ -68,16 +68,19 @@ def stats(sp, f, ideal, vac):
 def draw_plane(ax, sp, f, ideal, vac, disp, moments=None, title="", show_ideal=False):
     dop = int(np.where((sp != "Ti") & (sp != "O"))[0][0])
     y0 = ideal[dop][1]
-    pos = ideal if show_ideal else (ideal + disp) % 1.0 if False else f
     inplane = [i for i in range(len(sp)) if abs(mic(ideal[i][1] - y0)) < 0.05]
-    # unwrap around the dopant so the neighbourhood is contiguous
-    centre = np.array([ideal[dop][0], y0, ideal[dop][2]])
+    # Unwrap about the midpoint of the dopant site and the vacant site, choosing each atom's periodic
+    # image from its IDEAL position, so that both panels show the same images and both Ti bonded to
+    # the vacant site appear next to it (an atom exactly half a cell from the dopant column is otherwise
+    # placed arbitrarily by the minimum-image rounding).
+    centre = (np.array([ideal[dop][0], y0, ideal[dop][2]]) + vac) / 2
+    centre[1] = y0
     xy = {}
     for i in inplane:
-        p = (ideal[i] if show_ideal else f[i])
-        d = mic(p - centre)
-        xy[i] = ((centre[0] + d[0]) * A, (centre[2] + d[2]) * C)
-    vd = mic(vac - centre); vxy = ((centre[0] + vd[0]) * A, (centre[2] + vd[2]) * C)
+        shift = np.floor(ideal[i] - centre + 0.5)          # image chosen on ideal coordinates
+        p = (ideal[i] if show_ideal else ideal[i] + mic(f[i] - ideal[i])) - shift
+        xy[i] = (p[0] * A, p[2] * C)
+    vshift = np.floor(vac - centre + 0.5); vxy = ((vac - vshift)[0] * A, (vac - vshift)[2] * C)
     # bonds
     for i, j in itertools.combinations(inplane, 2):
         a, b = np.array(xy[i]), np.array(xy[j])
@@ -135,7 +138,7 @@ n = 1 + len(cells)
 fig, axes = plt.subplots(1, n, figsize=(3.5 * n, 3.9), dpi=300)
 draw_plane(axes[0], sp, f, ideal, vac, disp, title="(a) ideal anatase sites, (010) plane\n     through the dopant site", show_ideal=True)
 draw_plane(axes[1], sp, f, ideal, vac, disp, moments=mom,
-           title=f"(b) relaxed Rb_VO\n     Rb displaced {st['dop_disp']:.2f} Å toward V$_\\mathrm{{O}}$")
+           title=f"(b) relaxed Rb_VO\n     Rb displaced {st['dop_disp']:.2f} Å towards V$_\\mathrm{{O}}$")
 if len(cells) > 1:
     sp2, f2 = read_pw(cells[1][1]); ideal2, vac2 = assign_ideal(sp2, f2); st2, disp2 = stats(sp2, f2, ideal2, vac2)
     draw_plane(axes[2], sp2, f2, ideal2, vac2, disp2, title=f"(c) relaxed Pr_VO\n     Pr displaced {st2['dop_disp']:.2f} Å")

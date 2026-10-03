@@ -374,3 +374,23 @@ Sources used in this round, all supplied by the authors: the run spreadsheet (QE
 | R3-31 | Bahmanrokh et al. 2020 | Formalism includes ionic (V~O~) and electronic (h•, e′, Ti^4+^/Ti^3+^ redox) compensation (Table 3). Nine authors. | Marker removed; record completed. |
 | R3-32 | Chen et al. 2014 | Plain GGA (CASTEP), 12-atom cell, 4f in valence, no U, no compensation discussion. | Described as such; marker removed. |
 | R3-33 | Pecunia et al. 2021 | Not in the authors' library; full text not reachable from this environment. | [NEEDS CITATION] kept. |
+
+### Round 3d: independent adversarial review of the round-3 changes
+
+An independent reviewer recomputed every round-3 number (all reproduced) and raised the points below; each was checked against the raw outputs before acting.
+
+| ID | Severity | Finding | Action |
+|---|---|---|---|
+| R3-34 | major | "Identical atom ordering" does not prove the same vacancy in both cells. | Replaced by the Pr_VO Löwdin evidence (four lowest O populations on four of the five remaining first-shell oxygens; Ti2 and Ti26 among the three highest Ti-3d populations), stated as consistent, not proven; the "O3 not computed" clause removed. |
+| R3-35 | major | The Rb_VO cell kept a mirror plane (2 symmetry operations; verified), so hole states that break it were excluded. | Disclosed in §2.4, §3.6 and Limitation (xiii). |
+| R3-36 | major | "Rb moves 1.27 Å, so relaxation contributes" overclaims: the displacement is from the ideal site, and no relaxation energy was computed. | Abstract, §3.1, §3.2, §4.1, §4.3, Conclusions, Highlights and cover letter reworded; Rb–O 2.54 Å vs Shannon sum 2.92 Å noted. |
+| R3-37 | major | The "2.4–2.5 eV in both cells" band separation is broadening-dependent (Rb_VO total DOS gives 2.22 eV). | Replaced by the Rb_VO eigenvalue gap (2.87 eV, majority; verified from the NSCF output) and the Pr_VO PDOS separation (2.46 eV) with its caveat. |
+| R3-38 | major | "Production solution with the spins interchanged" not established. | Softened: Figure 4 taken to represent both near-degenerate solutions; AUTHOR ACTION for E~tot~, m, m~abs~ of the PDOS SCF. Degauss of production runs marked "not established" (the 0.01 Ry PDOS SCF reproduces the production E~F~). |
+| R3-39 | major | Pr_VO equal spin channels / zero Löwdin moments are by construction from the m = 0 density. | Stated as such; no longer offered as evidence. |
+| R3-40 | major | Figure 1 drew Ti26 at the wrong periodic image (vacancy appeared to have one Ti neighbour); arrow threshold not stated. | Image choice now made on ideal coordinates about the dopant–vacancy midpoint; caption states the 0.2 Å threshold. |
+| R3-41 | minor | Löwdin Ti polarisation accounts for essentially all of the m~abs~ − |m| excess (0.24 = 2 × 0.12). | Corrected. |
+| R3-42 | minor | The 0.038 eV from-scratch offset equals ΔΔE; D3 offset origin unproven. | Both stated. |
+| R3-43 | minor | Broadened state counts (0.70, 0.79) are broadening-dependent; the hole is one band 0.04–0.13 eV above E~F~ (verified). | Stated in text and caption. |
+| R3-44 | minor | NSCF reported 33–37 unconverged eigenvalues per k-point (verified). | Disclosed; AUTHOR ACTION to repeat with diago_full_acc. |
+| R3-45 | minor | "O17" used for two different atoms. | Alternative sites renamed "site 1/7/17 of the orchestration input". |
+| R3-46 | minor | Small numbers: O8–vacancy 3.39 Å; Rb E~F~ shift −0.75 eV; Table S2a pristine offset; ledger run cross-references; Table S1 footnote; SI table order; Table S9 footnote b; stale Bader marker; revision note; Table S4 note; "Ti^3+^ character"; Torres wording; Limitation (v); pw.x condition wording; Introduction Chen sentence; grammar. | All corrected. |

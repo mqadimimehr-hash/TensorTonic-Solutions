@@ -12,12 +12,12 @@ run,cell,q,protocol,kmesh,calc,E_Ry,m,m_abs,E_F_eV,Fmax_Ry_Bohr,note
 6,Rb_VO,0,single-U,G,relax,-4289.17135,-0.97,1.21,7.133,0.003996,production solution
 7,O2_box,0,PBE,G,scf,-83.03242804,2.00,2.00,,0.000036,triplet; half = -41.51621
 8,Pr_perfect,0,single-U,2x2x2,scf,-4576.62183,,,,,
-9,Pr_VO,0,single-U,2x2x2,scf,-4535.01814,0.00,,10.277,,= k-mesh series run 33
+9,Pr_VO,0,single-U,2x2x2,scf,-4535.01814,0.00,,10.277,,= k-mesh series run 32
 10,Rb_perfect,0,single-U,2x2x2,scf,-4330.28761,,,,,
-11,Rb_VO,0,single-U,2x2x2,scf,-4289.08034,0.99,,7.043,,= k-mesh series run 37
-12,Pr_VO_siteO1,0,single-U,G,relax,-4535.04367,,,,,second shell 3.99 A
-13,Pr_VO_siteO7,0,single-U,G,relax,-4534.99608,,,,,4.94 A
-14,Pr_VO_siteO17,0,single-U,G,relax,-4535.04366,,,,,second shell 3.99 A
+11,Rb_VO,0,single-U,2x2x2,scf,-4289.08034,0.99,,7.043,,= k-mesh series run 36
+12,Pr_VO_site1,0,single-U,G,relax,-4535.04367,,,,,second shell 3.99 A
+13,Pr_VO_site7,0,single-U,G,relax,-4534.99608,,,,,4.94 A
+14,Pr_VO_site17,0,single-U,G,relax,-4535.04366,,,,,second shell 3.99 A
 15,Pr_VO,1,single-U,G,relax,-4535.83092,0.00,0.00,,,uniform background; 216 steps
 16,Pr_VO,2,single-U,G,relax,-4536.36183,0.00,0.00,7.172,,uniform background; 549 steps
 17,Rb_VO,1,single-U,G,relax,-4289.68663,1.99,,,,uniform background; 293 steps
