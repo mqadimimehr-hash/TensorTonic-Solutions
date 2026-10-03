@@ -97,6 +97,21 @@ The four editorial lenses that the usage limit had interrupted were re-run with 
 - **Title.** It now reads "Dopant-Induced Holes" instead of "Hole Localisation"; restore the latter only if a spin-density figure shows a localised hole.
 - **Literature.** Arrigoni and Madsen used U = 5.8 eV and HSE15 (their arXiv preprint), not U = 4.2 eV and HSE06, so their numbers are not directly comparable with yours. Vural et al. do not mention oxygen vacancies in their abstract, so the Pr–V_O "agreement" sentence must be checked or deleted. The Yin 2020 reference was missing an author (X. Wei) and had the wrong end page.
 
+## 7c. Round 3: your archive data and raw outputs (added 3 October 2026)
+
+The files you uploaded (run spreadsheet, results log, archived audits, PDOS workflow and outputs, U-sweep templates, reference mapping) closed 18 of the 55 manuscript AUTHOR ACTION markers outright and narrowed most of the rest; 37 remain in the built manuscript and 21 in the SI, most of them one-line confirmations from your input files. Every derived energy is now reproduced by `supporting_information_v4/check_ledger.py` from `energy_ledger.csv`. The row-by-row log is in `response_to_audit/Editorial_Pass_Log.md` (Round 3).
+
+Findings that change the paper:
+
+1. **The Rb_VO hole is located.** projwfc.x Löwdin moments put +0.59 μB of the 1.01 μB on a single oxygen (O8) bonded to Rb, with +0.11 μB on two neighbours and −0.12 μB on Ti; the PDOS shows one empty minority-spin state just above E_F, 93 % O-2p. O8 is also the Bader depletion maximum. This is the site-resolved evidence the reviewers asked for (new Figure S1, rewritten Section 3.6).
+2. **Rb moves 1.27 Å towards the vacancy.** In the relaxed Rb_VO coordinates the Rb ion sits 0.87 Å from the vacant oxygen site. The size contribution to the −4.06 eV value is therefore concrete, which strengthens the radius-confound caveat rather than the charge-only story (Sections 3.1, 4.1, 4.3).
+3. **Figure 1 was not the relaxed structure.** The old figure was drawn from ideal anatase positions; the new one is drawn from your relaxed coordinates. Figure 4 had a clipped fill and a fictitious Rb-d curve; it is re-plotted from your PDOS tables.
+4. **Several "m_abs" values were total magnetisations** (charged series 1.99/2.99, dual-U, U sweep, D3, HSE). Corrected; q = +2 has m_abs = 3.82 μB.
+5. **My earlier statement about starting_magnetization was wrong.** pw.x accepts explicit zeros (checked in the QE 7.5 source); your production runs started from zero on all species, and the text now says what that implies.
+6. **The pristine perfect cell may be unrelaxed.** Your run log lists an earlier pristine run as an SCF with a 0.58 eV/Å residual force. If the production pristine energy is also unrelaxed, the pristine formation energy (+4.74 eV) and the reductions relative to it are underestimated. Please check the output.
+
+The companion device-simulation manuscript (Pr³⁺:SnO₂ / CsPbBr₃) was audited separately: `device_paper_review/Device_Manuscript_Audit.{md,docx}`. Its verdict is a very high desk-reject risk in its current form (titles claim ML and DFT that the paper does not contain; the headline 100× R_sh is imposed by Eq. 1; Pr³⁺ on Sn⁴⁺ is an acceptor, not a donor; several equation and number inconsistencies).
+
 ## 8. What I could not do
 
 The six Word files pass the Office Open XML schema validator; LibreOffice is not functional in the preparation environment, so their page layout was checked on a Chromium render of the same Markdown source (the `_PREVIEW.pdf` files). Open each `.docx` in Word once before editing. I cannot run Quantum ESPRESSO here, open your archive, or read your output files, so nothing in v4 is a new result. I cannot submit on your behalf: submission must be made by the corresponding author through the journal's portal after all co-authors approve. Publisher, Scimago and DOI landing pages were blocked from this environment, so journal metrics and the four flagged references rest on secondary sources and need your confirmation.

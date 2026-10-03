@@ -3,5 +3,5 @@
 - Pr³⁺ and Rb⁺ compared in one anatase TiO₂ supercell with one PBE+U protocol
 - Oxygen-vacancy formation energy: +4.74 eV pristine, +1.29 eV Pr, −4.06 eV Rb
 - The energetic order matches the formal hole count of 0, 1 and 3 per cell
-- Rb cells keep an unpaired spin; a charged series reaches three spins per Rb⁺
+- The Rb_VO hole is an O-2p state on one O; Rb shifts 1.27 Å towards the vacancy
 - The spin state of the Pr-induced hole depends on an O-2p Hubbard term
