@@ -38,7 +38,7 @@ The FINAL manuscript is not submittable as it stands, and the two audits you alr
 
 ## 4. What version 4 changes (summary; the response document lists every item)
 
-- Title → "Oxygen-Vacancy Energetics and Hole Localization in Pr- and Rb-Substituted Anatase TiO~2~: A DFT+U Comparison". Abstract rewritten around the three formation energies, the electron ledger and the method dependence of Pr localisation.
+- Title → "Oxygen-Vacancy Energetics and Dopant-Induced Holes in Pr- and Rb-Substituted Anatase TiO~2~: A DFT+U Comparison" (the interim title "…Hole Localisation…" was changed in the second editorial round, because no reported observable establishes localisation). Abstract rewritten around the three formation energies, the electron ledger and the method dependence of Pr localisation.
 - New Table 1 (pseudopotential valences, electron counts, formal carriers) and Table 2 (Ry totals to five decimals, E~f~ at Γ and 2×2×2, uncertainty statement). Old Table 2's interpretation rows replaced by observables (Table 3) and the dual-U results (Table 4).
 - Methods consolidated (2.1–2.8), with the Pr-4f core treatment, smearing, spin-initialisation convention, force tolerance in eV/Å and the oxygen-reference definition made explicit.
 - Results reorganised: structure; energetics; spin states and electron counts; oxygen-site U; charged-cell spin series (spin only); electronic-structure diagnostics (unaligned E~F~ caveat, PDOS, pristine-only HSE06); sensitivity tests (U, k-mesh corrected, D3 undetermined, "three selected sites", Bader qualified).
@@ -85,6 +85,17 @@ A bulk DFT+U two-dopant study with explicit limitations is a good paper for a so
 ## 7a. Editorial pass after v4 (added 2 October 2026)
 
 After v4 was built, an independent compliance check (19 applied / 13 partial / 9 not applied of 41 audit items reached) and an editorial reject-hunt (87 findings from a handling-editor lens and a computational-methods lens) were run; the usage limit interrupted the remaining lenses, so the findings were verified and applied by hand. The corrections that matter most for an editor or referee: the abstract is now 243 words and no longer contradicts Table 4; the double-rounded 8.80 eV is 8.81 eV; the production vacancy is no longer called the nearest-neighbour oxygen (the earlier draft said that site was not tested, so you must state the actual index and distance); the "zero starting magnetisation" statement is replaced by a request for the actual input values, because Quantum ESPRESSO requires a non-zero value; two nearly degenerate Rb_VO spin solutions (m~abs~ = 1.21 μB from the relaxation, 1.00 μB from every from-scratch single point) are disclosed and must be ranked; the HSE06 total energy differs from the PBE+U total by 348 Ry, which cannot come from the functional alone and must be explained (different pseudopotentials?); the Bader dopant charges fail the sum rule of Table S3 and must be re-extracted; the k-mesh series is non-monotonic between 2×2×2 and 3×3×2 and is now stated as such; all "withdrawn / used earlier" wording is gone from the manuscript (it belongs only in the response letter); placeholder notes no longer print in the reference list; a graphical abstract and five highlights now exist; the generative-AI, funding and CRediT statements are in Elsevier form. See response_to_audit/Editorial_Pass_Log.md for all 87 dispositions.
+
+## 7b. Second editorial round (added 3 October 2026)
+
+The four editorial lenses that the usage limit had interrupted were re-run with Claude Opus 5.5 (192 accepted findings, none desk-reject; all applied or superseded). The points you must know before submission:
+
+- **Elsevier image policy.** The graphical abstract and the interim label patches on Figures 1, 4, S1, S2 and S3 were produced with the AI tool. Elsevier does not permit generative-AI or AI-assisted tools to create or alter images, or to produce graphical-abstract artwork. Regenerate all of them with your own scripts from the raw data before submission; the declaration in the manuscript says so in an [AUTHOR ACTION] marker.
+- **Figure 1** shows identical atomic positions in both panels, so it cannot show two different relaxed cells. **Figure 4** plots the empty half of the Rb_VO feature in the spin-down channel, which implies m > 0, while Table 3 gives m = −0.97 μB. Check the spin labels and which Rb_VO solution the PDOS run used.
+- **k-mesh sign.** The round-1 text had the sign wrong. Table S2 shows the 2×2×2 energies lie *above* the Γ-only values; the text now says so and asks you to confirm the sign of the Γ − 3×3×2 differences.
+- **Radius confound.** The ordering pristine > Pr > Rb is also the order of cation radius, and the Discussion now says so explicitly.
+- **Title.** It now reads "Dopant-Induced Holes" instead of "Hole Localisation"; restore the latter only if a spin-density figure shows a localised hole.
+- **Literature.** Arrigoni and Madsen used U = 5.8 eV and HSE15 (their arXiv preprint), not U = 4.2 eV and HSE06, so their numbers are not directly comparable with yours. Vural et al. do not mention oxygen vacancies in their abstract, so the Pr–V_O "agreement" sentence must be checked or deleted. The Yin 2020 reference was missing an author (X. Wei) and had the wrong end page.
 
 ## 8. What I could not do
 

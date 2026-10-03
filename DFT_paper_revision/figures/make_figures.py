@@ -36,15 +36,14 @@ ax.set_ylim(-5.2, 5.6); ax.yaxis.grid(True, color=GRID, lw=0.6, zorder=0); ax.se
 for s in ["top", "right"]: ax.spines[s].set_visible(False)
 for b, v in zip(bars, vals):
     if v > 0:
-        ax.text(b.get_x() + b.get_width() / 2, v + 0.18, f"{v:+.2f} eV", ha="center", va="bottom", color=INK, fontsize=9.5, fontweight="bold")
+        ax.text(b.get_x() + b.get_width() / 2, v + 0.18, f"{v:+.2f} eV".replace("-", "\u2212"), ha="center", va="bottom", color=INK, fontsize=9.5, fontweight="bold")
     else:
-        ax.text(b.get_x() + b.get_width() / 2, v / 2, f"{v:+.2f} eV", ha="center", va="center", color="white", fontsize=9.5, fontweight="bold")
-ax.text(x[1] + 0.33, vals222[1], f"{vals222[1]:+.2f} (2×2×2)", fontsize=7.5, color=INK2, va="center", ha="left")
-ax.text(x[2] + 0.33, vals222[2], f"{vals222[2]:+.2f} (2×2×2)", fontsize=7.5, color=INK2, va="center", ha="left")
-ax.set_title("Neutral oxygen-vacancy formation energy, PBE+U (U$_{\\mathrm{Ti\\text{-}3d}}$ = 3.5 eV), Γ-only", fontsize=9.5, color=INK)
-ax.text(0.01, 0.02, "Bars: Γ-only relaxed cells.  Dashed ticks: single-point energies at 2×2×2 on the Γ geometries.",
-        transform=ax.transAxes, fontsize=7, color=INK2)
-fig.tight_layout(); fig.savefig("Fig2_formation_energies_v4.png"); fig.savefig("Fig2_formation_energies_v4.pdf")
+        ax.text(b.get_x() + b.get_width() / 2, v / 2, f"{v:+.2f} eV".replace("-", "\u2212"), ha="center", va="center", color="white", fontsize=9.5, fontweight="bold")
+ax.text(x[1] + 0.31, vals222[1], f"{vals222[1]:+.2f}".replace("-", "\u2212") + "\n(2×2×2)", fontsize=7, color=INK2, va="center", ha="left", linespacing=1.1)
+ax.text(x[2] - 0.31, vals222[2] - 0.35, f"{vals222[2]:+.2f} (2×2×2)".replace("-", "\u2212"), fontsize=7, color=INK2, va="top", ha="right")
+ax.set_title("Neutral oxygen-vacancy formation energy, PBE+U, U(Ti-3d) = 3.5 eV", fontsize=9.5, color=INK)
+fig.text(0.5, 0.005, "Bars: Γ-only relaxed cells. Dashed ticks: 2×2×2 single points on the Γ geometries.", ha="center", va="bottom", fontsize=7, color=INK2)
+ax.set_xlim(-0.55, 2.75); fig.tight_layout(rect=(0, 0.04, 1, 1)); fig.savefig("Fig2_formation_energies_v4.png"); fig.savefig("Fig2_formation_energies_v4.pdf")
 
 # ---------- Figure 3: total and absolute magnetisation ----------
 systems = ["Pristine\nperfect", "Pr_perfect", "Pr_VO", "Rb_perfect", "Rb_VO", "O$_2$ (box)"]
@@ -52,7 +51,7 @@ m_tot = [0.00, 0.00, 0.00, 1.00, 0.97, 2.00]     # |m|, signed total magnetisati
 m_abs = [0.00, 0.00, 0.00, 1.00, 1.21, 2.00]     # m_abs, absolute magnetisation
 fig, ax = plt.subplots(figsize=(6.2, 3.6), dpi=300)
 x = np.arange(len(systems)); w = 0.36
-b1 = ax.bar(x - w / 2 - 0.01, m_tot, w, color=S1, label="|m|  (total magnetisation)", zorder=3)
+b1 = ax.bar(x - w / 2 - 0.01, m_tot, w, color=S1, label="|m|  (magnitude of total magnetisation)", zorder=3)
 b2 = ax.bar(x + w / 2 + 0.01, m_abs, w, color=S2, hatch="///", edgecolor="white", lw=0,
             label="$m_{\\mathrm{abs}}$  (absolute magnetisation)", zorder=3)
 ax.set_ylabel("Magnetisation per cell ($\\mu_{\\mathrm{B}}$)"); ax.set_ylim(0, 2.45)
@@ -61,8 +60,8 @@ ax.yaxis.grid(True, color=GRID, lw=0.6, zorder=0); ax.set_axisbelow(True)
 for s in ["top", "right"]: ax.spines[s].set_visible(False)
 for bars, vals_ in ((b1, m_tot), (b2, m_abs)):
     for b, v in zip(bars, vals_):
-        if v > 0: ax.text(b.get_x() + b.get_width() / 2, v + 0.04, f"{v:.2f}", ha="center", fontsize=8, color=INK)
+        ax.text(b.get_x() + b.get_width() / 2, v + 0.04, f"{v:.2f}", ha="center", fontsize=8 if v > 0 else 7, color=INK if v > 0 else INK2)
 ax.legend(frameon=False, fontsize=8.5, loc="upper left")
-ax.set_title("Converged magnetisation, single-U(Ti-3d) PBE+U relaxations", fontsize=9.5, color=INK)
+ax.set_title("Converged magnetisation, PBE+U relaxations with U on Ti-3d only", fontsize=9.5, color=INK)
 fig.tight_layout(); fig.savefig("Fig3_magnetisation_v4.png"); fig.savefig("Fig3_magnetisation_v4.pdf")
 print("figures written")

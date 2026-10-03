@@ -1,30 +1,30 @@
 # Supporting Information
 
-## Oxygen-Vacancy Energetics and Hole Localisation in Pr- and Rb-Substituted Anatase TiO~2~: A DFT+U Comparison
+## Oxygen-Vacancy Energetics and Dopant-Induced Holes in Pr- and Rb-Substituted Anatase TiO~2~: A DFT+U Comparison
 
 Mohammad Ghadimimehr, Azimah Binti Omar\*, Siti Rohani Binti Sheikh Raihan — Universiti Malaya
 
 > **Revision note (v4; delete before submission).** Section numbering, table numbering and figure numbering follow the v4 main text. Items marked **[AUTHOR ACTION]** need data that only the authors can extract from the calculation records. Tables S9 and S10 are new and are the single traceable account of what was calculated that the audit asked for.
 
-**Contents.** S1 Pristine V~O~ convergence · S2 Additional PDOS · S3 Hubbard-U sweep · S4 k-mesh verification · S5 Bader analysis · S6 Alternative V~O~ sites · S7 Hybrid, dual-U and dispersion single points · S8 Methods details and file inventory · S9 Full-precision energy ledger · S10 Run manifest · S11 Force-convergence trajectories
+**Contents.** S1 Pristine V~O~ convergence · S2 Additional PDOS · S3 Hubbard-U sweep · S4 k-mesh verification · S5 Bader analysis · S6 Alternative V~O~ sites · S7 Hybrid, dual-U and dispersion calculations · S8 Methods details and file inventory · S9 Full-precision energy ledger · S10 Run manifest · S11 Force-convergence trajectories
 
 ### S1. Pristine V~O~ baseline: convergence recovery
 
-The pristine anatase V~O~ reference reported in Table 2 of the main text (E~f~ = +4.74 eV) required two attempts. The first used the production protocol with the default mixing (mixing_mode = local-TF, mixing_beta = 0.3) and oscillated, with the SCF accuracy estimate moving between 0.05 and 0.14 Ry over iterations 14–17, an instability associated with the two vacancy electrons occupying a dense manifold of conduction-band states. The second attempt (run Pristine_VO_v3) changed six settings together: mixing_beta 0.3 → 0.1; mixing_ndim → 12; Gaussian smearing degauss 0.005 → 0.01 Ry (≈ 136 meV); electron_maxstep → 300; diago_thr_init → 1×10^−3^ Ry; and starting_magnetization = 0.05 on both species as a symmetry-breaking nudge. The SCF then converged monotonically in 96 iterations of the first BFGS step to conv_thr = 1×10^−8^ Ry. Six further BFGS steps brought the maximum force to 0.00563 Ry/Bohr, slightly above the 0.005 Ry/Bohr production threshold, at which point the relaxation was stopped. The final total energy of the 47-atom cell is −4233.15036 Ry; against E(Pristine_perfect) = −4275.01530 Ry and ½E(O~2~) = −41.51621 Ry this gives E~f~ = +4.74 eV. The converged cell is non-magnetic. **[AUTHOR ACTION: state whether the production doped-cell relaxations used degauss = 0.005 or 0.01 Ry; if the pristine V~O~ cell used a different smearing from the doped cells, say so in Section 2.4 of the main text.]**
+The pristine anatase V~O~ reference reported in Table 2 of the main text (E~f~ = +4.74 eV) required two attempts. The first used mixing_mode = local-TF with mixing_beta = 0.3, not the damped mixing_beta = 0.1 of the doped-cell relaxations (Section 2.6), and oscillated, with the SCF accuracy estimate moving between 0.05 and 0.14 Ry over iterations 14–17, an instability associated with the two vacancy electrons occupying a dense manifold of conduction-band states. The second attempt (run Pristine_VO_v3) changed six settings together: mixing_beta 0.3 → 0.1; mixing_ndim → 12; Gaussian smearing degauss 0.005 → 0.01 Ry (≈ 136 meV); electron_maxstep → 300; diago_thr_init → 1×10^−3^ Ry; and starting_magnetization = 0.05 on both species as a symmetry-breaking nudge. The SCF then converged monotonically in 96 iterations of the first BFGS step to conv_thr = 1×10^−8^ Ry. Six further BFGS steps brought the maximum force to 0.00563 Ry/Bohr, slightly above the 0.005 Ry/Bohr production threshold, at which point the relaxation was stopped. The final total energy of the 47-atom cell is −4233.15036 Ry; against E(Pristine_perfect) = −4275.01530 Ry and ½E(O~2~) = −41.51621 Ry this gives E~f~ = +4.74 eV. The converged cell is non-magnetic. **[AUTHOR ACTION: state whether the production doped-cell relaxations used degauss = 0.005 or 0.01 Ry; if the pristine V~O~ cell used a different smearing from the doped cells, say so in Section 2.4 of the main text.]**
 
 ### S2. Additional projected densities of states
 
-**S2.1 Pr_VO with dopant channels.** Figure S1 shows the PDOS of the Pr_VO cell with the Pr-5d and Pr-5p channels plotted separately from Ti-3d and O-2p. The conduction band is dominated by Ti-3d; the Fermi level lies inside the conduction band because the cell carries one net excess electron (Table 1 of the main text). The Pr.pbe-spdn-kjpaw_psl.1.0.0 dataset has Z~val~ = 11 (5s^2^5p^6^5d^1^6s^2^) with the 4f electrons frozen in the core, so no 4f projection exists; the "Pr 4f" curve present in the earlier version of this figure was an empty channel and must be removed. **[AUTHOR ACTION: the interim artwork has the empty channel's legend entry and the interpretive text box patched out; regenerate Figure S1 from projwfc.x output with channels Ti-3d, O-2p, Pr-5d, Pr-5p and total only and state the Gaussian broadening.]** The small residual between the total DOS and the sum of the projected channels arises from the incompleteness of the atomic projectors, not from a missing 4f channel.
+**S2.1 Pr_VO with dopant channels.** Figure S1 shows the PDOS of the Pr_VO cell with the Pr-5d and Pr-5p channels plotted separately from Ti-3d and O-2p. The conduction band is dominated by Ti-3d; the Fermi level lies inside the conduction band because the cell carries one net excess electron (Table 1 of the main text). The Pr.pbe-spdn-kjpaw_psl.1.0.0 dataset has Z~val~ = 11 (5s^2^5p^6^5d^1^(6s,6p)^2^, Table 1 of the main text) with the 4f electrons frozen in the core, so no 4f projection exists. **[AUTHOR ACTION: the interim artwork has the empty channel's legend entry and the interpretive text box patched out; regenerate Figure S1 from projwfc.x output with channels Ti-3d, O-2p, Pr-5d, Pr-5p and total only and state the Gaussian broadening.]** The small residual between the total DOS and the sum of the projected channels arises from the incompleteness of the atomic projectors, not from a missing 4f channel.
 
 ![](../figures/FigS1_PrVO_PDOS_patched.png){width=100%}
 
-*Figure S1. Projected density of states of the Pr_VO cell (PBE+U, U(Ti-3d) = 3.5 eV, 2×2×2 non-self-consistent, E~F~ = 10.306 eV). Channels: Ti-3d summed over 15 Ti; O-2p summed over 31 O; Pr-5d; Pr-5p; total. (Artwork to be regenerated as noted above.)*
+*Figure S1. Projected density of states of the Pr_VO cell (PBE+U, U(Ti-3d) = 3.5 eV, 2×2×2 non-self-consistent, E~F~ = 10.306 eV). Channels: Ti-3d summed over 15 Ti; O-2p summed over 31 O; Pr-5d; Pr-5p; total. **[AUTHOR ACTION: artwork to be regenerated as noted in Section S2.1; delete this note once done.]***
 
-**S2.2 Total DOS, Pr_VO versus Rb_VO.** Figure S2 shows the non-spin-resolved companion of Figure 4 of the main text. Pr_VO: E~F~ = 10.31 eV inside the Ti-3d conduction band. Rb_VO: E~F~ = 7.14 eV at the top of the O-2p valence band, with a small occupied feature at E~F~. **[AUTHOR ACTION: the panel subtitles of the interim artwork were patched ("singlet" removed; m~abs~ instead of |m|); regenerate from the projwfc.x output.]**
+**S2.2 Total DOS, Pr_VO versus Rb_VO.** Figure S2 shows the non-spin-resolved companion of Figure 4 of the main text. Pr_VO: E~F~ = 10.31 eV inside the Ti-3d conduction band. Rb_VO: E~F~ = 7.14 eV at the top of the O-2p valence band, with a small feature straddling E~F~ and centred just above it. **[AUTHOR ACTION: the panel subtitles of the interim artwork were patched ("singlet" removed; m~abs~ instead of |m|); regenerate from the projwfc.x output.]**
 
 ![](../figures/FigS2_total_PDOS_patched.png){width=100%}
 
-*Figure S2. Projected density of states of Pr_VO (top) and Rb_VO (bottom) without spin decomposition. Filled: Ti-3d; red: O-2p; purple: dopant d; grey: total.*
+*Figure S2. Projected density of states of Pr_VO (top) and Rb_VO (bottom) without spin decomposition. Filled blue: Ti-3d; red: O-2p; purple: dopant d; grey: total.*
 
 ### S3. Hubbard-U sensitivity sweep
 
@@ -46,7 +46,7 @@ Single-point SCF energies on the Γ-relaxed geometries at a 2×2×2 Monkhorst–
 
 ***Table S2. Total energies at Γ-only and 2×2×2 (Ry) and the resulting formation energies (eV).***
 
-| Cell | E~tot~, Γ (Ry) | E~tot~, 2×2×2 (Ry) | ΔE (Ry) | ΔE (eV) |
+| Cell | E~tot~, Γ (Ry) | E~tot~, 2×2×2 (Ry) | ΔE = E(2×2×2) − E(Γ) (Ry) | ΔE (eV) |
 |---|---|---|---|---|
 | Pr_perfect | −4576.71224 | −4576.62183 | +0.09041 | +1.230 |
 | Pr_VO | −4535.10106 | −4535.01814 | +0.08292 | +1.128 |
@@ -56,7 +56,7 @@ Single-point SCF energies on the Γ-relaxed geometries at a 2×2×2 Monkhorst–
 | E~f~(V~O~; Rb) | −4.063 eV | −4.203 eV | | |
 | ΔE~f~ (Pr − Rb) | +5.356 eV | +5.394 eV | | ΔΔE = +0.038 eV |
 
-ΔΔE is defined as the 2×2×2 contrast minus the Γ-only contrast. The main text (Section 3.7) also quotes energies for Pristine_perfect, Pr_VO and Rb_VO at 2×2×1, 2×2×2 and 3×3×2 meshes (Γ − 3×3×2 = 1.05, 1.08, 1.16 eV; 2×2×1 − 3×3×2 = 1.15, 1.05, 0.42 meV/atom); the 2×2×2 values above lie 0.05–0.08 eV below the quoted 3×3×2 values for Pr_VO and Rb_VO. **[AUTHOR ACTION: add all of those energies to this table with run identifiers, including Pristine_perfect at 2×2×2; the pristine V~O~ cell was not computed at 2×2×2. The earlier run log listed only Pr_perfect, Rb_perfect and Pr_VO as completed for the 2×2×2 stage although an Rb_VO value is reported above; confirm the Rb_VO 2×2×2 run from its output file.]**
+ΔΔE is defined as the 2×2×2 contrast minus the Γ-only contrast. The main text (Section 3.7) also quotes energies for Pristine_perfect, Pr_VO and Rb_VO at 2×2×1, 2×2×2 and 3×3×2 meshes (magnitudes of E(Γ) − E(3×3×2): 1.05, 1.08, 1.16 eV; of E(2×2×1) − E(3×3×2): 1.15, 1.05, 0.42 meV/atom). In the table above ΔE = E~tot~(2×2×2) − E~tot~(Γ) is positive, so the 2×2×2 energies lie above the Γ-only ones; they agree with the quoted 3×3×2 values to 0.05–0.08 eV only if the Γ-only energies lie below 3×3×2. **[AUTHOR ACTION: state the sign of E(Γ) − E(3×3×2) for each cell from the output files.]** **[AUTHOR ACTION: add all of those energies to this table with run identifiers, including Pristine_perfect at 2×2×2; the pristine V~O~ cell was not computed at 2×2×2. The earlier run log listed only Pr_perfect, Rb_perfect and Pr_VO as completed for the 2×2×2 stage although an Rb_VO value is reported above; confirm the Rb_VO 2×2×2 run from its output file.]**
 
 ### S5. Bader topological-charge analysis
 
@@ -79,7 +79,7 @@ The Bader sums reproduce the valence electron counts of Table 1 of the main text
 
 ### S6. Alternative V~O~ sites in the Pr cell
 
-***Table S4. V~O~ formation energies at four selected oxygen sites of the Pr-substituted cell (BFGS, single-U Ti-3d, Γ-only, 40 Ry).*** *Sites O1 and O17 are symmetry-equivalent; their agreement to 0.1 meV is an internal consistency check.*
+***Table S4. V~O~ formation energies at four selected oxygen sites of the Pr-substituted cell (BFGS, U(Ti-3d) = 3.5 eV only, Γ-only, 40 Ry).*** *Sites O1 and O17 are symmetry-equivalent; their agreement to 0.1 meV is an internal consistency check.*
 
 | Site (index in production input) | Pr–O distance (Å) | E~tot~ (Ry) | E~f~(V~O~) (eV) | Relative to production site (eV) |
 |---|---|---|---|---|
@@ -90,14 +90,14 @@ The Bader sums reproduce the valence electron counts of Table 1 of the main text
 
 **[AUTHOR ACTION: add the Cartesian coordinates of the four removed oxygen atoms and the minimum-image Pr–V~O~ distances; state the index of the production vacancy.]**
 
-### S7. Hybrid-functional, dual-Hubbard and dispersion single points
+### S7. Hybrid-functional, dual-Hubbard and dispersion calculations
 
 ***Table S5. Results of the additional calculations (Sections 3.4, 3.6 and 3.7 of the main text).***
 
 | Calculation | Cell | E~tot~ (Ry) | Key observable |
 |---|---|---|---|
-| HSE06 single point (α = 0.25, ω = 0.106 bohr^−1^) | Pristine_perfect | −3926.66858 | E~F~ = 8.286 eV; m~abs~ = 0 |
-| Dual-U relaxation (U~Ti~ = 3.5, U~O~ = 5.5 eV) | Pr_perfect | −4571.33095 | m~abs~ = 1.00 μ~B~; E~F~ = 6.69 eV; F~max~ = 0.0049 Ry/Bohr |
+| HSE06 single point (α = 0.25, ω = 0.106 Bohr^−1^) | Pristine_perfect | −3926.66858 | E~F~ = 8.286 eV; m~abs~ = 0 |
+| Dual-U relaxation (U(Ti-3d) = 3.5 eV, U(O-2p) = 5.5 eV) | Pr_perfect | −4571.33095 | m~abs~ = 1.00 μ~B~; E~F~ = 6.69 eV; F~max~ = 0.0049 Ry/Bohr |
 | Dual-U (control) | Pristine_perfect | −4269.72111 | m~abs~ = 0; E~F~ = 7.22 eV |
 | Dual-U | Rb_perfect | **[AUTHOR ACTION: E~tot~]** | m~abs~ = 3.00 μ~B~ |
 | Dual-U | Rb_VO | **[AUTHOR ACTION: E~tot~]** | m~abs~ = 1.00 μ~B~ |
@@ -108,9 +108,9 @@ The D3 single points were not performed on Pr_perfect, Rb_perfect or O~2~, so no
 
 ### S8. Methods details and file inventory
 
-Quantum ESPRESSO v7.5; PSlibrary 1.0.0 PAW datasets Ti.pbe-spn-kjpaw_psl.1.0.0.UPF, O.pbe-n-kjpaw_psl.1.0.0.UPF, Pr.pbe-spdn-kjpaw_psl.1.0.0.UPF (Z~val~ = 11; 4f in core) and Rb.pbe-spn-kjpaw_psl.1.0.0.UPF; nspin = 2; HUBBARD (ortho-atomic) with U Ti-3d 3.5 eV and, for the dual-U runs, U O-2p 5.5 eV. **[AUTHOR ACTION: Table S7 — paste the "Valence configuration" block and SHA-256 hash of each UPF file. Table S8 — relaxed first-shell dopant–O distances for Pr and Rb.]**
+Quantum ESPRESSO v7.5; PSlibrary 1.0.0 PAW datasets Ti.pbe-spn-kjpaw_psl.1.0.0.UPF, O.pbe-n-kjpaw_psl.1.0.0.UPF, Pr.pbe-spdn-kjpaw_psl.1.0.0.UPF (Z~val~ = 11; 4f in core) and Rb.pbe-spn-kjpaw_psl.1.0.0.UPF; nspin = 2; HUBBARD (ortho-atomic) with U(Ti-3d) = 3.5 eV and, for the dual-U runs, U(O-2p) = 5.5 eV. **[AUTHOR ACTION: Table S7 — paste the "Valence configuration" block and SHA-256 hash of each UPF file. Table S8 — relaxed first-shell dopant–O distances for Pr and Rb.]**
 
-The input templates, orchestrator scripts, raw output files, ACF.dat files, PDOS files and the master spreadsheet are deposited on Zenodo (DOI in the main-text Data Availability statement). Local directory names of the authors' computing facility are not reported.
+The input templates, orchestrator scripts, raw output files, ACF.dat files, PDOS files and the master spreadsheet are deposited on Zenodo (DOI in the Data availability statement of the main text). Local directory names of the authors' computing facility are not reported.
 
 ***Table S6. Wall-time summary (Intel i5-3570, 4 cores).***
 
@@ -120,7 +120,7 @@ The input templates, orchestrator scripts, raw output files, ACF.dat files, PDOS
 | Pristine V~O~ relaxation (after mixing recovery, S1) | ≈ 14 h | F~max~ = 0.0056 Ry/Bohr |
 | HSE06 single point, Pristine_perfect | 8 days | done |
 | Dual-U relaxations, Pr_perfect and Pristine | ≈ 24 h | done |
-| Dual-U relaxations, Rb_perfect and Rb_VO | **[AUTHOR ACTION]** | done |
+| Dual-U calculations (relaxation or single point to be stated, Section 3.4), Rb_perfect and Rb_VO | **[AUTHOR ACTION]** | done |
 | D3 single points, Pr_VO and Rb_VO | ≈ 12 h total | done |
 | Alternative-site Pr_VO relaxations (3) | ≈ 33 h total | done |
 | Bader, Pr_VO and Rb_VO | ≈ 2 h | done (Pristine not completed) |
@@ -131,7 +131,7 @@ The input templates, orchestrator scripts, raw output files, ACF.dat files, PDOS
 
 ### S9. Full-precision energy ledger
 
-All values are the "! total energy" lines printed by pw.x (smearing free energies for the smeared cells; see Section 2.4 of the main text); conversions use 1 Ry = 13.605693 eV. Formation energies in the main text are computed from these values. N~e~ of the charged cells: Pr_VO 376 (q = +1) and 375 (q = +2); Rb_VO 374 (q = +1) and 373 (q = +2).
+All values are the "! total energy" lines printed by pw.x (smearing free energies for the smeared cells; see Section 2.4 of the main text); conversions use 1 Ry = 13.605693 eV. In the Protocol column, single-U denotes U(Ti-3d) = 3.5 eV only and dual-U denotes U(Ti-3d) = 3.5 eV plus U(O-2p) = 5.5 eV. Formation energies in the main text are computed from these values. N~e~ of the charged cells: Pr_VO 376 (q = +1) and 375 (q = +2); Rb_VO 374 (q = +1) and 373 (q = +2).
 
 ***Table S9. Energy ledger.***
 
@@ -143,7 +143,7 @@ All values are the "! total energy" lines printed by pw.x (smearing free energie
 | 4 | Pr_VO (production site) | 0 | single-U | Γ | −4535.10106 | E~f~ = +1.292 eV |
 | 5 | Rb_perfect | 0 | single-U | Γ | −4330.38890 | reference |
 | 6 | Rb_VO | 0 | single-U | Γ | −4289.17135 | E~f~ = −4.063 eV |
-| 7 | O~2~ (12 Å box, triplet) | 0 | PBE | Γ | 2 × (−41.51621) | ½E(O~2~) = −41.51621 Ry = −564.857 eV |
+| 7 | O~2~ (12 Å box, triplet) | 0 | PBE | Γ | 2 × (−41.51621) **[AUTHOR ACTION: paste the printed "! total energy" line of the O~2~ run]** | ½E(O~2~) = −41.51621 Ry = −564.857 eV |
 | 8 | Pr_perfect | 0 | single-U | 2×2×2 | −4576.62183 | |
 | 9 | Pr_VO | 0 | single-U | 2×2×2 | −4535.01814 | E~f~ = +1.190 eV |
 | 10 | Rb_perfect | 0 | single-U | 2×2×2 | −4330.28761 | |
@@ -172,13 +172,13 @@ Derived differences: E~f~(Pr) − E~f~(Pristine) = −3.453 eV; E~f~(Rb) − E~f
 
 | Run ID | Output file | Cell | Composition | N~e~ | q | Functional / U (eV) | k-mesh | E~cut~ (Ry) | degauss (Ry) | starting_magnetization | calculation | E~tot~ (Ry) | m (μ~B~) | m~abs~ (μ~B~) | E~F~ (eV) | F~max~ (Ry/Bohr) | exit status |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | | Pristine_perfect | Ti~16~O~32~ | 384 | 0 | PBE+U 3.5 | Γ | 40/320 | | 0 | relax | −4275.01530 | 0.00 | 0.00 | 7.89 | | |
+| 1 | | Pristine_perfect | Ti~16~O~32~ | 384 | 0 | PBE+U 3.5 | Γ | 40/320 | | **[AUTHOR ACTION: value from the input; not 0 on every species, Section 2.5]** | relax | −4275.01530 | 0.00 | 0.00 | 7.89 | | |
 | … | | | | | | | | | | | | | | | | | |
 
 **[AUTHOR ACTION: complete all 24+ rows from the output files; this table is what reviewers will use to trace every number.]**
 
 ### S11. Force-convergence trajectories
 
-![](../figures/FigS3_force_convergence_relabel_required.png){width=100%}
+![](../figures/FigS3_force_convergence_patched.png){width=100%}
 
-*Figure S3. Maximum-force trajectories of the Pr_VO (left, last 14 BFGS steps after restart) and Rb_VO (right, last 5 steps) relaxations. Dashed green: the 0.005 Ry/Bohr threshold of this work. Final values 0.0042 and 0.0040 Ry/Bohr (0.108 and 0.103 eV/Å). **[AUTHOR ACTION: regenerate with a secondary axis or labels in eV/Å, remove the unsourced "0.01 Ry/Bohr (lit. std)" line, and show the complete trajectories.]***
+*Figure S3. Maximum-force trajectories of the (a) Pr_VO (last 14 BFGS steps after restart) and (b) Rb_VO (last 5 steps) relaxations. Dashed green: the 0.005 Ry/Bohr threshold of this work. Final values 0.0042 and 0.0040 Ry/Bohr (0.108 and 0.103 eV/Å). **[AUTHOR ACTION: the panel titles and the legend entry of the grey 0.01 Ry/Bohr line (formerly labelled as a literature standard without a source) were patched in the interim artwork; regenerate from the BFGS logs with labels in eV/Å, drop or source the 0.01 Ry/Bohr line, and show the complete trajectories.]***

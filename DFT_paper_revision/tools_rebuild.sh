@@ -6,7 +6,7 @@ S=/tmp/claude-0/-home-user-TensorTonic-Solutions/0159629d-9bba-513e-9e05-92ed562
 V=/root/.claude/skills/synced/2168826f-d55a-4089-9c1e-c0ca1653b3e5_a44c79bc-00c2-4bd3-890f-bb755421f61a/docx/scripts/office/validate.py
 CH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome
 cd $R/manuscript_v4
-cat part1_front_intro_methods.md part2_results.md part3_discussion_end.md > manuscript_v4_src.md
+{ cat part1_front_intro_methods.md; printf '\n\n'; cat part2_results.md; printf '\n\n'; cat part3_discussion_end.md; } > manuscript_v4_src.md
 python3 build_refs.py manuscript_v4_src.md Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.md
 pandoc Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.md --resource-path=.:.. -o Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.docx
 pandoc Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.md --resource-path=.:.. -s --metadata title=" " --embed-resources -o $S/ms.html
