@@ -411,6 +411,6 @@ The authors obtained an automated review of v4. Each point is answered in `Respo
 | R4-08 | Grammar | Limitation (ix) comma splice fixed. |
 | R4-09 | W7: revision note and markers visible | `tools_package.sh` builds the journal copies without the manuscript and SI revision notes (verified: 0 left in both .docx). |
 | R4-10 | Reproducibility (found while packaging) | The Zenodo folder shipped the figure data as `figure_data/` while the scripts read `data/`; renamed, and all four plotting scripts run from a clean copy. |
-| R4-11 | Q1–Q3, Q7, Q2, Q4 | QE inputs, launcher and analysis script for the requested calculations written to `revision_calculations/` (jobs 1–10; see its README). |
+| R4-11 | Q1–Q3, Q7, Q2, Q4 | QE inputs, launcher and analysis script for the requested calculations written to `revision_calculations/` (jobs 1–10 plus 7b; see its README). Reviewed: the seeded-oxygen species label changed from "Oh" to "O1" (element symbol plus digit, the documented form). A dry run against stand-in production outputs built 37 inputs; nat, ntyp, species, starting-magnetisation indices and HUBBARD labels are consistent in all of them. Wall times re-based on SI Table S6 (P1: 26 runs, 4–8 days). |
 
 References: the manuscript now cites 50 entries (four added). Abstract still 248 words. The 26 ledger checks pass. Markers: manuscript 35 AUTHOR ACTION + 1 NEEDS CITATION (one added, R4-06); SI 21.

@@ -1,0 +1,60 @@
+&CONTROL
+    ! Revision job 9 (P3, HPC): ground state for linear-response U (hp.x).
+    ! 12-atom conventional anatase cell, a = 3.81816 A, c = 9.77900 A,
+    ! ideal positions with u = 0.208, same PAW datasets and cut-offs as the
+    ! study. The tiny U values only switch the Hubbard manifolds on for hp.x.
+    ! conv_thr is deliberately tighter than the study value (1.0d-8) because
+    ! the linear-response calculation needs a well converged ground state.
+    calculation     = 'scf'
+    prefix          = 'anatase_lr'
+    outdir          = '__OUTDIR__'
+    pseudo_dir      = '__PSEUDO_DIR__'
+    verbosity       = 'high'
+    restart_mode    = 'from_scratch'
+    tprnfor         = .true.
+    tstress         = .false.
+/
+&SYSTEM
+    ibrav           = 0
+    nat             = 12
+    ntyp            = 2
+    ecutwfc         = 40.0
+    ecutrho         = 320.0
+    occupations     = 'smearing'
+    smearing        = 'gaussian'
+    degauss         = __DEGAUSS__
+    nspin           = 1
+/
+&ELECTRONS
+    conv_thr        = 1.0d-12
+    mixing_mode     = 'plain'
+    mixing_beta     = 0.1
+    diagonalization = 'david'
+    electron_maxstep = 250
+    startingwfc     = 'atomic+random'
+/
+ATOMIC_SPECIES
+  Ti  47.867   Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+  O   15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+CELL_PARAMETERS angstrom
+   3.81816000   0.00000000   0.00000000
+   0.00000000   3.81816000   0.00000000
+   0.00000000   0.00000000   9.77900000
+ATOMIC_POSITIONS crystal
+Ti    0.000000   0.000000   0.000000
+Ti    0.000000   0.500000   0.250000
+Ti    0.500000   0.000000   0.750000
+Ti    0.500000   0.500000   0.500000
+O     0.000000   0.000000   0.208000
+O     0.000000   0.000000   0.792000
+O     0.000000   0.500000   0.458000
+O     0.000000   0.500000   0.042000
+O     0.500000   0.000000   0.958000
+O     0.500000   0.000000   0.542000
+O     0.500000   0.500000   0.708000
+O     0.500000   0.500000   0.292000
+K_POINTS automatic
+6 6 2 0 0 0
+HUBBARD (ortho-atomic)
+U Ti-3d 1.0d-8
+U O-2p 1.0d-8

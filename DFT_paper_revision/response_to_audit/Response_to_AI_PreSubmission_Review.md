@@ -156,23 +156,25 @@ For single-U Rb_VO, the Löwdin site moments are already in Figure S1. A spin-de
 
 **Before submission (no new physics, about one hour with the files):** groups A and B of `SUBMISSION_PACKAGE/00_READ_ME_FIRST`. These cover the funding statement, Zenodo DOI, Figure S3, AI declaration, the −TS lines, the production settings and the remaining one-line facts.
 
-**Recommended calculations (in this order):** see the table below. Jobs 1–5 can all run in the background on the desktop. Their results drop into the existing "Uncertainty of the main results" paragraph, Table 2 footnote a, Table S2a and Limitations (ii)–(v) and (xii). If the authors decide not to run a job, the corresponding AUTHOR ACTION note becomes a plain "not performed" statement. The limitation text is already written for that case.
+**Recommended calculations (in this order):** see the table below. Jobs 1–5 (the default queue) can all run in the background on the desktop. Their results drop into the existing "Uncertainty of the main results" paragraph, Table 2 footnote a, Table S2a and Limitations (ii)–(v) and (xii). If the authors decide not to run a job, the corresponding AUTHOR ACTION note becomes a plain "not performed" statement. The limitation text is already written for that case.
 
-Estimates are scaled from the authors' measured times on the i5-3570 (SI Table S6). Two D3 Γ single points took about 12 h together and a production relaxation about 3 days. Higher cut-offs are scaled by (E_cut/40 Ry)^1.5. `revision_calculations/README.md` has the final figures.
+Estimates are scaled from the authors' measured times on the i5-3570 (SI Table S6): a Γ SCF from scratch takes 3–6 h at 40 Ry and a production relaxation about 3 days. Higher cut-offs are scaled by (E_cut/40 Ry)^1.5. They are the figures in `revision_calculations/README.md`, which runs the jobs in its own order (1 to 5, then P2). All five P1 jobs run unattended in one queue; a restarted queue skips finished runs.
 
-| Order | Job | Runs | Estimated wall time | Feeds into |
-|---|---|---|---|---|
-| 1 | 2: Pristine V_O, 2×2×2 | 1 SCF | 3–6 h | Table 2 footnote a; Limitation (ii) |
-| 2 | 4: D3 on Pr_perfect, Rb_perfect, O₂ | 3 SCF | 12–15 h | D3-corrected E_f; Limitation (xii) |
-| 3 | 3: smearing tests, Pr cells | 4 SCF | 12–24 h | §2.4; §3.3; uncertainty paragraph |
-| 4 | 5: nosym, O-seeded Rb cells | 3 SCF | 9–18 h | §3.6; Limitations (v), (xiii) |
-| 5 | 1: cut-off 55/70 Ry (+ O₂) | 8 + 2 SCF | 2–4 days | §2.1; Limitation (iii); uncertainty paragraph |
-| — | 6: nosym re-relaxation (only if job 5 is lower) | 1–2 relax | ≈3 days each | §3.3, §3.6 |
-| — | 7: dual-U Pr_VO relaxation (+ dual-U O₂; 7b completes dual-U Rb_VO) | 1–3 | ≈3 days per relaxation | §3.4; Limitation (vii) |
-| — | 8: re-relax to 0.001 Ry/Bohr | 4 relax | 1–3 days each | Limitation (iv) |
-| — | 9: hp.x linear-response U | HPC | not for the desktop | §2.2 |
+| Job | Runs | Estimated wall time | Feeds into |
+|---|---|---|---|
+| 1: cut-off 55/70 Ry, with 40 Ry reference single points on the same geometries and O₂ at 40/55/70 Ry | 8 + 4 + 3 SCF | 2.5–5 days | §2.1; Limitation (iii); uncertainty paragraph |
+| 2: Pristine V_O, 2×2×2 | 1 SCF | 3–8 h | Table 2 footnote a; Limitation (ii) |
+| 3: smearing tests, Pr cells | 4 SCF | 12–24 h | §2.4; §3.3; uncertainty paragraph |
+| 4: D3 on Pr_perfect, Rb_perfect, O₂ | 3 SCF | 7–14 h | D3-corrected E_f; Limitation (xii) |
+| 5: nosym, O-seeded Rb cells | 3 SCF | 12–24 h | §3.6; Limitations (v), (xiii) |
+| **P1 total (default queue)** | **26** | **4–8 days** | |
+| 6: nosym re-relaxation (only if job 5 is lower by > 10⁻⁴ Ry) | 0–2 relax | 1–3 days each | §3.3, §3.6 |
+| 7: dual-U Pr_VO relaxation + dual-U O₂ | 1 + 1 | 1–3 days | §3.4; Limitation (vii) |
+| 7b: finish dual-U Rb_VO (needs its output file name) | 0–1 | 0.5–2 days | §3.4; Table S5 |
+| 8: re-relax the four doped cells to 0.001 Ry/Bohr | 4 relax | 2–6 days | Limitation (iv) |
+| 9: hp.x linear-response U | 1 + 1 | HPC: 1–3 h per node (desktop 0.5–1.5 days, memory-limited) | §2.2 |
 
-Jobs 2, 4, 3, 5 and 1 together take about 4–7 days of continuous running. The cheaper jobs come first, so partial results are useful if the queue is stopped early.
+The 40 Ry reference runs in job 1 are fresh single points on the production geometries. The production energies are relaxation endpoints and differ from fresh single points by 0.5 mRy (Rb_VO) and 2.8 mRy (Pr_VO; Table S2a). With the references, every cut-off comparison is like for like.
 
 **Optional, beyond this paper:** dual-U formation-energy cycles (jobs 7 and 9 plus a dual-U pristine V_O and O₂), 96-atom supercells (job 10), a Ti₂O₃ bulk calculation for the O-poor limit, Rb interstitials, and a 4f-in-valence Pr test.
 

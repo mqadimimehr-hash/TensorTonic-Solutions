@@ -1,0 +1,15 @@
+&inputhp
+    ! Revision job 9 (P3, HPC): linear-response Hubbard U with hp.x (QE 7.x),
+    ! reading the ground state of job9_anatase_lr_scf (same prefix and outdir).
+    ! The q mesh MUST be converged: repeat with nq 3 3 2 and nq 4 4 2 (the
+    ! latter with k 8 8 2 in the pw.x run) and quote U only when it changes
+    ! by less than about 0.1 eV. The 3x3x1 q mesh below is a starting point.
+    ! hp.x reports U for every Hubbard manifold of the pw.x run (Ti-3d, O-2p).
+    prefix       = 'anatase_lr'
+    outdir       = '__OUTDIR__'
+    nq1          = 3
+    nq2          = 3
+    nq3          = 1
+    conv_thr_chi = 1.0d-5
+    iverbosity   = 2
+/
