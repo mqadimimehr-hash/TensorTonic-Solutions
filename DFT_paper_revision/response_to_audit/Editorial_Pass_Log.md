@@ -394,3 +394,23 @@ An independent reviewer recomputed every round-3 number (all reproduced) and rai
 | R3-44 | minor | NSCF reported 33–37 unconverged eigenvalues per k-point (verified). | Disclosed; AUTHOR ACTION to repeat with diago_full_acc. |
 | R3-45 | minor | "O17" used for two different atoms. | Alternative sites renamed "site 1/7/17 of the orchestration input". |
 | R3-46 | minor | Small numbers: O8–vacancy 3.39 Å; Rb E~F~ shift −0.75 eV; Table S2a pristine offset; ledger run cross-references; Table S1 footnote; SI table order; Table S9 footnote b; stale Bader marker; revision note; Table S4 note; "Ti^3+^ character"; Torres wording; Limitation (v); pw.x condition wording; Introduction Chen sentence; grammar. | All corrected. |
+
+## Round 4: automated pre-submission review (paperreview.ai, 4 October 2026)
+
+The authors obtained an automated review of v4. Each point is answered in `Response_to_AI_PreSubmission_Review.md`. The changes to the manuscript, SI and package are logged here.
+
+| ID | Review item | Action |
+|---|---|---|
+| R4-01 | W3, Q4: U(O-2p) uncalibrated; PWL route not mentioned | §2.2 cites Falletta & Pasquarello 2022 (arXiv:2209.11341) for U from piecewise linearity on polaronic states and states that no such calibration was done. Linear-response hp.x inputs prepared (`revision_calculations/`, job 9). |
+| R4-02 | Detailed comments: pristine V~O~ non-magnetic vs high-level theory | §3.3 cites Chen et al. 2020 (arXiv:2011.03269): embedded coupled-cluster puts the triplet 1.4 eV above a closed-shell colour-centre singlet. |
+| R4-03 | Related work: O-centred hole polarons in anatase | §3.6 cites McBride et al. 2024 (arXiv:2410.21452; anatase benchmark: stable polaron, α = 0.15) and Ahart et al. 2026 (arXiv:2606.01763; 78% of the spin on one O, HSE 19%). Both read in full; the rutile focus of McBride et al. noted in the response. |
+| R4-04 | W3, Q9: HSE06 check inconsistent | Total-energy and Fermi-energy comparison removed from §3.6; Methods §2.8(iii) note now says to delete the hybrid item if the input cannot be recovered. |
+| R4-05 | W10, Q5: dopant–vacancy binding | §3.7 reports the in-cell Pr–V~O~ association energy, 1.43 eV (0.78 eV from the second shell), labelled not a dilute-limit value. Recomputed from Table S4 (2.72 − 1.29; 2.07 − 1.29). |
+| R4-06 | Detailed comments: error bars and propagation | New §3.7 paragraph "Uncertainty of the main results", with an AUTHOR ACTION pointing to jobs 1, 3 and 4. |
+| R4-07 | W5, Q6, Q11: chemical potentials, Rb configurations, competing phases | §4.2 gives E~f~(Pr) = 1.29 eV + Δμ~O~ and says Rb is negative at every μ~O~ where TiO~2~ exists, and that Rb substitution itself was not evaluated. Limitation (ix) adds competing Pr/Rb oxides and O~2~ overbinding; (x) adds Rb interstitials and surface sites. |
+| R4-08 | Grammar | Limitation (ix) comma splice fixed. |
+| R4-09 | W7: revision note and markers visible | `tools_package.sh` builds the journal copies without the manuscript and SI revision notes (verified: 0 left in both .docx). |
+| R4-10 | Reproducibility (found while packaging) | The Zenodo folder shipped the figure data as `figure_data/` while the scripts read `data/`; renamed, and all four plotting scripts run from a clean copy. |
+| R4-11 | Q1–Q3, Q7, Q2, Q4 | QE inputs, launcher and analysis script for the requested calculations written to `revision_calculations/` (jobs 1–10; see its README). |
+
+References: the manuscript now cites 50 entries (four added). Abstract still 248 words. The 26 ledger checks pass. Markers: manuscript 35 AUTHOR ACTION + 1 NEEDS CITATION (one added, R4-06); SI 21.

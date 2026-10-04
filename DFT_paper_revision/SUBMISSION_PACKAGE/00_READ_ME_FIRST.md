@@ -1,18 +1,20 @@
 # Submission package — Applied Surface Science (Elsevier)
 
 **Manuscript:** Oxygen-Vacancy Energetics and Dopant-Induced Holes in Pr- and Rb-Substituted Anatase TiO₂: A DFT+U Comparison
-**Built:** 4 October 2026, from branch `claude/exciting-shannon-z4bl69` (PR #5)
+**Built:** 4 October 2026 (round 4), from branch `claude/exciting-shannon-z4bl69` (PR #5)
 
 ## Status: almost ready — do not upload until the items in sections A and B are done
 
-The manuscript still contains **34 bold [AUTHOR ACTION] notes** and **1 [NEEDS CITATION]**, and the Supporting Information **21 notes**. Every note must be resolved or deleted before upload; the editor must not see them. They fall into three groups.
+The manuscript still contains **35 bold [AUTHOR ACTION] notes** and **1 [NEEDS CITATION]**, and the Supporting Information **21 notes**. Every note must be resolved or deleted before upload; the editor must not see them. They fall into three groups. (The internal "Revision note" boxes are removed automatically from the copies in this folder; the working files in `manuscript_v4/` and `supporting_information_v4/` keep them.)
+
+An automated pre-submission review (paperreview.ai) was answered point by point in `response_to_audit/Response_to_AI_PreSubmission_Review.docx`. The new calculations it asked for are prepared as ready-to-run Quantum ESPRESSO inputs in `revision_calculations/` (see its README).
 
 ## Files in this folder (what to upload, in Elsevier's order)
 
 | File | Upload as | Notes |
 |---|---|---|
 | `01_Cover_Letter.docx` | Cover letter | Addressed to the Editor of Applied Surface Science |
-| `02_Manuscript.docx` | Manuscript (editable Word) | Title page, abstract (248 words), text, tables, figure captions, references (46). `02_Manuscript_preview.pdf` is for checking only |
+| `02_Manuscript.docx` | Manuscript (editable Word) | Title page, abstract (248 words), text, tables, figure captions, references (50). `02_Manuscript_preview.pdf` is for checking only |
 | `03_Highlights.docx` | Highlights | 5 bullets, each ≤ 85 characters |
 | `04_Graphical_Abstract.png` / `.pdf` | Graphical abstract | 1535 × 590 px (Elsevier minimum 1328 × 531 px) |
 | `05_Figures/Figure_1–4.pdf` (+ `.png`) | Figures | Vector PDF preferred; PNG at 300 dpi as backup |
@@ -46,12 +48,12 @@ Send me the WSL bundle (`tio2_needed.tar.gz`) and I can fill all of these myself
 
 ## C. Optional extra calculations (can instead be stated as limitations)
 
-Each of these is already described as "not performed" in Section 5. If you do not run them, delete the corresponding note (or ask me to convert all of them to plain statements in one pass):
+Each of these is already described as "not performed" in Section 5. Inputs for the first group are ready in `revision_calculations/` (job numbers in brackets); run `launch_revision_queue.sh` as its README describes and send back the `.out` files and the analysis output. If you do not run a calculation, delete the corresponding note (or ask me to convert all of them to plain statements in one pass):
 
-- dual-U Pr_VO relaxation and dual-U formation energies (the single most valuable addition)
-- re-relaxation of the four doped cells to 0.001 Ry/Bohr
-- D3 single points on Pr_perfect, Rb_perfect and O₂
-- 55 Ry cut-off check; Pristine_VO at 2×2×2; NSCF rerun with `diago_full_acc = .true.`
+- **recommended, desktop:** cut-off 55/70 Ry [1]; Pristine_VO at 2×2×2 [2]; smearing test with −TS [3]; D3 on Pr_perfect, Rb_perfect and O₂ [4]; symmetry-free, O-seeded spin search on the Rb cells [5, then 6 if lower]
+- **longer, desktop:** dual-U Pr_VO relaxation [7] (the most valuable addition; a dual-U formation energy also needs a dual-U O₂ reference and the completed dual-U Rb_VO relaxation); re-relaxation of the four doped cells to 0.001 Ry/Bohr [8]
+- **HPC only:** linear-response U(Ti-3d) and U(O-2p) with hp.x [9]; 96-atom 2×2×2 supercells [10, cost estimate only]
+- NSCF rerun with `diago_full_acc = .true.`
 - two extra Rb vacancy sites; core-level alignment of Fermi energies; HSE06 band gaps
 - Rb_VO spin-density isosurface (optional Figure S4); reading literature V_O values from figures of Arrigoni & Madsen / Boonchun et al.
 
