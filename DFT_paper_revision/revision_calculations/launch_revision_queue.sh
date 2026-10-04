@@ -98,6 +98,7 @@ SRC_Pr_perfect="${SRC_Pr_perfect:-Pr_perfect.out}"
 SRC_Pr_VO="${SRC_Pr_VO:-Pr_VO.out}"
 SRC_Rb_perfect="${SRC_Rb_perfect:-Rb_perfect.out}"
 SRC_Rb_VO="${SRC_Rb_VO:-Rb_VO.out}"
+SRC_Pristine_perfect="${SRC_Pristine_perfect:-Pristine_perfect.out}"   # job 0 (single-point output; positions only)
 SRC_Pristine_VO="$PRISTINE_VO_OUT"
 SRC_dualU_Rb_VO="$DUALU_RBVO_OUT"
 
@@ -108,6 +109,7 @@ MAG_Pr_perfect="${MAG_Pr_perfect:-auto}"
 MAG_Pr_VO="${MAG_Pr_VO:-auto}"
 MAG_Rb_perfect="${MAG_Rb_perfect:-auto}"
 MAG_Rb_VO="${MAG_Rb_VO:-auto}"
+MAG_Pristine_perfect="${MAG_Pristine_perfect:-auto}"
 MAG_Pristine_VO="${MAG_Pristine_VO:-auto}"
 MAG_dualU_Rb_VO="${MAG_dualU_Rb_VO:-auto}"
 FALLBACK_MAG="0.0 0.0 0.0"           # used only if "auto" finds no block
@@ -308,6 +310,7 @@ _prepare_cell() {
     log "  $NAT atoms from the $EXTRACT_STRATEGY (units: $EXTRACT_UNITS)"
     case "$CELL" in
         Pristine_VO) ETI=16; EO=31; EDOP=0 ;;
+        Pristine_perfect) ETI=16; EO=32; EDOP=0 ;;
         *_perfect)   ETI=15; EO=32; EDOP=1 ;;
         *)           ETI=15; EO=31; EDOP=1 ;;
     esac
@@ -430,6 +433,14 @@ rb_perfect_oh() {   # sets RBP_OH once
 # ---------------------------------------------------------------------
 # 5. Job builders (the order of the calls below is the run order)
 # ---------------------------------------------------------------------
+build_job0() {
+    log "--- job 0: relaxation of the pristine perfect cell (production value is an unrelaxed single point) ---"
+    prepare_cell Pristine_perfect || return 0
+    build_input job0_pristine_perfect_relax.in job0_Pristine_perfect_relax "$POSDIR/Pristine_perfect.pos" "${CELL_UNITS[Pristine_perfect]}" \
+        DEGAUSS="$DEGAUSS" $(mag_kv Pristine_perfect) \
+        && queue_add job0_Pristine_perfect_relax pw relax
+}
+
 build_job1() {
     log "--- job 1: cut-off convergence (40 Ry references, ${JOB1_CUTS// /, } Ry, O2 boxes) ---"
     local EC ER CELL CUTS="$JOB1_CUTS"
@@ -717,7 +728,7 @@ if [ -n "$JOBS" ]; then
     SELECTED="$JOBS"
 else
     SELECTED=""
-    [ "$RUN_P1" = 1 ] && SELECTED="1 2 3 4 5"
+    [ "$RUN_P1" = 1 ] && SELECTED="1 2 0 3 4 5"
     [ "$RUN_P2" = 1 ] && SELECTED="$SELECTED 6 7 7b 8"
     [ "$RUN_P3" = 1 ] && SELECTED="$SELECTED 9"
 fi
@@ -765,7 +776,7 @@ log "free disk in $WORK_DIR: ${FREE_GB} GB; memory: $(free -g 2> /dev/null | awk
 
 # --- phase A: build every input --------------------------------------
 log "PHASE A: building inputs"
-for J in 1 2 3 4 5 6 7 7b 8 9; do
+for J in 1 2 0 3 4 5 6 7 7b 8 9; do
     selected "$J" && "build_job$J"
 done
 if [ "$DEGAUSS_MISMATCH" = 1 ]; then

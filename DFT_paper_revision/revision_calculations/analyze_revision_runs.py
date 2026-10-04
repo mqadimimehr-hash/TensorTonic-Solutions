@@ -487,6 +487,27 @@ def section_relax(R, dualu_rbp):
     print('  Report both O2 choices: U on the O-2p states of an isolated O2 molecule is not standard.')
 
 
+def section_pristine_perfect(R):
+    header('JOB 0 -- relaxation of the pristine perfect cell (production value: unrelaxed single point, F_max 0.0225 Ry/Bohr)')
+    r = R.get('job0_Pristine_perfect_relax')
+    if not r:
+        print('no job-0 output yet')
+        return
+    e = r['E'] if usable(r) else None
+    if e is None:
+        print('job 0: ' + status(r))
+        return
+    print('E(Pristine_perfect) relaxed   : %.8f Ry   (production single point %.5f Ry)' % (e, PROD['Pristine_perfect']))
+    print('relaxation energy             : %+.4f eV  (expected negative)' % ((e - PROD['Pristine_perfect']) * RY_EV))
+    ef_old = ef(PROD['Pristine_VO'], PROD['Pristine_perfect'], HALF_O2_PROD)
+    ef_new = ef(PROD['Pristine_VO'], e, HALF_O2_PROD)
+    print('E_f(V_O; pristine): production %.3f eV (lower bound) -> with the relaxed perfect cell %.3f eV' % (ef_old, ef_new))
+    for lab, vo, perf in (('Pr', 'Pr_VO', 'Pr_perfect'), ('Rb', 'Rb_VO', 'Rb_perfect')):
+        efd = ef(PROD[vo], PROD[perf], HALF_O2_PROD)
+        print('reduction relative to pristine, %s: %.3f eV (manuscript lower bound %.3f eV)' % (lab, ef_new - efd, ef_old - efd))
+    print('status: %s. Update Table 2, Sections 2.6, 3.2, 4.1, 5(iv) and the Conclusions with these values.' % status(r))
+
+
 def section_hp(R):
     r = R.get('job9_anatase_hp')
     if r is None:
@@ -564,6 +585,7 @@ def main():
 
     section_cutoff(R)
     section_pristine(R, PROD['Pristine_VO'])
+    section_pristine_perfect(R)
     section_smearing(R)
     section_d3(R)
     section_nosym(R)

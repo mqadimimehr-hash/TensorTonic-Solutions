@@ -11,8 +11,8 @@ ax.axhline(0,color=INK2,lw=0.7); ax.set_xticks(range(3)); ax.set_xticklabels(lab
 ax.set_ylabel("$E_{\\mathrm{f}}(V_{\\mathrm{O}}^{0})$ (eV)",fontsize=8); ax.set_ylim(-5.2,5.8)
 ax.yaxis.grid(True,color=GRID,lw=0.5,zorder=0); ax.set_axisbelow(True)
 for s in ["top","right"]: ax.spines[s].set_visible(False)
-for bar,v in zip(b,vals):
-    ax.text(bar.get_x()+bar.get_width()/2, v+(0.25 if v>0 else -0.25), MINUS(f"{v:+.2f}"), ha="center", va="bottom" if v>0 else "top", fontsize=7.5, fontweight="bold")
+for i,(bar,v) in enumerate(zip(b,vals)):
+    ax.text(bar.get_x()+bar.get_width()/2, v+(0.25 if v>0 else -0.25), ("\u2265 " if i==0 else "")+MINUS(f"{v:+.2f}"), ha="center", va="bottom" if v>0 else "top", fontsize=7.5, fontweight="bold")
 ax.set_title("Anatase TiO$_2$, PBE+U, $\\mu_\\mathrm{O}=\\frac{1}{2}E(\\mathrm{O}_2)$",fontsize=7.5,color=INK2)
 fig.text(0.56,0.80,"Oxygen vacancies in Pr- and\nRb-substituted anatase TiO$_2$",fontsize=8,fontweight="bold",color=INK,va="top",linespacing=1.3)
 fig.text(0.56,0.58,"Both dopants lower the vacancy cost;\nPr stays uphill, Rb goes downhill:\na 5.36 eV contrast.",fontsize=7,color=INK,va="top",linespacing=1.35)

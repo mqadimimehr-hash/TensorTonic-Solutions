@@ -2,9 +2,9 @@
 # as recorded in the authors' run spreadsheet (QE_simulations_master, Sections 13-23; Phase-3 audit
 # against the output files) and in the pw.x/projwfc.x outputs supplied for this revision.
 # m = total magnetisation, m_abs = absolute magnetisation (blank = not recorded). E_F as printed.
-# Rows marked "logged_eV" were recorded in eV only in the run spreadsheet; their Ry value must be taken from the output.
+# Runs 20a/20b were logged in eV only and are converted with 13.605693 eV/Ry (the spreadsheet's factor, verified on runs 1, 3-6).
 run,cell,q,protocol,kmesh,calc,E_Ry,m,m_abs,E_F_eV,Fmax_Ry_Bohr,note
-1,Pristine_perfect,0,single-U,G,see_S10,-4275.01530,0.00,0.00,7.887,,reference
+1,Pristine_perfect,0,single-U,G,scf_unrelaxed,-4275.01530,0.00,0.00,7.887,0.0225,reference; single point on unrelaxed positions (run log)
 2,Pristine_VO_v3,0,single-U,G,relax,-4233.15036,0.00,,,0.00563,non-magnetic (Section S1)
 3,Pr_perfect,0,single-U,G,relax,-4576.71224,0.00,0.00,7.403,0.002596,reference
 4,Pr_VO,0,single-U,G,relax,-4535.10106,0.00,0.00,9.990,0.0042,stopped manually
@@ -24,13 +24,13 @@ run,cell,q,protocol,kmesh,calc,E_Ry,m,m_abs,E_F_eV,Fmax_Ry_Bohr,note
 18,Rb_VO,2,single-U,G,relax,-4290.19380,2.99,3.82,6.852,,uniform background; 360 steps
 19,Pr_perfect,0,dual-U,G,relax,-4571.33095,1.00,,6.689,0.004884,
 20,Pristine_perfect,0,dual-U,G,scf,-4269.72111,0.00,,7.218,,control
-20a,Rb_perfect,0,dual-U,G,relax,logged_eV:-58844.4305,3.00,,,,
-20b,Rb_VO,0,dual-U,G,relax,logged_eV:-58287.1934,1.00,,,,relaxation not completed when logged
+20a,Rb_perfect,0,dual-U,G,relax,-4324.98591,3.00,,,,converted from logged -58844.4305 eV with 13.605693 eV/Ry; m_abs not recorded
+20b,Rb_VO,0,dual-U,G,relax,-4284.02974,1.00,,,,converted from logged -58287.1934 eV; relaxation not completed when logged; m_abs not recorded
 21,Pristine_perfect,0,HSE06,G,scf,-3926.66858,0.00,,8.286,,not comparable with PBE+U totals
 22,Pr_VO,0,single-U+D3(BJ),G,scf,-4535.85463552,0.00,,9.992,,D3 term -0.75639 Ry
 23,Rb_VO,0,single-U+D3(BJ),G,scf,-4289.91254013,1.00,,7.120,,D3 term -0.74166 Ry
 24,Pr_VO_magnetic_trial,0,single-U,G,relax,-4535.07207,1.00,1.13,,,start Ti 0.3 Pr 0.5
-25,Pr_VO_nonmagnetic_logged,0,single-U,G,relax,-4535.09269,0.00,0.00,,,comparison value logged with run 24
+25,Pr_VO_nonmagnetic_logged,0,single-U,G,relax,-4535.09269,0.00,0.00,,,comparison value logged with run 24; 0.114 eV above run 4 (earlier step of the restarted relaxation)
 26,Pristine_perfect,0,single-U,G,scf,-4275.01529992,0.00,,8.2442,,k-mesh series
 27,Pristine_perfect,0,single-U,2x2x1,scf,-4274.93420433,0.00,,8.2444,,k-mesh series
 28,Pristine_perfect,0,single-U,2x2x2,scf,-4274.93072431,0.00,,8.2465,,k-mesh series

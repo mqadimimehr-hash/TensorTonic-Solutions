@@ -1,13 +1,15 @@
 # Submission package — Applied Surface Science (Elsevier)
 
 **Manuscript:** Oxygen-Vacancy Energetics and Dopant-Induced Holes in Pr- and Rb-Substituted Anatase TiO₂: A DFT+U Comparison
-**Built:** 4 October 2026 (round 4), from branch `claude/exciting-shannon-z4bl69` (PR #5)
+**Built:** 4 October 2026 (round 5), from branch `claude/exciting-shannon-z4bl69` (PR #5)
 
-## Status: almost ready — do not upload until the items in sections A and B are done
+## Status: ready to upload once the Funding statement is written
 
-The manuscript still contains **35 bold [AUTHOR ACTION] notes** and **1 [NEEDS CITATION]**, and the Supporting Information **21 notes**. Every note must be resolved or deleted before upload; the editor must not see them. They fall into three groups. (The internal "Revision note" boxes are removed automatically from the copies in this folder; the working files in `manuscript_v4/` and `supporting_information_v4/` keep them.)
+Every [AUTHOR ACTION] note has been resolved except one: the **Funding** section of the manuscript still holds a bracketed placeholder that only the authors can fill (grant numbers, or Elsevier's standard sentence "This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors."). `tools_package.sh` prints the number of markers left in both Word files; it must read 0 before upload. The internal "Revision note" boxes are removed automatically from the copies in this folder.
 
-An automated pre-submission review (paperreview.ai) was answered point by point in `response_to_audit/Response_to_AI_PreSubmission_Review.docx`. The new calculations it asked for are prepared as ready-to-run Quantum ESPRESSO inputs in `revision_calculations/` (see its README).
+Facts that could not be recovered from the files at hand are now stated as such in the text ("not recorded", "not extracted", "not re-inspected for this revision"), which is acceptable to a reviewer; they are listed in group B below in case you want to replace them with real values.
+
+**One substantive finding from the run log (round 5):** the production pristine perfect cell is an unrelaxed single point (residual force 0.0225 Ry/Bohr). The manuscript now says so, and the pristine formation energy (+4.74 eV) and the two reductions measured from it are labelled lower bounds in the Abstract, Table 2, Sections 2.6, 3.2, 4.1, 4.2, 5 and the Conclusions, the Highlights, the cover letter and the graphical abstract. Job 0 of `revision_calculations/` relaxes that cell (about 1–3 days) and the analysis script prints the corrected values.
 
 ## Files in this folder (what to upload, in Elsevier's order)
 
@@ -18,48 +20,34 @@ An automated pre-submission review (paperreview.ai) was answered point by point 
 | `03_Highlights.docx` | Highlights | 5 bullets, each ≤ 85 characters |
 | `04_Graphical_Abstract.png` / `.pdf` | Graphical abstract | 1535 × 590 px (Elsevier minimum 1328 × 531 px) |
 | `05_Figures/Figure_1–4.pdf` (+ `.png`) | Figures | Vector PDF preferred; PNG at 300 dpi as backup |
-| `06_Supporting_Information.docx` | Supplementary material | Includes Figures S1–S3 and Tables S1–S10. Preview PDF for checking only |
+| `06_Supporting_Information.docx` | Supplementary material | Includes Figures S1–S2 and Tables S1–S10. Preview PDF for checking only |
 | `07_Data_and_scripts_for_Zenodo/` | **Not uploaded to the journal** — deposit on Zenodo, then put the DOI in the Data availability statement | Energy ledger + check script (reproduces every formation energy), figure data and plotting scripts. Add your QE input/output files, pseudopotentials and Bader ACF.dat files to the same deposit |
 
-## A. Administrative items (must be done; nobody else can do them)
+## A. The one required item
 
-1. **Funding statement** — insert grant numbers, or the standard sentence "This research did not receive any specific grant…".
-2. **Zenodo deposit** — upload folder 07 plus your QE inputs/outputs, pseudopotentials and ACF.dat files; insert the DOI in the Data availability statement.
-3. **Figure S3** (force convergence) is still interim artwork with patched labels; regenerate it from the BFGS force lines of the Pr_VO and Rb_VO relaxation outputs (or send me the two `.out` files and I will script it).
-4. **Generative-AI declaration** — confirm with the journal that figures plotted from your data by AI-assisted plotting scripts are acceptable (Elsevier forbids AI-created or AI-altered images), or regenerate them with your own scripts; adjust the declaration accordingly.
-5. **Indoor-illuminance citation** ([NEEDS CITATION], Introduction) — put the Pecunia et al. 2021 PDF in your Google Drive so it can be checked, or cite another source you have read.
+1. **Funding statement** — replace the bracket in the Funding section with grant numbers, or with the standard "did not receive any specific grant" sentence.
 
-## B. One-line facts from your input/output files (needed; about one hour with the files)
+Optional before upload:
+- **Zenodo deposit.** The Data availability statement now says the files are available on request and will be deposited with a DOI on acceptance. If you deposit folder 07 (plus your QE inputs/outputs, pseudopotentials and ACF.dat files) before submission, replace that sentence with the DOI.
+- **AI declaration.** It now states the facts (text editing, consistency checks, Python plotting scripts; no image generated or altered). Elsevier's policy on AI-assisted figure scripts is not explicit; asking the editorial office is prudent but not required.
+- **Author details.** Check names, affiliations and the corresponding-author e-mail on the title page.
 
-Send me the WSL bundle (`tio2_needed.tar.gz`) and I can fill all of these myself:
+## B. "Not recorded" entries you can fill later (none blocks submission)
 
-- degauss, starting_magnetization, etot_conv_thr / forc_conv_thr, nosym and any tot_magnetization in the production inputs (Methods 2.4–2.6; Table S10)
-- whether the production **Pristine_perfect** energy is from a relaxed geometry (Methods 2.6) — if it is not, it must be relaxed and Table 2 updated
-- k-mesh, cut-off and residual stress of the bulk variable-cell relaxation (Methods 2.3)
-- Pr dataset MD5 checksum and the "Valence configuration" block of each UPF header; the suggested cut-offs in the UPF headers (Methods 2.1; Table S7)
-- Pr_VO final coordinates (Figure 1 panel c, Pr–O distances, Table S8) and confirmation of the removed oxygen
-- Pristine_VO Fermi energy (Table 3); m~abs~ of Rb_VO at q = +1 (Section 3.5)
-- dual-U Rb_perfect / Rb_VO energies in Ry, m~abs~, and whether the Rb_VO relaxation finished (Section 3.4; Tables S5, S9)
-- E~tot~, m, m~abs~ of the SCF run before the Rb_VO PDOS (Section 3.3)
-- Bader: re-extract the four dopant/mean populations from ACF.dat, FFT grid, PAW reconstruction (Section 3.7; Table S3)
-- HSE06 input details (screening parameter, q-grid, ecutfock, pseudopotentials) (Methods 2.8)
-- smearing (−TS) lines; occupations near E~F~ of Pr_perfect and Pr_VO (Sections 2.4, 3.3)
-- run 25 identity (the 0.281 eV reference) and output file names for the run manifest (Table S9/S10)
+If you send the WSL bundle (`tio2_needed.tar.gz`) I can replace these statements with values: degauss and etot_conv_thr of the production inputs (Section 2.4, 2.6, Table S10); the "smearing contrib. (−TS)" lines (Section 2.4, S1); the Pr dataset MD5 (Table S7); the k-mesh, cut-off and residual stress of the bulk vc-relax (Section 2.3); the relaxed Pr_VO coordinates (Figure 1 panel c, Table S8); E~F~ and m~abs~ of Pristine_VO (Table 3); m~abs~ of the dual-U and q = +1 runs; the per-atom Bader table (Table S3; the dopant charges are currently derived from the recorded totals); the HSE06 q-grid/ecutfock (Section 2.8); wall times (Table S6).
 
-## C. Optional extra calculations (can instead be stated as limitations)
+## C. Optional extra calculations (all stated as "not performed" in the text)
 
-Each of these is already described as "not performed" in Section 5. Inputs for the first group are ready in `revision_calculations/` (job numbers in brackets); run `launch_revision_queue.sh` as its README describes and send back the `.out` files and the analysis output. If you do not run a calculation, delete the corresponding note (or ask me to convert all of them to plain statements in one pass):
+Inputs are ready in `revision_calculations/` (job numbers in brackets); run `launch_revision_queue.sh` as its README describes and send back the `.out` files and the analysis output:
 
-- **recommended, desktop:** cut-off 55/70 Ry [1]; Pristine_VO at 2×2×2 [2]; smearing test with −TS [3]; D3 on Pr_perfect, Rb_perfect and O₂ [4]; symmetry-free, O-seeded spin search on the Rb cells [5, then 6 if lower]
-- **longer, desktop:** dual-U Pr_VO relaxation [7] (the most valuable addition; a dual-U formation energy also needs a dual-U O₂ reference and the completed dual-U Rb_VO relaxation); re-relaxation of the four doped cells to 0.001 Ry/Bohr [8]
-- **HPC only:** linear-response U(Ti-3d) and U(O-2p) with hp.x [9]; 96-atom 2×2×2 supercells [10, cost estimate only]
-- NSCF rerun with `diago_full_acc = .true.`
-- two extra Rb vacancy sites; core-level alignment of Fermi energies; HSE06 band gaps
-- Rb_VO spin-density isosurface (optional Figure S4); reading literature V_O values from figures of Arrigoni & Madsen / Boonchun et al.
+- **recommended, desktop:** relaxation of the pristine perfect cell [0]; cut-off 55/70 Ry [1]; Pristine_VO at 2×2×2 [2]; smearing test with −TS [3]; D3 on Pr_perfect, Rb_perfect and O₂ [4]; symmetry-free, O-seeded spin search on the Rb cells [5, then 6 if lower]
+- **longer, desktop:** dual-U Pr_VO relaxation [7] (a dual-U formation energy also needs a dual-U O₂ reference and the completed dual-U Rb_VO relaxation); re-relaxation of the four doped cells to 0.001 Ry/Bohr [8]
+- **HPC only:** linear-response U with hp.x [9]; 96-atom supercells [10, cost estimate only]
+- NSCF rerun with `diago_full_acc = .true.`; Rb_VO spin-density isosurface (optional Figure S4)
 
 ## Before you press "submit"
 
-- Search both Word files for `AUTHOR ACTION` and `NEEDS CITATION` — the count must be zero.
+- Search both Word files for `AUTHOR ACTION` — the count must be zero (only the Funding placeholder remains; `tools_package.sh` prints the count).
 - Check author names, affiliations and the corresponding-author e-mail on the title page.
 - Suggested reviewers (optional in Editorial Manager): choose researchers you have cited but not co-authored with.
 - The companion device-simulation paper (Pr³⁺:SnO₂ / CsPbBr₃) is **not** part of this submission; see `device_paper_review/Device_Manuscript_Audit.docx` before sending it anywhere.

@@ -50,5 +50,8 @@ cp $R/supporting_information_v4/{energy_ledger.csv,check_ledger.py} $Z/
 for f in $P/02_Manuscript.docx $P/06_Supporting_Information.docx; do
   n=$(unzip -p $f word/document.xml | grep -o "Revision note" | wc -l); echo "$(basename $f): revision notes left = $n"
 done
+for f in $P/02_Manuscript.docx $P/06_Supporting_Information.docx; do
+  n=$(unzip -p $f word/document.xml | grep -o "AUTHOR ACTION\|NEEDS CITATION" | wc -l); echo "$(basename $f): AUTHOR ACTION / NEEDS CITATION markers left = $n (must be 0 before upload)"
+done
 (cd $Z && python3 check_ledger.py | tail -1 && python3 -c "import ast,sys; [ast.parse(open(f).read()) for f in ['make_pdos_figures.py','make_fig1_structures.py']]" && echo "Zenodo scripts parse")
 cd $R && rm -f SUBMISSION_PACKAGE.zip && zip -qr SUBMISSION_PACKAGE.zip SUBMISSION_PACKAGE && echo "zip: $(du -h SUBMISSION_PACKAGE.zip | cut -f1)"

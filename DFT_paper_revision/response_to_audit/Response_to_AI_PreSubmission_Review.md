@@ -27,12 +27,14 @@ This is an internal document for the authors. It records how each point of the a
 6. **§3.7 New paragraph, "Uncertainty of the main results".** States which numerical settings were varied (only the k-mesh) and which were not (cut-off, smearing entropy, residual forces, supercell size, O₂ reference). It explains why the untested terms would have to reach several eV to change the sign of the Rb value or remove the Pr–Rb contrast. It also notes that the sign of the Pr value and the reductions relative to pristine are more sensitive.
 7. **§4.2 Relation to previous work.** Gives E_f(V_O; Pr) = 1.29 eV + Δμ_O. Oxygen removal near Pr turns exothermic once μ_O is more than 1.29 eV below ½E(O₂). For Rb, E_f is negative at every μ_O where TiO₂ exists. The paragraph now says explicitly that substitution of Rb on the Ti site, as opposed to interstitial or surface sites or a secondary phase, was not evaluated.
 8. **Limitations (ix) and (x).** (ix) now names competing Pr and Rb oxides and the uncorrected PBE O₂ overbinding. (x) now names Rb interstitials and surface sites.
-9. **Methods §2.8(iii).** The note on the hybrid run now matches the removal in item 4. Limitation (ix) had a comma splice, now fixed.
+9. **Methods §2.8(iii).** The hybrid run's recorded settings (input_dft, exx_fraction, screening parameter, same PAW datasets) are stated, with the reason its total is not comparable with the PBE+U total. Limitation (ix) had a comma splice, now fixed.
+10. **Pristine reference (found while clearing the author notes).** The run log shows that the production pristine perfect cell is an unrelaxed single point (F_max 0.0225 Ry/Bohr). The manuscript now states this and labels the pristine E_f (+4.74 eV) and the two reductions measured from it as lower bounds; job 0 relaxes the cell. The doped-cell values and the Pr–Rb contrast do not involve this cell.
 
 **Calculations prepared (inputs, launcher and analysis script in `revision_calculations/`; see its README):**
 
 | Job | What it answers | Review item |
 |---|---|---|
+| 0 | Relaxation of the pristine perfect cell, whose production energy is an unrelaxed single point | W1 (forces); item 10 above |
 | 1 | Cut-off 55 and 70 Ry for the four doped cells and the O₂ molecule; E_f and ΔE_f at each cut-off | Q1, W1 |
 | 2 | Pristine V_O at 2×2×2 on its Γ geometry (completes Table 2) | Q3, W6 |
 | 3 | Smearing test on the odd-electron Pr cells (degauss 0.002 Ry Gaussian; Marzari–Vanderbilt cold smearing); prints −TS and internal energy | Q7, W8 |
@@ -158,16 +160,17 @@ For single-U Rb_VO, the Löwdin site moments are already in Figure S1. A spin-de
 
 **Recommended calculations (in this order):** see the table below. Jobs 1–5 (the default queue) can all run in the background on the desktop. Their results drop into the existing "Uncertainty of the main results" paragraph, Table 2 footnote a, Table S2a and Limitations (ii)–(v) and (xii). If the authors decide not to run a job, the corresponding AUTHOR ACTION note becomes a plain "not performed" statement. The limitation text is already written for that case.
 
-Estimates are scaled from the authors' measured times on the i5-3570 (SI Table S6): a Γ SCF from scratch takes 3–6 h at 40 Ry and a production relaxation about 3 days. Higher cut-offs are scaled by (E_cut/40 Ry)^1.5. They are the figures in `revision_calculations/README.md`, which runs the jobs in its own order (1 to 5, then P2). All five P1 jobs run unattended in one queue; a restarted queue skips finished runs.
+Estimates are scaled from the authors' measured times on the i5-3570 (SI Table S6): a Γ SCF from scratch takes 3–6 h at 40 Ry and a production relaxation about 3 days. Higher cut-offs are scaled by (E_cut/40 Ry)^1.5. They are the figures in `revision_calculations/README.md`, which runs the jobs in its own order (1 to 5, then P2). All six P1 jobs run unattended in one queue; a restarted queue skips finished runs.
 
 | Job | Runs | Estimated wall time | Feeds into |
 |---|---|---|---|
 | 1: cut-off 55/70 Ry, with 40 Ry reference single points on the same geometries and O₂ at 40/55/70 Ry | 8 + 4 + 3 SCF | 2.5–5 days | §2.1; Limitation (iii); uncertainty paragraph |
 | 2: Pristine V_O, 2×2×2 | 1 SCF | 3–8 h | Table 2 footnote a; Limitation (ii) |
+| 0: relax the pristine perfect cell | 1 relax | 1–3 days | Table 2; §2.6; §3.2; §4.1; Limitation (iv) |
 | 3: smearing tests, Pr cells | 4 SCF | 12–24 h | §2.4; §3.3; uncertainty paragraph |
 | 4: D3 on Pr_perfect, Rb_perfect, O₂ | 3 SCF | 7–14 h | D3-corrected E_f; Limitation (xii) |
 | 5: nosym, O-seeded Rb cells | 3 SCF | 12–24 h | §3.6; Limitations (v), (xiii) |
-| **P1 total (default queue)** | **26** | **4–8 days** | |
+| **P1 total (default queue)** | **27** | **5–11 days** | |
 | 6: nosym re-relaxation (only if job 5 is lower by > 10⁻⁴ Ry) | 0–2 relax | 1–3 days each | §3.3, §3.6 |
 | 7: dual-U Pr_VO relaxation + dual-U O₂ | 1 + 1 | 1–3 days | §3.4; Limitation (vii) |
 | 7b: finish dual-U Rb_VO (needs its output file name) | 0–1 | 0.5–2 days | §3.4; Table S5 |

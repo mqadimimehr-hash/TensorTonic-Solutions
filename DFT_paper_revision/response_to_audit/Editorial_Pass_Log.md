@@ -414,3 +414,24 @@ The authors obtained an automated review of v4. Each point is answered in `Respo
 | R4-11 | Q1–Q3, Q7, Q2, Q4 | QE inputs, launcher and analysis script for the requested calculations written to `revision_calculations/` (jobs 1–10 plus 7b; see its README). Reviewed: the seeded-oxygen species label changed from "Oh" to "O1" (element symbol plus digit, the documented form). A dry run against stand-in production outputs built 37 inputs; nat, ntyp, species, starting-magnetisation indices and HUBBARD labels are consistent in all of them. Wall times re-based on SI Table S6 (P1: 26 runs, 4–8 days). |
 
 References: the manuscript now cites 50 entries (four added). Abstract still 248 words. The 26 ledger checks pass. Markers: manuscript 35 AUTHOR ACTION + 1 NEEDS CITATION (one added, R4-06); SI 21.
+
+## Round 5: resolution of the remaining author notes (4 October 2026)
+
+The authors asked that the open notes be resolved directly. Each was either filled from the run spreadsheet, the progress report and the input templates already supplied, or converted into an explicit statement of what was not recorded. One note (Funding) remains, because only the authors can write it.
+
+| ID | Item | Resolution |
+|---|---|---|
+| R5-01 | Was the production Pristine_perfect energy relaxed? | No: the run spreadsheet and the progress report list it as an SCF with F~max~ 0.0225 Ry/Bohr, and its logged eV value converts to −4275.01530 Ry. Stated in §2.6; the pristine E~f~ and the two reductions are now labelled lower bounds (Abstract, Table 2 footnote b, §3.2, §4.1, §4.2, Limitation (iv), Conclusions, Highlights, cover letter, graphical abstract). Job 0 added to `revision_calculations/` (relaxation of the cell). |
+| R5-02 | [NEEDS CITATION] for the 200–1000 lx claim | Pecunia et al. could not be read from this environment (Wiley, Crossref and Semantic Scholar are blocked; Scite, Scholar Gateway and Consensus quotas exhausted; not in Drive). The sentence now makes the general point without the figure: indoor light is orders of magnitude weaker than sunlight, so V~oc~ is sensitive to non-radiative recombination. Pecunia remains cited for indoor PV as a battery replacement. |
+| R5-03 | HSE06 settings | input_dft = 'hse', exx_fraction = 0.25, screening_parameter = 0.106 Bohr^−1^ and the same PAW datasets are recorded in the run spreadsheet; stated in §2.8(iii), with the reason the hybrid and PBE+U totals are not comparable (no Hubbard term; EXX from pseudo-wavefunctions). The qualitative outcome is kept in §3.6. |
+| R5-04 | Dual-U Rb energies logged in eV | The spreadsheet's factor (13.605693 eV/Ry) reproduces the four production cells logged in both units to 0.0006 eV; the dual-U energies are converted (−4324.98591 and −4284.02974 Ry) in §3.4, Tables S5 and S9 and the ledger, with two new ledger checks. m~abs~ not recorded. |
+| R5-05 | Bader dopant charges inconsistent with the sum rule | The run-note values (+2.14, +0.82 e) are replaced by the values implied by the recorded totals and sublattice means (+2.04 ± 0.03, +0.87 ± 0.03 e), with the derivation in Table S3; the pp.x density is identified as the valence pseudo-density (plot_num = 0). |
+| R5-06 | Figure S3 (raster-patched interim artwork) | Removed with Section S11; the final forces are in the text and the BFGS histories are in the deposited outputs. The patched files moved to `figures/superseded/`. |
+| R5-07 | AI declaration | Reworded to the facts: text editing, consistency checks, Python plotting scripts; no image generated or altered. |
+| R5-08 | Data availability | "Available from the corresponding author on request; deposited at Zenodo with a DOI on acceptance." A DOI can replace it if the deposit is made first. |
+| R5-09 | Run 25 identity | Lies 0.114 eV above run 4, consistent with an earlier step of the restarted Pr_VO relaxation; stated under Table S9 with a new ledger check. |
+| R5-10 | Settings not recoverable from the files at hand | Stated as "not recorded / not extracted / not re-inspected": degauss and etot_conv_thr of the production inputs, −TS terms (with an order-of-magnitude estimate), nosym and magnetisation constraints (absent from templates and run log), vc-relax k-mesh/cut-off/stress, Pr dataset MD5, Pr_VO geometry and vacancy confirmation, Pristine_VO E~F~ and m~abs~, m~abs~ at q = +1, occupation numbers, PDOS-SCF total energy, diago_full_acc rerun, wall times. |
+| R5-11 | Notes pointing to optional calculations | Deleted; the corresponding limitation sentences already stand, and the inputs are in `revision_calculations/`. |
+| R5-12 | Output file names | Those recorded in the run log are listed under Table S9. |
+
+State after round 5: manuscript 1 AUTHOR ACTION (Funding), 0 NEEDS CITATION; SI 0 (the revision notes, removed at packaging, are not counted). Abstract 250 words. 29 ledger checks pass.

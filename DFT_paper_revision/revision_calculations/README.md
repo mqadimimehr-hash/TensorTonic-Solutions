@@ -14,9 +14,10 @@ Basis used here: a from-scratch Γ SCF of a 47/48-atom cell at 40 Ry takes **≈
 
 | Job | Purpose (reviewer question / audit item) | Runs | Est. wall time |
 |---|---|---|---|
-| **P1** | *default queue* | **26** | **≈ 4–8 days** |
+| **P1** | *default queue* | **27** | **≈ 5–11 days** |
 | 1 | Cut-off convergence of E_f(V_O) and the Pr–Rb contrast (Q1, R09): 55/440 and 70/560 Ry for Pr_perfect, Pr_VO, Rb_perfect, Rb_VO. Also 40 Ry reference single points on the same geometries, and O2 boxes at 40/55/70 Ry | 8 + 4 refs + 3 O2 | ≈ 2.5–5 days (the 8 requested runs alone: ≈ 2–4 days) |
 | 2 | Pristine V_O at 2×2×2 k-points (Q3, R10) | 1 (+1 optional Γ ref) | ≈ 3–8 h |
+| 0 | Relaxation of the pristine perfect cell: its production energy is an unrelaxed single point (F_max 0.0225 Ry/Bohr), so the pristine E_f and the two reductions measured from it are lower bounds (main text Section 2.6) | 1 relax | ≈ 1–3 days |
 | 3 | Smearing test on the odd-electron Pr cells: Gaussian 0.002 Ry and cold (m-v) 0.005 Ry (Q7) | 4 | ≈ 12–24 h |
 | 4 | D3(BJ) on Pr_perfect, Rb_perfect and O2; with the existing D3 runs on Pr_VO and Rb_VO this completes the D3 cycle (R13) | 3 | ≈ 7–14 h |
 | 5 | Symmetry-broken hole search: nosym SCF with one seeded oxygen, species label "O1" (Q2) | 3 | ≈ 12–24 h |
@@ -29,7 +30,7 @@ Basis used here: a from-scratch Γ SCF of a 47/48-atom cell at 40 Ry takes **≈
 | 9 | Linear-response U (hp.x) for 12-atom anatase, Ti-3d and O-2p (supports the choice of U) | 1 pw.x + 1 hp.x | i5: ≈ 1 h + 0.5–1.5 days; one HPC node: ≈ 1–3 h |
 | 10 | 2×2×2 supercell (96 atoms) of Rb_VO and Pr_VO: cost note only (below) | – | single point ≈ 0.6–2 days on the i5; relaxations need HPC |
 
-The order above is the run order. A run whose `.out` already contains `JOB DONE` is skipped, so the launcher can be restarted at any time.
+The order above is the run order (jobs 1, 2, 0, 3, 4, 5). Job 0 reads the positions from `Pristine_perfect.out` (variable `SRC_Pristine_perfect`) and relaxes them with the production thresholds; the analysis prints the relaxation energy, the corrected pristine E_f and the corrected reductions. A run whose `.out` already contains `JOB DONE` is skipped, so the launcher can be restarted at any time.
 
 ## Files
 
