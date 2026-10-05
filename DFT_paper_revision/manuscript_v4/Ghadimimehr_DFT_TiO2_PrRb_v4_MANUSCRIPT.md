@@ -196,7 +196,7 @@ The authors thank UM Power Energy Dedicated Advanced Centre (UMPEDAC), Universit
 
 **Funding**
 
-**[AUTHOR ACTION: insert grant numbers, or the sentence "This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors."]**
+This work was supported by the Universiti Malaya Research Grant [grant number RU004-2025H].
 
 **Declaration of generative AI and AI-assisted technologies in the writing process**
 

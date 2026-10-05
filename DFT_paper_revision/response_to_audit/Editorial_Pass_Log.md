@@ -434,4 +434,6 @@ The authors asked that the open notes be resolved directly. Each was either fill
 | R5-11 | Notes pointing to optional calculations | Deleted; the corresponding limitation sentences already stand, and the inputs are in `revision_calculations/`. |
 | R5-12 | Output file names | Those recorded in the run log are listed under Table S9. |
 
-State after round 5: manuscript 1 AUTHOR ACTION (Funding), 0 NEEDS CITATION; SI 0 (the revision notes, removed at packaging, are not counted). Abstract 250 words. 29 ledger checks pass.
+| R5-13 | Funding statement | Supplied by the authors: "This work was supported by the Universiti Malaya Research Grant [grant number RU004-2025H]." |
+
+State after round 5: manuscript 0 AUTHOR ACTION, 0 NEEDS CITATION; SI 0 (the revision notes, removed at packaging, are not counted). Abstract 250 words. 29 ledger checks pass. The submission package is complete.

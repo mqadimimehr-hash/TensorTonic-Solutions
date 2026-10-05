@@ -3,9 +3,9 @@
 **Manuscript:** Oxygen-Vacancy Energetics and Dopant-Induced Holes in Pr- and Rb-Substituted Anatase TiO₂: A DFT+U Comparison
 **Built:** 4 October 2026 (round 5), from branch `claude/exciting-shannon-z4bl69` (PR #5)
 
-## Status: ready to upload once the Funding statement is written
+## Status: ready to upload
 
-Every [AUTHOR ACTION] note has been resolved except one: the **Funding** section of the manuscript still holds a bracketed placeholder that only the authors can fill (grant numbers, or Elsevier's standard sentence "This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors."). `tools_package.sh` prints the number of markers left in both Word files; it must read 0 before upload. The internal "Revision note" boxes are removed automatically from the copies in this folder.
+Every [AUTHOR ACTION] note has been resolved. The Funding section reads "This work was supported by the Universiti Malaya Research Grant [grant number RU004-2025H]." `tools_package.sh` reports 0 markers in both Word files. The internal "Revision note" boxes are removed automatically from the copies in this folder.
 
 Facts that could not be recovered from the files at hand are now stated as such in the text ("not recorded", "not extracted", "not re-inspected for this revision"), which is acceptable to a reviewer; they are listed in group B below in case you want to replace them with real values.
 
@@ -23,11 +23,8 @@ Facts that could not be recovered from the files at hand are now stated as such 
 | `06_Supporting_Information.docx` | Supplementary material | Includes Figures S1–S2 and Tables S1–S10. Preview PDF for checking only |
 | `07_Data_and_scripts_for_Zenodo/` | **Not uploaded to the journal** — deposit on Zenodo, then put the DOI in the Data availability statement | Energy ledger + check script (reproduces every formation energy), figure data and plotting scripts. Add your QE input/output files, pseudopotentials and Bader ACF.dat files to the same deposit |
 
-## A. The one required item
+## A. Optional before upload
 
-1. **Funding statement** — replace the bracket in the Funding section with grant numbers, or with the standard "did not receive any specific grant" sentence.
-
-Optional before upload:
 - **Zenodo deposit.** The Data availability statement now says the files are available on request and will be deposited with a DOI on acceptance. If you deposit folder 07 (plus your QE inputs/outputs, pseudopotentials and ACF.dat files) before submission, replace that sentence with the DOI.
 - **AI declaration.** It now states the facts (text editing, consistency checks, Python plotting scripts; no image generated or altered). Elsevier's policy on AI-assisted figure scripts is not explicit; asking the editorial office is prudent but not required.
 - **Author details.** Check names, affiliations and the corresponding-author e-mail on the title page.
@@ -47,7 +44,7 @@ Inputs are ready in `revision_calculations/` (job numbers in brackets); run `lau
 
 ## Before you press "submit"
 
-- Search both Word files for `AUTHOR ACTION` — the count must be zero (only the Funding placeholder remains; `tools_package.sh` prints the count).
+- `tools_package.sh` reports 0 `AUTHOR ACTION` markers in both Word files; if you edit the sources again, re-run it and check that line.
 - Check author names, affiliations and the corresponding-author e-mail on the title page.
 - Suggested reviewers (optional in Editorial Manager): choose researchers you have cited but not co-authored with.
 - The companion device-simulation paper (Pr³⁺:SnO₂ / CsPbBr₃) is **not** part of this submission; see `device_paper_review/Device_Manuscript_Audit.docx` before sending it anywhere.
