@@ -1,0 +1,51 @@
+&CONTROL
+    ! Revision job 1 (reviewer Q1, audit R09): plane-wave cut-off convergence.
+    ! Single point on the production relaxed geometry. Only ecutwfc and
+    ! ecutrho differ from production: 40 and 320 Ry (reference),
+    ! 55 and 440 Ry, 70 and 560 Ry (ecutrho = 8 x ecutwfc throughout).
+    calculation     = 'scf'
+    prefix          = '__PREFIX__'
+    outdir          = '__OUTDIR__'
+    pseudo_dir      = '__PSEUDO_DIR__'
+    verbosity       = 'high'
+    restart_mode    = 'from_scratch'
+    tprnfor         = .true.
+    tstress         = .true.
+    disk_io         = 'low'
+/
+&SYSTEM
+    ibrav           = 0
+    nat             = __NAT__
+    ntyp            = 3
+    ecutwfc         = __ECUTWFC__
+    ecutrho         = __ECUTRHO__
+    occupations     = 'smearing'
+    smearing        = 'gaussian'
+    degauss         = __DEGAUSS__
+    nspin           = 2
+    starting_magnetization(1) = __MAG_TI__
+    starting_magnetization(2) = __MAG_O__
+    starting_magnetization(3) = __MAG_DOP__
+/
+&ELECTRONS
+    conv_thr        = 1.0d-8
+    mixing_mode     = 'plain'
+    mixing_beta     = 0.1
+    diagonalization = 'david'
+    electron_maxstep = 250
+    startingwfc     = 'atomic+random'
+/
+ATOMIC_SPECIES
+  Ti  47.867   Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+  O   15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+__DOPANT_SPECIES__
+CELL_PARAMETERS angstrom
+   7.63632000   0.00000000   0.00000000
+   0.00000000   7.63632000   0.00000000
+   0.00000000   0.00000000   9.77900000
+ATOMIC_POSITIONS angstrom
+__ATOMIC_POSITIONS__
+K_POINTS automatic
+1 1 1 0 0 0
+HUBBARD (ortho-atomic)
+U Ti-3d 3.5

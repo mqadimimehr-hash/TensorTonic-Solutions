@@ -1,0 +1,57 @@
+&CONTROL
+    ! Revision job 5 (reviewer Q2): symmetry-broken hole search, SCF only.
+    ! Symmetry is switched off (nosym, noinv) and ONE oxygen, relabelled O1
+    ! (same O PAW dataset), carries the only spin seed. Rb_VO seeds: O1 = 8
+    ! (on the mirror plane, production hole site) and O1 = 6 (off-mirror).
+    ! Rb_perfect seed: the oxygen with the shortest Rb-O bond.
+    ! Compare the energy with the production total energy of the same cell.
+    calculation     = 'scf'
+    prefix          = '__PREFIX__'
+    outdir          = '__OUTDIR__'
+    pseudo_dir      = '__PSEUDO_DIR__'
+    verbosity       = 'high'
+    restart_mode    = 'from_scratch'
+    tprnfor         = .true.
+    tstress         = .false.
+    disk_io         = 'low'
+/
+&SYSTEM
+    ibrav           = 0
+    nat             = __NAT__
+    ntyp            = 4
+    ecutwfc         = 40.0
+    ecutrho         = 320.0
+    occupations     = 'smearing'
+    smearing        = 'gaussian'
+    degauss         = __DEGAUSS__
+    nspin           = 2
+    starting_magnetization(1) = 0.0
+    starting_magnetization(2) = 0.0
+    starting_magnetization(3) = 0.5
+    starting_magnetization(4) = 0.0
+    nosym           = .true.
+    noinv           = .true.
+/
+&ELECTRONS
+    conv_thr        = 1.0d-8
+    mixing_mode     = 'plain'
+    mixing_beta     = 0.1
+    diagonalization = 'david'
+    electron_maxstep = 300
+    startingwfc     = 'atomic+random'
+/
+ATOMIC_SPECIES
+  Ti  47.867   Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+  O   15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+  O1  15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+__DOPANT_SPECIES__
+CELL_PARAMETERS angstrom
+   7.63632000   0.00000000   0.00000000
+   0.00000000   7.63632000   0.00000000
+   0.00000000   0.00000000   9.77900000
+ATOMIC_POSITIONS angstrom
+__ATOMIC_POSITIONS__
+K_POINTS automatic
+1 1 1 0 0 0
+HUBBARD (ortho-atomic)
+U Ti-3d 3.5
