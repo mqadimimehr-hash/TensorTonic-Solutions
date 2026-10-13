@@ -1,11 +1,11 @@
 # Submission package — Applied Surface Science (Elsevier)
 
 **Manuscript:** Oxygen-Vacancy Energetics and Dopant-Induced Holes in Pr- and Rb-Substituted Anatase TiO₂: A DFT+U Comparison
-**Built:** 4 October 2026 (round 5), from branch `claude/exciting-shannon-z4bl69` (PR #5)
+**Built:** 13 October 2026 (round 5, final checks), from branch `claude/exciting-shannon-z4bl69` (PR #5)
 
 ## Status: ready to upload
 
-Every [AUTHOR ACTION] note has been resolved. The Funding section reads "This work was supported by the Universiti Malaya Research Grant [grant number RU004-2025H]." `tools_package.sh` reports 0 markers in both Word files. The internal "Revision note" boxes are removed automatically from the copies in this folder.
+Every [AUTHOR ACTION] note has been resolved. The Funding section reads "This work was supported by the Universiti Malaya Research Grant [grant number RU004-2025H]." `tools_package.sh` reports 0 markers in the cover letter, manuscript, highlights and SI. The internal "Revision note" boxes are removed automatically from the copies in this folder.
 
 Facts that could not be recovered from the files at hand are now stated as such in the text ("not recorded", "not extracted", "not re-inspected for this revision"), which is acceptable to a reviewer; they are listed in group B below in case you want to replace them with real values.
 
@@ -16,7 +16,7 @@ Facts that could not be recovered from the files at hand are now stated as such 
 | File | Upload as | Notes |
 |---|---|---|
 | `01_Cover_Letter.docx` | Cover letter | Addressed to the Editor of Applied Surface Science |
-| `02_Manuscript.docx` | Manuscript (editable Word) | Title page, abstract (248 words), text, tables, figure captions, references (50). `02_Manuscript_preview.pdf` is for checking only |
+| `02_Manuscript.docx` | Manuscript (editable Word) | Title page, abstract (250 words, counted as Word counts), text, tables, figure captions, references (50). `02_Manuscript_preview.pdf` is for checking only |
 | `03_Highlights.docx` | Highlights | 5 bullets, each ≤ 85 characters |
 | `04_Graphical_Abstract.png` / `.pdf` | Graphical abstract | 1535 × 590 px (Elsevier minimum 1328 × 531 px) |
 | `05_Figures/Figure_1–4.pdf` (+ `.png`) | Figures | Vector PDF preferred; PNG at 300 dpi as backup |
@@ -44,7 +44,7 @@ Inputs are ready in `revision_calculations/` (job numbers in brackets); run `lau
 
 ## Before you press "submit"
 
-- `tools_package.sh` reports 0 `AUTHOR ACTION` markers in both Word files; if you edit the sources again, re-run it and check that line.
+- `tools_package.sh` reports 0 `AUTHOR ACTION` markers in the cover letter, manuscript, highlights and SI; if you edit the sources again, re-run it and check those lines.
 - Check author names, affiliations and the corresponding-author e-mail on the title page.
-- Suggested reviewers (optional in Editorial Manager): choose researchers you have cited but not co-authored with.
+- **Suggested reviewers:** the cover letter says they are listed in the submission system, so enter 3–5 in Editorial Manager (researchers you cite on DFT+U defects in TiO₂ or alkali/rare-earth doping of oxides; none from Universiti Malaya or recent co-authors).
 - The companion device-simulation paper (Pr³⁺:SnO₂ / CsPbBr₃) is **not** part of this submission; see `device_paper_review/Device_Manuscript_Audit.docx` before sending it anywhere.

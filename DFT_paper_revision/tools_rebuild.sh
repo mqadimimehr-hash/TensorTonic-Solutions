@@ -24,4 +24,4 @@ cp $S/si.pdf $R/supporting_information_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_Supportin
 for f in $R/manuscript_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.docx $R/supporting_information_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_Supporting_Information.docx; do echo "== $(basename $f)"; python3 $V "$f" 2>&1 | tail -1; done
 grep -c "{{" $R/manuscript_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.md || true
 echo "words: $(wc -w < $R/manuscript_v4/Ghadimimehr_DFT_TiO2_PrRb_v4_MANUSCRIPT.md)"
-echo "abstract words: $(awk '/^\*\*Abstract\*\*/{f=1;next} /^\*\*Keywords/{f=0} f' $R/manuscript_v4/part1_front_intro_methods.md | wc -w)"
+echo "abstract words (Word-style count, limit 250): $(python3 -c "import sys;t=open(sys.argv[1]).read();print(len(t.split('**Abstract**')[1].split('**Keywords')[0].split()))" $R/manuscript_v4/part1_front_intro_methods.md)"

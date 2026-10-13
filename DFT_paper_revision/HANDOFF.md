@@ -1,7 +1,7 @@
 # HANDOFF — DFT+U manuscript on oxygen vacancies in Pr- and Rb-substituted anatase TiO₂
 
 **Written:** 13 October 2026, at the end of the first Claude Code session on this project.
-**Purpose:** paste or attach this file in a new Claude session so it can continue without re-deriving anything. Every number and path below was checked against the repository at commit `2a43130` plus the uncommitted package-script change described in §8.
+**Purpose:** paste or attach this file in a new Claude session so it can continue without re-deriving anything. Every number and path below was checked against the repository at commit `457e6e3` (branch head; it adds this file, the cover-letter fix and the `tools_package.sh` change described in §8; parent `2a43130`).
 
 ---
 
@@ -15,7 +15,7 @@
 
 ## 2. The project in one paragraph
 
-Mohammad Ghadimimehr (PhD researcher, Universiti Malaya) has a Quantum ESPRESSO DFT+U study comparing Pr³⁺ and Rb⁺ substitution on the Ti site of anatase TiO₂ and how each changes the formation energy of a neutral oxygen vacancy (V_O). The original manuscript ("FINAL", June 2026) overclaimed heavily (design rules, "trap-free" Pr, 4f mechanism with a 4f-in-core pseudopotential, "closed-shell singlet", Ti³⁺ traps). Two external audits (Error Audit E1–E13, Full Reviewer/Editor Audit R01–R18) said "do not submit". This session rebuilt it as **manuscript v4**: same computed energies, bounded claims, full energy ledger, regenerated figures, verified citations, and a complete Elsevier submission package for **Applied Surface Science**. The package is finished (0 author-action markers in manuscript, highlights and SI). The user says the extra calculations requested by reviewers have already been run on his PC; their outputs have not yet been provided.
+Mohammad Ghadimimehr (PhD researcher, Universiti Malaya) has a Quantum ESPRESSO DFT+U study comparing Pr³⁺ and Rb⁺ substitution on the Ti site of anatase TiO₂ and how each changes the formation energy of a neutral oxygen vacancy (V_O). The original manuscript ("FINAL", June 2026) overclaimed heavily (design rules, "trap-free" Pr, 4f mechanism with a 4f-in-core pseudopotential, "closed-shell singlet", Ti³⁺ traps). Two external audits (Error Audit E1–E13, Full Reviewer/Editor Audit R01–R18) said "do not submit". This session rebuilt it as **manuscript v4**: same computed energies, bounded claims, full energy ledger, regenerated figures, verified citations, and a complete Elsevier submission package for **Applied Surface Science**. The package is finished (0 author-action markers in the cover letter, manuscript, highlights and SI). The user says the extra calculations requested by reviewers have already been run on his PC; their outputs have not yet been provided.
 
 ---
 
@@ -28,13 +28,13 @@ Mohammad Ghadimimehr (PhD researcher, Universiti Malaya) has a Quantum ESPRESSO 
 | Acknowledgement | UMPEDAC, Universiti Malaya, for computational resources |
 | Target journal | **Applied Surface Science** (Elsevier). Fallback: Journal of Alloys and Compounds (same submission system). Shortlist with 9 journals: `submission/Journal_Shortlist.md` |
 | Claude's acceptance estimate (given to the user) | 20–30 % as submitted; 35–45 % if the reviewer-requested calculations are folded in. Largest risk: desk return on scope (bulk defect study, no surface calculation) |
-| Submission status | **Unknown.** Package was ready on 5 Oct 2026; whether the user uploaded it to Editorial Manager is not known. Ask. |
+| Submission status | **Unknown.** Package was ready on 5 Oct 2026 (cover letter fixed and package rebuilt on 13 Oct, see §8); whether the user uploaded it to Editorial Manager is not known. Ask. |
 | Repository | `github.com/mqadimimehr-hash/TensorTonic-Solutions`, everything under `DFT_paper_revision/` |
 | Branch | `claude/exciting-shannon-z4bl69` — develop and push only here: `git push -u origin claude/exciting-shannon-z4bl69` |
-| Pull request | #5 — https://github.com/mqadimimehr-hash/TensorTonic-Solutions/pull/5 (open, mergeable, no CI, no reviews). Do **not** open a new PR unless asked. The PR description is stale (written in round 1) but has not been edited. |
+| Pull request | #5 — https://github.com/mqadimimehr-hash/TensorTonic-Solutions/pull/5 (open, mergeable, no CI, no reviews). Do **not** open a new PR unless asked. The PR description is stale (written in round 1) but has not been edited. When pushing the next round, update the PR #5 description (`gh pr edit 5 --body ...`) to summarise rounds 1–6 and end it with the PR attribution line from the system reminder; do not open a new PR. |
 | Git identity for commits | `git -c user.email="23057283@siswa.um.edu.my" -c user.name="Mohammad Ghadimimehr" commit ...` |
 | Commit message footer | Use the attribution lines the session's system reminder prescribes (a `Co-Authored-By:` line and a `Claude-Session:` URL line). No model names anywhere else in repo files. |
-| Last commits | `2a43130` funding statement, package complete · `daa1c1a` round 5 · `8ec643f` revision_calculations · `d9e4af4` round 4 · `21ba26f` submission package folder |
+| Last commits | `457e6e3` HANDOFF.md, cover-letter fix, package script checks 01/03 · `2a43130` funding statement, package complete · `daa1c1a` round 5 · `8ec643f` revision_calculations · `d9e4af4` round 4 · `21ba26f` submission package folder |
 
 ---
 
@@ -43,7 +43,7 @@ Mohammad Ghadimimehr (PhD researcher, Universiti Malaya) has a Quantum ESPRESSO 
 ### 4.1 Title, abstract, structure
 
 - **Title:** *Oxygen-Vacancy Energetics and Dopant-Induced Holes in Pr- and Rb-Substituted Anatase TiO₂: A DFT+U Comparison* (original FINAL title was "Aliovalency over Ionic Radius: First-Principles Design Rules for Trap-Free Pr- and Rb-Doped Anatase TiO₂ Electron-Transport Layers in Indoor Photovoltaics").
-- **Abstract:** 250 words by `tools_rebuild.sh` (limit 250; do not add words). It states the pristine value as "+4.74 eV (lower bound)".
+- **Abstract:** 250 words counted as Word and Editorial Manager count (whitespace split; the stand-alone "Å" counts). Fixed on 13 Oct by deleting "wide-gap" from the first sentence; `tools_rebuild.sh` now prints this Word-style count. Limit 250: do not add words. It states the pristine value as "+4.74 eV (lower bound)".
 - **Keywords:** DFT+U; anatase TiO₂; oxygen vacancy; aliovalent substitution; hole localisation; electron-transport layer.
 - **Sections:** 1 Introduction · 2 Computational Methods (2.1 code/pseudopotentials with Table 1 electron counts, 2.2 Hubbard, 2.3 supercells, 2.4 k-sampling/electronic, 2.5 magnetisation conventions, 2.6 geometry, 2.7 formation energies, 2.8 additional calculations (i)–(vii)) · 3 Results (3.1 structure + Fig 1; 3.2 formation energies + Table 2 + Fig 2; 3.3 spin states + Table 3 + Fig 3; 3.4 oxygen-site Hubbard test + Table 4; 3.5 charged-cell spin series; 3.6 electronic structure + Fig 4; 3.7 sensitivity tests incl. "Uncertainty of the main results") · 4 Discussion (4.1–4.5) · 5 Limitations (i)–(xiv) · 6 Conclusions · Acknowledgements · Funding · Generative-AI declaration · CRediT · Data availability · Competing interest · References (50 cited).
 - **Highlights** (`submission/Highlights.md`, each ≤ 85 characters):
@@ -73,7 +73,7 @@ Mohammad Ghadimimehr (PhD researcher, Universiti Malaya) has a Quantum ESPRESSO 
 
 Electron counts (Table 1): Pristine_perfect 384, Pristine_VO 378, Pr_perfect 383 (1 hole), Pr_VO 377 (1 net excess electron), Rb_perfect 381 (3 holes), Rb_VO 375 (1 residual hole). Every doped cell is odd-electron, so m = 0 solutions are smeared, not closed-shell.
 
-### 4.3 Key results (all reproduced by `supporting_information_v4/check_ledger.py`, 29 checks, all OK)
+### 4.3 Key results (energy-derived values reproduced by `supporting_information_v4/check_ledger.py`, 29 checks, all OK; magnetisations, Löwdin, PDOS, Bader and structural values come from the ledger, SI Tables S3/S8 and `figures/data/` and are not script-checked)
 
 | Quantity | Value | Where |
 |---|---|---|
@@ -121,11 +121,11 @@ Does not claim: Pr "suppresses" vacancies (withdrawn); any 4f mechanism; closed-
 - `manuscript_v4/part1_front_intro_methods.md`, `part2_results.md`, `part3_discussion_end.md` — manuscript text with `{{Key}}` citations. Line 13 of part1 is an internal "Revision note" blockquote (kept in the working copy, stripped at packaging).
 - `manuscript_v4/refs.py` — `REFS = {key: "reference string"}` (54 entries, 50 cited; unused: Yang2020, Ahmad2020, Deak2014, Wang2020) and a `VERIFY` dict of notes.
 - `manuscript_v4/build_refs.py` — numbers citations by first appearance, compresses ranges, appends References.
-- `supporting_information_v4/SI_v4.md` — SI (S1–S10; S11 and Figure S3 were removed in round 5). Line 7 has its own revision note.
+- `supporting_information_v4/SI_v4.md` — SI (S1–S10; S11 and Figure S3 were removed in round 5). The last main-text citation of Figure S3 (§3.1) was removed on 13 Oct. Line 7 has its own revision note.
 - `supporting_information_v4/energy_ledger.csv` — Table S9, 48 rows (runs 1–46 plus 20a/20b).
 - `supporting_information_v4/check_ledger.py` — 29 checks; exits non-zero on any BAD.
 - `figures/make_figures.py` (Fig 2, 3), `make_pdos_figures.py` (Fig 4, S1, S2), `make_fig1_structures.py` (Fig 1; adds panel c automatically if `figures/data/nscf_Pr_VO.out` appears), `make_graphical_abstract.py`, `extract_lowdin.py`; data in `figures/data/` (PDOS CSVs, Löwdin CSVs, `nscf_Rb_VO.out`). Run them from inside `figures/` (relative `data/` paths).
-- `submission/Highlights.md`, `submission/Cover_Letter_Applied_Surface_Science.md/.docx`, `submission/Journal_Shortlist.md/.docx`.
+- `submission/Highlights.md`, `submission/Cover_Letter_Applied_Surface_Science.md` (its .docx is regenerated by `tools_package.sh` since `457e6e3`), `submission/Journal_Shortlist.md/.docx`.
 - `SUBMISSION_PACKAGE/00_READ_ME_FIRST.md/.docx` — the user-facing checklist.
 - `revision_calculations/` — QE inputs, launcher and analysis for the extra runs (§10).
 - `response_to_audit/Editorial_Pass_Log.md` (rounds 1–5, all finding IDs), `Response_to_Audit_v4.md` (answers to R01–R18, E1–E13), `Response_to_AI_PreSubmission_Review.md` (answers to the paperreview.ai review).
@@ -147,15 +147,15 @@ cd /home/user/TensorTonic-Solutions/DFT_paper_revision
 (cd figures && python3 make_figures.py && python3 make_pdos_figures.py && python3 make_fig1_structures.py && python3 make_graphical_abstract.py)
 # 2. rebuild manuscript + SI Word files and previews
 bash tools_rebuild.sh
-#    must print: "50 references cited; missing keys: []" ; "0" (unreplaced {{ ) ; "abstract words: 250" (or fewer)
+#    must print: "50 references cited; missing keys: []" ; "0" (unreplaced {{ ) ; "abstract words (Word-style count, limit 250): 250" (or fewer)
 # 3. energy checks
-(cd supporting_information_v4 && python3 check_ledger.py)      # every line OK, exit 0
+(cd supporting_information_v4 && python3 check_ledger.py)      # 3 U-sweep info lines, then 29 lines starting "OK", no "BAD", exit 0
 # 4. journal package
 bash tools_package.sh
 #    must print: revision notes left = 0 (02, 06); markers left = 0 for 01, 02, 03, 06; check_ledger OK; "Zenodo scripts parse"; zip size
 ```
 
-- `tools_rebuild.sh` and `tools_package.sh` hard-code the scratch path `/tmp/claude-0/-home-user-TensorTonic-Solutions/0159629d-9bba-513e-9e05-92ed56279e63/scratchpad/...`, the Chromium path `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` and a docx validator under `/root/.claude/skills/synced/...`. **In a new session, change `S=` (and `V=`, `CH=` if needed) at the top of both scripts to the new scratchpad** or they will fail.
+- `tools_rebuild.sh` and `tools_package.sh` hard-code the scratch path `/tmp/claude-0/-home-user-TensorTonic-Solutions/0159629d-9bba-513e-9e05-92ed56279e63/scratchpad/...`, the Chromium path `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` and a docx validator under `/root/.claude/skills/synced/...`. **In a new session, change `S=` at the top of both scripts to the new scratchpad (and, if needed, `CH=` in both and `V=` in `tools_rebuild.sh`; `tools_package.sh` has no `V=`)** or they will fail.
 - `tools_check_numbers.py` compares numbers against the old round-2 `.bak` files; for a new edit round, make fresh backups (`cp part2_results.md part2.round6.bak` etc.) and diff the decimal numbers yourself (a 10-line Python Counter over `re.findall(r'[−-]?\d+\.\d+', text)` was used in rounds 4–5).
 
 ---
@@ -173,10 +173,12 @@ bash tools_package.sh
 
 ## 8. Current status (13 Oct 2026)
 
-- Package `DFT_paper_revision/SUBMISSION_PACKAGE/` (+ `SUBMISSION_PACKAGE.zip`, sent to the user on 5 Oct): 01 cover letter, 02 manuscript (+ preview PDF), 03 highlights, 04 graphical abstract, 05 Figures 1–4 (PDF + PNG), 06 SI (+ preview PDF), 07 Zenodo data and scripts (not for the journal).
-- Manuscript, highlights, SI: **0** AUTHOR ACTION / NEEDS CITATION markers. Abstract 250 words. 29 ledger checks pass.
+- Package `DFT_paper_revision/SUBMISSION_PACKAGE/` (+ `SUBMISSION_PACKAGE.zip`, rebuilt 13 Oct with the fixed cover letter; the copy sent to the user on 5 Oct still has the old cover letter with the AUTHOR ACTION placeholder, so send the 13 Oct zip again): 01 cover letter, 02 manuscript (+ preview PDF), 03 highlights, 04 graphical abstract, 05 Figures 1–4 (PDF + PNG), 06 SI (+ preview PDF), 07 Zenodo data and scripts (not for the journal).
+- Manuscript, highlights, SI: **0** AUTHOR ACTION / NEEDS CITATION markers. Abstract 250 words (Word count). 29 ledger checks pass.
 - Cover letter: fixed on 13 Oct (suggested-reviewer placeholder replaced by "Suggested reviewers are listed in the submission system."; data sentence aligned with the manuscript). 0 markers. Enter 3–5 suggested reviewers in Editorial Manager.
+- The zip the user received on 5 Oct contains the OLD cover letter (reviewer placeholder; claim that the data are already deposited). The corrected zip (fixed cover letter, abstract trimmed to 250 Word-counted words, Figure S3 citation removed) was rebuilt and sent to the user on 13 Oct. If he submitted the 5 Oct version, he should replace the cover letter and manuscript in Editorial Manager.
 - `tools_package.sh` rebuilds the cover letter from its .md and checks markers in 01, 02, 03 and 06.
+- `00_READ_ME_FIRST.md/.docx` updated on 13 Oct (date, abstract count, "cover letter, manuscript, highlights and SI", suggested reviewers to be entered in Editorial Manager).
 - Whether the paper has been submitted: **unknown**.
 
 ---
@@ -185,25 +187,34 @@ bash tools_package.sh
 
 ### 9.1 Fold in the outputs the user says already exist (FIRST TASK)
 
-On 5 Oct the user wrote "i have all these simulations already". None of these outputs has ever been uploaded. Ask for them (in WSL: `cd ~/tio2_vo && tar czf tio2_outputs.tar.gz *.in *.out */*.out */ACF.dat`), put each archive in its own new empty directory, read with `python3 -I`, and update the paper:
+On 5 Oct the user wrote "i have all these simulations already". None of these outputs has ever been uploaded. Ask for them (two archives, in WSL: (1) the revision queue, exactly as in `revision_calculations/README.md` "What to send back": `cd ~/tio2_vo/revision_calculations && tar czf revision_results_$(date +%Y%m%d).tgz --exclude='runs/scratch' --exclude='runs/_positions' revision*.log dryrun.log revision_analysis.txt runs`; (2) the production files: `cd ~/tio2_vo && tar czf tio2_outputs.tar.gz *.in *.out */*.out $(find . -name ACF.dat -not -path './revision_calculations/*')`. The READ_ME calls the production bundle `tio2_needed.tar.gz`; accept either name.), put each archive in its own new empty directory, read with `python3 -I`, and update the paper:
 
 | Output to request | What it changes |
 |---|---|
-| **Relaxed Pristine_perfect** (job 0) | Replace −4275.01530 Ry in Table 2, ledger run 1 (add a new run row), `check_ledger.py` (Ef pristine, reductions), `figures/make_figures.py` and `make_graphical_abstract.py` constants; remove "lower bound" from abstract, Table 2 footnote b, §2.6, §3.2, §4.1, §4.2, Limitation (iv), Conclusions, Highlights (bullet 2), graphical abstract ("≥" prefix in `make_graphical_abstract.py`). The doped results and contrast do not change. |
+| **Relaxed Pristine_perfect** (job 0) | Replace −4275.01530 Ry in Table 2, ledger run 1 (add a new run row), `check_ledger.py` (Ef pristine, reductions), `figures/make_figures.py` and `make_graphical_abstract.py` constants; remove "lower bound" / "at least" from abstract, Table 2 footnote b, §2.6, §3.2, §3.7 (Uncertainty paragraph), §4.1, §4.2, Limitation (iv), Conclusions, Highlights (bullet 2), graphical abstract ("≥" prefix in `make_graphical_abstract.py`), and update SI Table S6 (run-1 row), Table S9 (run 1 note) and Table S10 (Pristine_perfect row and footnote d). The doped results and contrast do not change. |
 | **Cut-off 55/70 Ry** (job 1, plus O₂ at each cut-off) | §2.1 "No cut-off convergence test was performed" and Limitation (iii); add a table to SI S4; add to "Uncertainty of the main results" (§3.7) |
 | **Pristine V_O at 2×2×2** (job 2) | Table 2 footnote a and empty cell; Table S2b; Limitation (ii) "the pristine E_f was not checked"; `check_ledger.py` |
 | **Smearing tests / −TS lines** (job 3, or the "smearing contrib. (-TS)" lines of the production outputs) | §2.4 (replace the estimate), §3.3, S1 last sentence, Table S10 degauss column, uncertainty paragraph |
 | **D3 on Pr_perfect, Rb_perfect, O₂** (job 4) | §3.7 *Dispersion* paragraph and Limitation (xii): compute D3-corrected E_f and contrast; Table S5; ledger rows; checks |
 | **nosym / O-seeded Rb runs** (job 5/6) | §2.4 symmetry sentence, §3.6 caveat, Limitations (v) and (xiii) |
 | **Dual-U Pr_VO; finished dual-U Rb_VO; dual-U O₂** (job 7/7b) | Table 4 ("not computed", "preliminary"), §3.4, §4.4, Limitation (vii); dual-U E_f possible only with a dual-U O₂ reference |
+| **Tight relaxations** (job 8) | Limitation (iv) last sentence "The effect of tighter relaxation on the energetics and on the localisation results has not been tested"; §2.6 force statement; Table 2/ledger rows (new runs) and E_f re-evaluation in the uncertainty paragraph (§3.7) |
+| **Linear-response U** (job 9) | §2.2 "linear-response determination of U ... was not performed for any cell in this work" and the U(O-2p) "transferred ... no such calibration was attempted" sentence; Limitation (vii) |
 | **Production .in files** | degauss, etot_conv_thr, starting_magnetization statements in §2.4–2.6 and Table S10 ("not recorded", "not re-inspected") |
+| **Pristine_VO relaxation output** | E_F and m_abs in Table 3 |
+| **dual-U and q = +1 outputs** | m_abs in Table 4, §3.5, Table S5 |
+| **Any output with wall time** | Table S6 |
+| **PDOS SCF output** | E_tot, m, m_abs (§3.6, R3-38) |
+| **NSCF with diago_full_acc / spin-density cube** (optional) | §3.6 unconverged-eigenvalue caveat; Limitation (xiii) "not cross-checked with a spin-density isosurface" |
 | **Pr-cell output header** | Pr MD5 in Table S7 |
-| **Relaxed Pr_VO output** (e.g. `nscf_Pr_VO.out` or `Pr_VO.out`) | Put in `figures/data/` → Figure 1 panel (c) appears; Pr–O distances in §3.1 and Table S8; confirm the removed oxygen (§2.3) |
+| **Relaxed Pr_VO output** (e.g. `nscf_Pr_VO.out` or `Pr_VO.out`; any pw.x output of the relaxed cell) | Copy it to `figures/data/nscf_Pr_VO.out` (that exact name; `make_fig1_structures.py` tests only this path) → Figure 1 panel (c) appears; Pr–O distances in §3.1 and Table S8; confirm the removed oxygen (§2.3) |
 | **Bader ACF.dat** (Pr_VO, Rb_VO) | Table S3 per-atom tables, dopant charges in §3.7 |
 | **HSE06 input/output** | §2.8(iii) q-grid/ecutfock; optionally band gap |
 | **vc-relax output** | §2.3 k-mesh, cut-off, residual stress |
 
-Procedure each time: back up the sources → extract numbers from the outputs → edit `part*.md`, `SI_v4.md`, `energy_ledger.csv`, `check_ledger.py`, figure scripts as needed → `tools_rebuild.sh` → `check_ledger.py` → `tools_package.sh` → diff decimal numbers against the backup → add a round-6 section to `Editorial_Pass_Log.md` → commit → push → send the new zip.
+Procedure each time: back up the sources → extract numbers from the outputs (first read the production smearing widths and any `DEGAUSS`/`ALLOW_DEGAUSS_MISMATCH` override from `dryrun.log`/`revision.log`; use them to fill the degauss statements in §2.4 and Table S10 and to confirm the job runs used the production width; compare job 5/6 Rb_VO energies with both −4289.17135 Ry (production, m_abs 1.21) and −4289.17088 Ry (from-scratch, m_abs 1.00), README assumption 4) → edit `part*.md`, `SI_v4.md`, `energy_ledger.csv`, `check_ledger.py`, figure scripts as needed → `tools_rebuild.sh` → `check_ledger.py` → `tools_package.sh` → diff decimal numbers against the backup → add a round-6 section to `Editorial_Pass_Log.md` → commit → push → send the new zip.
+
+**Check first when `Pristine_perfect.out` arrives:** the "unrelaxed" status of the pristine reference rests on the run spreadsheet §2 row and the progress report (calculation type scf, F_max 0.022530 Ry/Bohr, E_F 7.887 eV, eV total −58164.5462 = −4275.0153 Ry). The spreadsheet §16 header and the U-sweep README describe the same cell loosely as "previously-relaxed", and the Γ k-mesh single point with the same energy prints E_F 8.2442 eV. Open the output and check `calculation =` and the last "Total force". If it was in fact a relaxation that converged below 0.005 Ry/Bohr, remove every "lower bound" / "at least" statement (list in the job-0 row above, plus the cover letter's "+4.74 (a lower bound)") and correct ledger run 1 (calc, E_F, Fmax) — no energy changes.
 
 ### 9.2 Other items
 
@@ -216,7 +227,7 @@ Procedure each time: back up the sources → extract numbers from the outputs �
 
 ## 10. `revision_calculations/` summary
 
-Inputs, launcher and analysis for the extra runs; validated by a dry run (37 inputs consistent), never executed here (no pw.x in this environment).
+Inputs, launcher and analysis for the extra runs; validated by a round-4 dry run against stand-in production outputs (37 inputs consistent; job 0, added in round 5, was not part of that dry run and has not been dry-run since), never executed here (no pw.x in this environment).
 
 | Job | Purpose | Runs | Time on the i5 |
 |---|---|---|---|
@@ -232,7 +243,7 @@ Inputs, launcher and analysis for the extra runs; validated by a dry run (37 inp
 | 9 | hp.x linear-response U (HPC) | 1+1 | HPC |
 | 10 | 96-atom cells (cost note only) | – | – |
 
-Default queue (P1) = jobs 1, 2, 0, 3, 4, 5 (27 runs, ≈5–11 days); `RUN_P2=1` adds 6, 7, 7b, 8; `RUN_P3=1` adds 9; `JOBS="0"` runs a chosen subset. Key variables at the top of `launch_revision_queue.sh`: `PRISTINE_VO_OUT` (must be set), `DUALU_RBVO_OUT`, `DUALU_RBP_OUT`, `QE_HOME` (default `~/tio2_vo`), `DEGAUSS` (0.005; the launcher stops if production outputs show a different width unless `ALLOW_DEGAUSS_MISMATCH=1`). Launch: `bash launch_revision_queue.sh --dry-run` then `nohup bash launch_revision_queue.sh > revision.log 2>&1 & disown`. Analysis: `python3 analyze_revision_runs.py runs | tee revision_analysis.txt` — prints E_f at each cut-off, the corrected pristine E_f after job 0, −TS and internal energies, D3-corrected E_f, nosym comparisons and dual-U E_f. Full instructions: `revision_calculations/README.md`.
+Default queue (P1) = jobs 1, 2, 0, 3, 4, 5 (27 runs, ≈5–11 days); `RUN_P2=1` adds 6, 7, 7b, 8; `RUN_P3=1` adds 9; `JOBS="0"` runs a chosen subset. Key variables at the top of `launch_revision_queue.sh`: `PRISTINE_VO_OUT` (defaults to the guessed name `Pristine_VO.out`, used silently if such a file exists; otherwise job 2 is skipped with a hint; set it to the real pristine V_O relaxation output), `DUALU_RBVO_OUT`, `DUALU_RBP_OUT`, `QE_HOME` (default `~/tio2_vo`), `DEGAUSS` (0.005; the launcher stops if production outputs show a different width unless `ALLOW_DEGAUSS_MISMATCH=1`). Launch: `bash launch_revision_queue.sh --dry-run` then `nohup bash launch_revision_queue.sh > revision.log 2>&1 & disown`. Analysis: `python3 analyze_revision_runs.py runs | tee revision_analysis.txt` — prints E_f at each cut-off, the corrected pristine E_f after job 0, −TS and internal energies, D3-corrected E_f, nosym comparisons and dual-U E_f. Full instructions: `revision_calculations/README.md`.
 
 ---
 
@@ -240,9 +251,9 @@ Default queue (P1) = jobs 1, 2, 0, 3, 4, 5 (27 runs, ≈5–11 days); `RUN_P2=1`
 
 **In the repo:** energy ledger (48 rows), PDOS CSVs and Löwdin CSVs for Pr_VO and Rb_VO, `nscf_Rb_VO.out` (relaxed Rb_VO coordinates), all figure scripts.
 
-**Uploaded to the previous session (`/root/.claude/uploads/<session id>/`, not available to a new session unless re-uploaded):** original FINAL and BACKUP docx, FINAL SI docx, both audits, `QE_simulations_master.csv/.xlsx` (run spreadsheet, sections 1–23 — the main data source), `QE_DFT_progress_report.docx`, `results_log.md`, PDOS `.dat/.csv` files, `proj_Pr_VO.out`, `proj_Rb_VO.out`, `nscf_Rb_VO.out`, a few `pdos_atm` files, input templates (`scf_template.in`, `nscf_template.in`, `projwfc_template.in`, `template_Pr_VO.in`, `template_Pristine_perfect.in`), the user's PDOS/U-sweep launch scripts and plotting scripts, and his own earlier audit notes.
+**Uploaded to the previous session (`/root/.claude/uploads/<session id>/`, not available to a new session unless re-uploaded):** original FINAL and BACKUP docx, FINAL SI docx, both audits, `QE_simulations_master.csv/.xlsx` (run spreadsheet; the 36.6 KB CSV and the .xlsx sheet QE_master_v8 have sections 1–23 and are the main data source; a second, older 9.3 KB CSV has sections 1–9 only and the uncorrected Pr_VO_brokensym eV total −61703.1378, so do not use it), `QE_DFT_progress_report.docx`, `results_log.md`, PDOS `.dat/.csv` files, `proj_Pr_VO.out`, `proj_Rb_VO.out`, `nscf_Rb_VO.out`, a few `pdos_atm` files, input templates (`scf_template.in`, `nscf_template.in`, `projwfc_template.in`, `template_Pr_VO.in`, `template_Pristine_perfect.in`), the user's PDOS/U-sweep launch scripts and plotting scripts, and his own earlier audit notes, and the separate device-paper manuscript `Manuscript_Ghadimimehr.docx.docx` (uploaded three times, identical; source for §15).
 
-**Never provided:** production `.in` files; any relaxation `.out` (Pr_perfect, Pr_VO, Rb_perfect, Rb_VO, Pristine_perfect, Pristine_VO); `nscf_Pr_VO.out`; Bader `ACF.dat`; dual-U outputs; HSE06 input/output; vc-relax output; any of the job 0–8 outputs.
+**Never provided:** production `.in` files; any production pw.x `.out` (relaxations of Pr_perfect, Pr_VO, Rb_perfect, Rb_VO, Pristine_VO; the Pristine_perfect single point); `nscf_Pr_VO.out`; Bader `ACF.dat`; dual-U outputs; HSE06 input/output; vc-relax output; any of the job 0–8 outputs.
 
 **Reference PDFs:** in the user's Google Drive (numbered files such as `9.pdf`, `14.pdf`, `58.pdf`, `65.pdf`; mapping in the uploaded `02_ref_to_pdf_mapping.csv`), reachable through the Google Drive connector.
 
@@ -263,11 +274,11 @@ Default queue (P1) = jobs 1, 2, 0, 3, 4, 5 (27 runs, ≈5–11 days); `RUN_P2=1`
 1. **Never change a computed number.** Values come from the user's QE outputs via the ledger; recompute derived values with `check_ledger.py`. Back up sources before bulk edits and diff the decimal numbers afterwards.
 2. **Never invent or cite unread literature.** Verify a citation against the paper itself (Drive PDF, alphaXiv for arXiv). If a source cannot be read, reword so it is not needed.
 3. When a fact is not in any file, say "not recorded" rather than asking the user to supply it, unless it blocks the work.
-4. Abstract ≤ 250 words; highlights ≤ 85 characters each; package must show 0 markers in 02/03/06.
+4. Abstract ≤ 250 words; highlights ≤ 85 characters each; package must show 0 markers in 01, 02, 03 and 06.
 5. Git: branch `claude/exciting-shannon-z4bl69` only; author identity as in §3; commit footer as the system reminder prescribes; no new PR unless asked; push after every completed round.
 6. The cover letter is final (13 Oct 2026); change it only if the user asks.
 7. Environment lessons: parallel Bash calls share one working directory, so always use absolute paths; Wiley, Crossref and Semantic Scholar are blocked by the proxy; Scite needs a paid plan; Wiley Scholar Gateway and Consensus free quotas were exhausted until 1 Nov 2026; alphaXiv `answer_pdf_queries` works for arXiv papers; pandoc, matplotlib and Chromium are available; there is no Quantum ESPRESSO.
-8. Elsevier generative-AI rules: AI may not create or alter images. All figures are plotted by Python scripts from the authors' data; the declaration in the manuscript says so.
+8. Elsevier generative-AI rules: AI may not create or alter images. All figures are plotted by Python scripts from the authors' data; the declaration in the manuscript says so. Elsevier's policy on AI-assisted plotting scripts is not explicit; the READ_ME tells the user that asking the editorial office is prudent but not required — keep that caveat when answering submission questions.
 
 ---
 
@@ -289,7 +300,7 @@ A second manuscript by the user (Pr³⁺-doped SnO₂ ETL with CsPbBr₃, indoor
 ## 16. Quick start for the next session (first 15 minutes)
 
 1. `cd /home/user/TensorTonic-Solutions && git fetch origin claude/exciting-shannon-z4bl69 && git checkout claude/exciting-shannon-z4bl69 && git pull`
-2. Edit `S=` (scratch path) at the top of `DFT_paper_revision/tools_rebuild.sh` and `tools_package.sh` to the new session's scratchpad.
+2. Edit `S=` (scratch path) at the top of `DFT_paper_revision/tools_rebuild.sh` and `tools_package.sh` to the new session's scratchpad and, if those files do not exist, `CH=` (Chromium, both scripts) and `V=` (docx validator, `tools_rebuild.sh` only); check with `ls $CH $V`.
 3. Run §6 once to confirm the build works: expect 50 references, 0 placeholders, abstract 250, 29 OK, 0 markers.
 4. Ask the user: (a) has the paper been submitted? (b) upload the outputs listed in §9.1.
 5. When outputs arrive, follow the §9.1 table and procedure.
