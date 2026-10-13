@@ -1,0 +1,50 @@
+&CONTROL
+    ! Revision job 7, optional O2 part (P2): triplet O2 single point with the
+    ! dual-U protocol, U(O-2p) = 5.5 eV on O, so that a dual-U formation
+    ! energy can use a consistent O2 reference. 12 A cubic box, 40 and 320 Ry.
+    ! The launcher replaces the 1.23 A geometry below by the relaxed geometry
+    ! of the job-1 40 Ry O2 box when that run has finished.
+    calculation     = 'scf'
+    prefix          = '__PREFIX__'
+    outdir          = '__OUTDIR__'
+    pseudo_dir      = '__PSEUDO_DIR__'
+    verbosity       = 'high'
+    restart_mode    = 'from_scratch'
+    tprnfor         = .true.
+    tstress         = .false.
+    disk_io         = 'low'
+/
+&SYSTEM
+    ibrav           = 0
+    nat             = 2
+    ntyp            = 1
+    ecutwfc         = 40.0
+    ecutrho         = 320.0
+    occupations     = 'smearing'
+    smearing        = 'gaussian'
+    degauss         = __DEGAUSS__
+    nspin           = 2
+    tot_magnetization = 2
+    starting_magnetization(1) = 0.5
+/
+&ELECTRONS
+    conv_thr        = 1.0d-8
+    mixing_mode     = 'plain'
+    mixing_beta     = 0.1
+    diagonalization = 'david'
+    electron_maxstep = 250
+    startingwfc     = 'atomic+random'
+/
+ATOMIC_SPECIES
+  O   15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+CELL_PARAMETERS angstrom
+  12.00000000   0.00000000   0.00000000
+   0.00000000  12.00000000   0.00000000
+   0.00000000   0.00000000  12.00000000
+ATOMIC_POSITIONS angstrom
+O     6.00000000   6.00000000   5.38500000
+O     6.00000000   6.00000000   6.61500000
+K_POINTS automatic
+1 1 1 0 0 0
+HUBBARD (ortho-atomic)
+U O-2p 5.5

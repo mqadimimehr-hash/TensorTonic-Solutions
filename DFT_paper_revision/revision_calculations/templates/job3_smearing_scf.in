@@ -1,0 +1,51 @@
+&CONTROL
+    ! Revision job 3 (reviewer Q7): smearing test on the odd-electron Pr
+    ! cells (Pr_perfect 383 and Pr_VO 377 valence electrons, m = 0).
+    ! Variants: Gaussian 0.002 Ry, and Marzari-Vanderbilt (cold) 0.005 Ry.
+    ! The production-setting reference is the job-1 40 Ry single point.
+    calculation     = 'scf'
+    prefix          = '__PREFIX__'
+    outdir          = '__OUTDIR__'
+    pseudo_dir      = '__PSEUDO_DIR__'
+    verbosity       = 'high'
+    restart_mode    = 'from_scratch'
+    tprnfor         = .true.
+    tstress         = .false.
+    disk_io         = 'low'
+/
+&SYSTEM
+    ibrav           = 0
+    nat             = __NAT__
+    ntyp            = 3
+    ecutwfc         = 40.0
+    ecutrho         = 320.0
+    occupations     = 'smearing'
+    smearing        = '__SMEARING__'
+    degauss         = __DEGAUSS__
+    nspin           = 2
+    starting_magnetization(1) = __MAG_TI__
+    starting_magnetization(2) = __MAG_O__
+    starting_magnetization(3) = __MAG_DOP__
+/
+&ELECTRONS
+    conv_thr        = 1.0d-8
+    mixing_mode     = 'plain'
+    mixing_beta     = 0.1
+    diagonalization = 'david'
+    electron_maxstep = 300
+    startingwfc     = 'atomic+random'
+/
+ATOMIC_SPECIES
+  Ti  47.867   Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+  O   15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+  Pr  140.908  Pr.pbe-spdn-kjpaw_psl.1.0.0.UPF
+CELL_PARAMETERS angstrom
+   7.63632000   0.00000000   0.00000000
+   0.00000000   7.63632000   0.00000000
+   0.00000000   0.00000000   9.77900000
+ATOMIC_POSITIONS angstrom
+__ATOMIC_POSITIONS__
+K_POINTS automatic
+1 1 1 0 0 0
+HUBBARD (ortho-atomic)
+U Ti-3d 3.5

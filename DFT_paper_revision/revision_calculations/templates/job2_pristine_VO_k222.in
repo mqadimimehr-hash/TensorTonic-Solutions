@@ -1,0 +1,52 @@
+&CONTROL
+    ! Revision job 2 (reviewer Q3, audit R10): pristine V_O cell at a
+    ! 2x2x2 k-mesh on its relaxed geometry (default), or the matching
+    ! Gamma reference (optional). With the existing Pristine_perfect
+    ! 2x2x2 single point this gives E_f(V_O, pristine) at 2x2x2.
+    ! mixing_ndim and electron_maxstep follow the converged pristine V_O
+    ! relaxation (run Pristine_VO_v3, SI S1); they do not change the result.
+    calculation     = 'scf'
+    prefix          = '__PREFIX__'
+    outdir          = '__OUTDIR__'
+    pseudo_dir      = '__PSEUDO_DIR__'
+    verbosity       = 'high'
+    restart_mode    = 'from_scratch'
+    tprnfor         = .true.
+    tstress         = .false.
+    disk_io         = 'low'
+/
+&SYSTEM
+    ibrav           = 0
+    nat             = 47
+    ntyp            = 2
+    ecutwfc         = 40.0
+    ecutrho         = 320.0
+    occupations     = 'smearing'
+    smearing        = 'gaussian'
+    degauss         = __DEGAUSS__
+    nspin           = 2
+    starting_magnetization(1) = __MAG_TI__
+    starting_magnetization(2) = __MAG_O__
+/
+&ELECTRONS
+    conv_thr        = 1.0d-8
+    mixing_mode     = 'plain'
+    mixing_beta     = 0.1
+    mixing_ndim     = 12
+    diagonalization = 'david'
+    electron_maxstep = 300
+    startingwfc     = 'atomic+random'
+/
+ATOMIC_SPECIES
+  Ti  47.867   Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+  O   15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+CELL_PARAMETERS angstrom
+   7.63632000   0.00000000   0.00000000
+   0.00000000   7.63632000   0.00000000
+   0.00000000   0.00000000   9.77900000
+ATOMIC_POSITIONS angstrom
+__ATOMIC_POSITIONS__
+K_POINTS automatic
+__KPOINTS__
+HUBBARD (ortho-atomic)
+U Ti-3d 3.5

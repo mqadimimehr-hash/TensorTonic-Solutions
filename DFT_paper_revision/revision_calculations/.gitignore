@@ -1,0 +1,5 @@
+runs/
+scratch/
+revision*.log
+dryrun.log
+revision_analysis.txt
