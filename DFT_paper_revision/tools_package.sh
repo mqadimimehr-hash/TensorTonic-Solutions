@@ -34,6 +34,7 @@ PY
 timeout 120 $CH --headless --no-sandbox --disable-gpu --print-to-pdf=$P/02_Manuscript_preview.pdf --no-pdf-header-footer file://$S/ms.html >/dev/null 2>&1
 timeout 120 $CH --headless --no-sandbox --disable-gpu --print-to-pdf=$P/06_Supporting_Information_preview.pdf --no-pdf-header-footer file://$S/si.html >/dev/null 2>&1
 # cover letter, highlights, graphical abstract, figures
+pandoc $R/submission/Cover_Letter_Applied_Surface_Science.md -o $R/submission/Cover_Letter_Applied_Surface_Science.docx
 cp $R/submission/Cover_Letter_Applied_Surface_Science.docx $P/01_Cover_Letter.docx
 sed '1s/^# Highlights.*/# Highlights/' $R/submission/Highlights.md | pandoc -f markdown -o $P/03_Highlights.docx
 cp $R/figures/Graphical_Abstract.png $P/04_Graphical_Abstract.png; cp $R/figures/Graphical_Abstract.pdf $P/04_Graphical_Abstract.pdf
@@ -50,7 +51,7 @@ cp $R/supporting_information_v4/{energy_ledger.csv,check_ledger.py} $Z/
 for f in $P/02_Manuscript.docx $P/06_Supporting_Information.docx; do
   n=$(unzip -p $f word/document.xml | grep -o "Revision note" | wc -l); echo "$(basename $f): revision notes left = $n"
 done
-for f in $P/02_Manuscript.docx $P/06_Supporting_Information.docx; do
+for f in $P/01_Cover_Letter.docx $P/02_Manuscript.docx $P/03_Highlights.docx $P/06_Supporting_Information.docx; do
   n=$(unzip -p $f word/document.xml | grep -o "AUTHOR ACTION\|NEEDS CITATION" | wc -l); echo "$(basename $f): AUTHOR ACTION / NEEDS CITATION markers left = $n (must be 0 before upload)"
 done
 (cd $Z && python3 check_ledger.py | tail -1 && python3 -c "import ast,sys; [ast.parse(open(f).read()) for f in ['make_pdos_figures.py','make_fig1_structures.py']]" && echo "Zenodo scripts parse")
