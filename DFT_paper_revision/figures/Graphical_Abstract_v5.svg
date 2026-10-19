@@ -3913,16 +3913,6 @@ L 337.422761 115.317398
 z
 " clip-path="url(#p91ff34372b)" style="fill: #1baf7a"/>
    </g>
-   <g id="text_37">
-    <!-- +0.99 -->
-    <g style="fill: #52514e" transform="translate(324.779018 83.439147) scale(0.07 -0.07)">
-     <use xlink:href="#DejaVuSans-e"/>
-     <use xlink:href="#DejaVuSans-13" transform="translate(83.796875 0)"/>
-     <use xlink:href="#DejaVuSans-11" transform="translate(147.421875 0)"/>
-     <use xlink:href="#DejaVuSans-1c" transform="translate(179.203125 0)"/>
-     <use xlink:href="#DejaVuSans-1c" transform="translate(242.828125 0)"/>
-    </g>
-   </g>
    <g id="patch_95">
     <path d="M 352.921543 77.893866 
 Q 352.921543 96.21432 352.921543 114.534774 
@@ -3936,7 +3926,7 @@ L 352.921543 114.534774
 L 350.921543 110.534774 
 " style="fill: none; stroke: #0b0b0b; stroke-width: 0.7; stroke-linecap: round"/>
    </g>
-   <g id="text_38">
+   <g id="text_37">
     <g id="patch_96">
      <path d="M 280.609664 106.276063 
 L 326.122789 106.276063 
@@ -3979,7 +3969,7 @@ z
      <use xlink:href="#DejaVuSans-56" transform="translate(590.09375 0)"/>
     </g>
    </g>
-   <g id="text_39">
+   <g id="text_38">
     <g id="patch_97">
      <path d="M 323.961976 58.479213 
 L 363.527289 58.479213 
@@ -4049,7 +4039,7 @@ z
 L 351.494024 86.329134 
 " clip-path="url(#p91ff34372b)" style="fill: none; stroke: #52514e; stroke-width: 0.7; stroke-linecap: square"/>
    </g>
-   <g id="text_40">
+   <g id="text_39">
     <g id="patch_98">
      <path d="M 279.629035 50.595833 
 L 306.710285 50.595833 
@@ -4101,7 +4091,7 @@ z
      <use xlink:href="#DejaVuSans-Bold-18" transform="translate(260.9375 0)"/>
     </g>
    </g>
-   <g id="text_41">
+   <g id="text_40">
     <g id="patch_99">
      <path d="M 304.71259 75.291085 
 L 331.79384 75.291085 
@@ -4151,7 +4141,7 @@ z
      <use xlink:href="#DejaVuSans-Bold-1c" transform="translate(260.9375 0)"/>
     </g>
    </g>
-   <g id="text_42">
+   <g id="text_41">
     <g id="patch_100">
      <path d="M 309.233992 119.637398 
 L 336.315242 119.637398 
@@ -4251,7 +4241,7 @@ z
      <use xlink:href="#m333f0cfe4b" x="342.724976" y="115.763879" style="fill: #ffffff; stroke: #0b0b0b; stroke-width: 0.8; stroke-linejoin: miter"/>
     </g>
    </g>
-   <g id="text_43">
+   <g id="text_42">
     <g id="patch_101">
      <path d="M 362.835857 108.695961 
 L 362.835857 83.73268 

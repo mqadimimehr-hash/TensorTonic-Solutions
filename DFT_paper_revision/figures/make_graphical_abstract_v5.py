@@ -164,8 +164,6 @@ ax.text(X[2] - BW / 2 - 0.07, EF["Rb"], MINUS(f"{EF['Rb']:+.2f}"), ha="right", v
         fontweight="bold", color=INK, zorder=5, bbox=dict(fc=PANEL, ec="none", pad=0.3))
 for x, k in [(X[1], "Pr"), (X[2], "Rb")]:                # open diamonds, as in Figure 2
     ax.plot(x, EF_NARROW[k], marker="D", ms=4, mfc="white", mec=INK, mew=0.8, zorder=6)
-ax.text(X[1] + BW / 2 + 0.06, 0.66, MINUS(f"{EF_NARROW['Pr']:+.2f}"), fontsize=FN,
-        color=INK2, va="center", ha="left")
 XA = 3.05
 ax.annotate("", xy=(XA, EF["Rb"]), xytext=(XA, EF["Pr"]),
             arrowprops=dict(arrowstyle="<->", color=INK, lw=0.7, shrinkA=0, shrinkB=0))
