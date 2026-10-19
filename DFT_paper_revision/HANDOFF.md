@@ -1,3 +1,9 @@
+> **UPDATE 19 OCT 2026 (late): graphical abstract and Figures 1-2.**
+> - Graphical abstract to upload: `figures/Graphical_Abstract_v5.pdf` (also .tiff/.svg/.png; script `make_graphical_abstract_v5.py`, text >= 7 pt, readable at 13 x 5 cm). `Graphical_Abstract_v5_detailed.*` = same with all qualifiers, for slides. Replaces the AI-generated GA (Elsevier forbids AI images).
+> - Figure 2 fixed (`make_fig2_v5.py` -> `Fig2_formation_energies_v5.*`): +4.75 relaxed pristine, 2x2x2 ticks, open diamonds +0.99/-4.13. Figure 1: Rb green (`Fig1_structures_v5.*`).
+> - `USER_19OCT_FIGFIX/2_Manuscript_Fig1-2_fixed.docx` = the author's 19 Oct manuscript with only those two images swapped and "orange: Rb" -> "green: Rb". Master in `USER_MASTER_2026-10-19/` untouched.
+> - Open check (if a new session continues): independent review of Figs 1-2 and of the "+0.99" label in GA panel 5 was still running.
+
 # ⚠ UPDATE 19 OCTOBER 2026 — READ THIS FIRST
 
 **The author's own revised files are now the master version of the paper. Do not edit them, and do not edit or rebuild anything that would replace them.** The author went through the paper himself, folded in his new calculations, and instructed: "do not touch my revision and anything in my last version DFT paper".
