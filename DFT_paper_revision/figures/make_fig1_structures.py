@@ -1,4 +1,4 @@
-"""Figure 1 of manuscript v4: the (010) atomic plane that contains the dopant site and the
+"""Figure 1 of the manuscript (v5, 19 Oct 2026: Rb drawn green as in Figure 2): the (010) atomic plane that contains the dopant site and the
 oxygen vacancy, (a) at ideal anatase positions with the lattice parameters of this work and
 (b) in the relaxed Rb_VO cell, read from the pw.x output header (data/nscf_Rb_VO.out; the
 NSCF run re-used the final coordinates of the production relaxation).  Arrows show the
@@ -104,8 +104,10 @@ def draw_plane(ax, sp, f, ideal, vac, disp, moments=None, title="", show_ideal=F
             if moments is not None and moments[i] > 0.1:
                 ax.text(x + 0.38, z + 0.25, f"O{i + 1}\n{moments[i]:+.2f} $\\mu_\\mathrm{{B}}$", fontsize=7.5, color=S1, va="bottom")
         else:
-            ax.add_patch(Circle((x, z), 0.52, fc=S3 if sp[i] == "Pr" else S2, ec=INK, lw=0.8, zorder=4))
-            ax.text(x, z, sp[i], ha="center", va="center", fontsize=7.5, color="white", fontweight="bold", zorder=5)
+            # same dopant colours as Figure 2 and the graphical abstract: Pr orange, Rb green
+            ax.add_patch(Circle((x, z), 0.52, fc=S2 if sp[i] == "Pr" else S3, ec=INK, lw=0.8, zorder=4))
+            ax.text(x, z, sp[i], ha="center", va="center", fontsize=7.5, color="white" if sp[i] == "Pr" else INK,
+                    fontweight="bold", zorder=5)
         if not show_ideal:
             dv = disp[i] * CELL
             if np.linalg.norm(dv[[0, 2]]) > 0.2:
@@ -145,5 +147,5 @@ if len(cells) > 1:
     print(f"Pr_VO: dopant displaced {st2['dop_disp']:.2f} Å; to vacant site {st2['dop_to_vac']:.2f} Å; nearest O:",
           ", ".join(f"O{i} {d:.3f}" for d, i in st2["dop_O"]))
 fig.tight_layout()
-fig.savefig("Fig1_structures_v4.png", facecolor="white"); fig.savefig("Fig1_structures_v4.pdf", facecolor="white")
-print("written Fig1_structures_v4.{png,pdf}")
+fig.savefig("Fig1_structures_v5.png", facecolor="white"); fig.savefig("Fig1_structures_v5.pdf", facecolor="white")
+print("written Fig1_structures_v5.{png,pdf}")

@@ -131,12 +131,12 @@ T(x0 + 0.52, 0.77, "2 e⁻", FB, va="center")
 x0, x1 = P[2]; panel(x0, x1, 3, "Protocol")
 for k, s in enumerate(["Γ-only relaxations, 40 Ry",
                        "$E_\\mathrm{f} = E(\\mathrm{V}_\\mathrm{O}) - E(\\mathrm{perfect})$",
-                       "$\\quad\\quad + \\frac{1}{2}E(\\mathrm{O_2})$"]):
+                       "$\\quad\\quad + E(\\mathrm{O_2})/2$"]):
     T(x0 + 0.13, 3.72 - 0.24 * k, s, FB, va="center")
 ov.plot([x0 + 0.13, x1 - 0.13], [3.02, 3.02], color=GRID, lw=0.5)
 T(x0 + 0.13, 2.80, f"Δ(Pr–Rb) = {CONTRAST:.2f} eV", FB, va="center", fontweight="bold")
 status(x0 + 0.23, 2.45, True)
-T(x0 + 0.40, 2.45, f"2×2×2 k-mesh, 55/70 Ry,\nD3: Δ changes ≤ {TEST_MAX:.2f} eV", FB,
+T(x0 + 0.40, 2.45, f"2×2×2 k-mesh, 55, 70 Ry,\nD3: Δ changes ≤ {TEST_MAX:.2f} eV", FB,
   va="center", linespacing=1.25)
 status(x0 + 0.23, 1.92, False)
 T(x0 + 0.40, 1.92, "narrower smearing:\nPr cells spin-polarise", FB, va="center", linespacing=1.25)
@@ -194,9 +194,9 @@ for s in ["top", "right", "bottom"]: ax.spines[s].set_visible(False)
 ax.spines["left"].set_color(INK2)
 for x, k in zip(X[:2], keys[:2]):
     ax.text(x, EF[k] + 0.25, MINUS(f"{EF[k]:+.2f}"), ha="center", va="bottom", fontsize=5.4,
-            fontweight="bold", color=INK, zorder=5)
+            fontweight="bold", color=INK, zorder=5, bbox=dict(fc=PANEL, ec="none", pad=0.3))
 ax.text(X[2] - BW / 2 - 0.06, EF["Rb"], MINUS(f"{EF['Rb']:+.2f}"), ha="right", va="center", fontsize=5.4,
-        fontweight="bold", color=INK, zorder=5)
+        fontweight="bold", color=INK, zorder=5, bbox=dict(fc=PANEL, ec="none", pad=0.3))
 for x, k in [(X[1], "Pr"), (X[2], "Rb")]:                # open diamonds, as in Figure 2
     ax.plot(x, EF_NARROW[k], marker="D", ms=3.2, mfc="white", mec=INK, mew=0.7, zorder=6)
 ax.text(X[1] - BW / 2 - 0.05, EF_NARROW["Pr"], MINUS(f"{EF_NARROW['Pr']:+.2f}"), fontsize=FN, color=INK2,
@@ -208,8 +208,8 @@ for y0, xa in [(EF["Pr"], X[1] + BW / 2), (EF["Rb"], X[2] + BW / 2)]:
     ax.plot([xa, XA + 0.05], [y0, y0], color=INK2, lw=0.4, ls=(0, (1, 1)), zorder=2)
 ax.text(XA + 0.09, (EF["Pr"] + EF["Rb"]) / 2, f"Δ {CONTRAST:.2f} eV", rotation=90, fontsize=FB,
         color=INK, ha="left", va="center", zorder=6, bbox=dict(fc=PANEL, ec="none", pad=0.4))
-ax.text(0.62, -0.45, "below 0:\nspontaneous", fontsize=FN, color=INK2, ha="center", va="top", linespacing=1.15)
-ax.text(2.3, 5.6, "◇ narrower\nsmearing", fontsize=FN, color=INK2, ha="center", va="top", linespacing=1.15)
+ax.text(0.62, -0.45, "below 0:\nspontaneous", fontsize=FN, color=INK2, ha="center", va="top", linespacing=1.15, bbox=dict(fc=PANEL, ec="none", pad=0.3))
+ax.text(2.3, 5.6, "◇ narrower\nsmearing", fontsize=FN, color=INK2, ha="center", va="top", linespacing=1.15, bbox=dict(fc=PANEL, ec="none", pad=0.3))
 T(x0 + 0.13, 0.42, "h⁺: formal holes before V$_\\mathrm{O}$ removal", FN, INK2, va="center")
 T(x0 + 0.13, 0.20, "Å: cation radius; both rise together", FN, INK2, va="center")
 
