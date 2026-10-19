@@ -1,3 +1,34 @@
+# ⚠ UPDATE 19 OCTOBER 2026 — READ THIS FIRST
+
+**The author's own revised files are now the master version of the paper. Do not edit them, and do not edit or rebuild anything that would replace them.** The author went through the paper himself, folded in his new calculations, and instructed: "do not touch my revision and anything in my last version DFT paper".
+
+| Master file (byte-identical copies, committed unchanged) | MD5 |
+|---|---|
+| `DFT_paper_revision/USER_MASTER_2026-10-19/2_Manuscript.docx` | `74929958f8a53b2805e861e373f9ffd2` |
+| `DFT_paper_revision/USER_MASTER_2026-10-19/6_Supporting_Information.docx` | `78fa9a06dba631b3a43cf1b9a9901af0` |
+
+Consequences for the next session:
+- The Markdown sources in `manuscript_v4/` and `supporting_information_v4/`, the energy ledger, and everything in `SUBMISSION_PACKAGE/` describe the **older 13 Oct version** and are superseded. **Do not run `tools_rebuild.sh` or `tools_package.sh`**: they regenerate the old version. Do not "sync" the author's files back into the Markdown unless he asks.
+- §9.1 below (fold in the new outputs) has been done by the author himself. Do not redo it.
+- Only work on the paper when the author asks for a specific task. Read the master files (e.g. `pandoc file.docx -t plain`) for facts; never write to them.
+
+**What changed in the author's version** (read from the master files; quote them, not this summary, if precision matters):
+- Pristine perfect cell is now **relaxed**: E_f(V_O; pristine) = **+4.75 eV** (no longer "lower bound"); reductions 3.46 eV (Pr) and 8.82 eV (Rb); Γ→2×2×2 shift for pristine +0.20 eV.
+- Headline values unchanged: Pr **+1.29 eV**, Rb **−4.06 eV**, contrast **5.36 eV**; abstract: "the 5.36 eV Pr–Rb contrast changes by at most 0.04 eV with k-mesh, plane-wave cut-off and dispersion correction".
+- **Cut-off 55/70 Ry** tested: formation energies change ≤ 0.03 eV, contrast < 0.01 eV (Limitation iii).
+- **D3 complete** (Pr_perfect −10.51, Rb_perfect −10.30, O₂ −0.007 eV): correction +0.215 eV (Pr), +0.210 eV (Rb) → E_f +1.51 / −3.85 eV, contrast +0.005 eV.
+- **Smearing / −TS**: without the smearing entropy the values are +1.22 and −4.11 eV. With narrower smearing (Gaussian 0.002 or cold 0.005 Ry) **both Pr cells spin-polarise**; Pr formation energy becomes **+0.99 eV** and the contrast **5.11 eV** (new SI Section **S11**, Table S11). Production Pr_VO relaxation smearing stated as 0.01 Ry.
+- **O-2p Hubbard term** localises the Pr-induced hole on the **two oxygens bonded to Pr**.
+- Rb: lowest solutions always magnetic; non-magnetic from-scratch Rb solutions lie 57–82 meV higher; Rb_perfect m_abs 1.13 μB.
+- Alternative Pr V_O sites (SI Table S4) converged magnetic (m = ±1.00 μB).
+- Forces: largest residual force components of the doped cells 0.02–0.04 eV/Å; Pr_VO stopped manually above its own 0.001 Ry/Bohr setting (tighter relaxations evidently done).
+- Manuscript ≈ 15,300 words, SI ≈ 5,200 words; no AUTHOR ACTION or NEEDS CITATION markers.
+- The author also made a five-step workflow figure ("one DFT+U protocol, five steps": build cell → remove one O → compute → count charges → read the result; pristine +4.75, Pr +1.29 with dashed lowest-spin level +0.99, Rb −4.06, 5.36 eV contrast). It was shared as an image in chat on 19 Oct and is not in the repository.
+
+Everything below this block is the 13 October handoff. Its history, rules, environment notes and file map remain valid. Its §4 numbers, §8 status and §9.1 to-do list are out of date wherever they conflict with the master files.
+
+---
+
 # HANDOFF — DFT+U manuscript on oxygen vacancies in Pr- and Rb-substituted anatase TiO₂
 
 **Written:** 13 October 2026, at the end of the first Claude Code session on this project.
