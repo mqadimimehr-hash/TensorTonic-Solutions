@@ -37,6 +37,9 @@ Changes to the manuscript relative to USER_MASTER_2026-10-19/2_Manuscript.docx (
    on the plot (now in its caption).
 10. Figure 2 redrawn in the author's reference style (20 Oct): bars with values and the Pr-Rb arrow only; the
     2x2x2 and narrower-smearing values are now given in the Figure 2 caption instead of as ticks and diamonds.
+11. Keys moved from the plots to the captions (20 Oct): no legends in Figures 3, 4, S1 and S2 (the captions give the
+    colour key; Figure 3 caption now says solid = |m|, hatched = absolute magnetisation); Figure 4 and S2 panel labels
+    are letters only and the Figure 4 axis label no longer carries the spin arrows (the caption states the convention).
 
 Highlights and cover letter updated (cover letter: address and signature lines restored) to the 19 Oct numbers (+4.75 eV, no lower bound; smearing result +0.99 eV / 5.11 eV).
 Remaining handbook points (author's choice, not applied): see ../RULES_CHECK_2026-10-20.md.

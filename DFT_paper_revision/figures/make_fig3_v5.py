@@ -30,6 +30,5 @@ for s in ["top", "right"]: ax.spines[s].set_visible(False)
 for bars, vals_ in ((b1, m_tot), (b2, m_abs)):
     for b, v in zip(bars, vals_):
         ax.text(b.get_x() + b.get_width() / 2, v + 0.04, f"{v:.2f}", ha="center", fontsize=8 if v > 0 else 7, color=INK if v > 0 else INK2)
-ax.legend(handles=key, frameon=False, fontsize=8.5, loc="upper left")
 fig.tight_layout(); fig.savefig("Fig3_magnetisation_v6.png"); fig.savefig("Fig3_magnetisation_v6.pdf", metadata={"CreationDate": None})
 print("written Fig3_magnetisation_v6.{png,pdf}")

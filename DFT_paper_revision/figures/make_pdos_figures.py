@@ -54,16 +54,15 @@ def spin_panel(ax, d, name, xlim, zoom=False):
 
 fig = plt.figure(figsize=(7.2, 6.4), dpi=300)
 gs = fig.add_gridspec(2, 2, width_ratios=[3.1, 1.0], wspace=0.28, hspace=0.38)
-panels = [("Pr_VO", "(a) Pr_VO", "(b)"), ("Rb_VO", "(c) Rb_VO", "(d)")]
+panels = [("Pr_VO", "(a)", "(b)"), ("Rb_VO", "(c)", "(d)")]
 for row, (name, lab, zlab) in enumerate(panels):
     d = spin[name]
     ax = fig.add_subplot(gs[row, 0]); spin_panel(ax, d, name, (-6.5, 4.3))
-    ax.set_ylim(-37, 37); ax.set_ylabel("PDOS (states eV$^{-1}$)\n← spin down   spin up →", fontsize=8.5)
+    ax.set_ylim(-37, 37); ax.set_ylabel("PDOS (states eV$^{-1}$)", fontsize=8.5)
     ax.text(0.01, 0.97, lab, transform=ax.transAxes,
             ha="left", va="top", fontsize=9, fontweight="bold", color=INK)
     if row == 1:
         ax.set_xlabel("$E - E_\\mathrm{F}$ (eV)")
-    ax.legend(loc="lower left", fontsize=7.5, frameon=False, ncol=2)
     az = fig.add_subplot(gs[row, 1]); spin_panel(az, d, name, (-1.0, 1.0), zoom=True)
     if name == "Pr_VO":
         az.set_ylim(-4.5, 4.5)
@@ -87,7 +86,7 @@ plt.close(fig)
 
 # ---------- Figure S2: spin-summed PDOS ----------
 fig, axes = plt.subplots(2, 1, figsize=(6.4, 5.6), dpi=300, sharex=True)
-for ax, name, lab in zip(axes, ["Pr_VO", "Rb_VO"], ["(a) Pr_VO", "(b) Rb_VO"]):
+for ax, name, lab in zip(axes, ["Pr_VO", "Rb_VO"], ["(a)", "(b)"]):
     d = summ[name]; E = d["E_minus_EF_eV"]
     ax.fill_between(E, 0, d["Ti_3d"], color=TI_C, alpha=0.30, lw=0)
     ax.plot(E, d["Ti_3d"], color=TI_C, lw=1.1, label="Ti-3d")
@@ -102,9 +101,7 @@ for ax, name, lab in zip(axes, ["Pr_VO", "Rb_VO"], ["(a) Pr_VO", "(b) Rb_VO"]):
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
 axes[1].set_xlabel("$E - E_\\mathrm{F}$ (eV)")
-h, l = axes[0].get_legend_handles_labels()
-fig.legend(h, [x.replace("(×5)", "(×5, Pr_VO only)") for x in l], loc="upper center", ncol=4, fontsize=7.5, frameon=False)
-fig.tight_layout(rect=(0, 0, 1, 0.95)); fig.savefig("FigS2_PDOS_spin_summed_v5.png", facecolor="white"); plt.close(fig)
+fig.tight_layout(); fig.savefig("FigS2_PDOS_spin_summed_v5.png", facecolor="white"); plt.close(fig)
 
 # ---------- Figure S1: Loewdin site moments of Rb_VO ----------
 raw = np.genfromtxt("data/lowdin_Rb_VO.csv", delimiter=",", names=True, dtype=None, encoding=None, skip_header=1)
@@ -120,7 +117,6 @@ for sp, col, mk in [("O", O_C, "o"), ("Ti", TI_C, "s"), ("Rb", RB_C, "D")]:
 ax.set_ylim(-0.08, 0.66)
 ax.axhline(0, color=INK2, lw=0.6)
 ax.set_xlabel("Distance from Rb (Å)"); ax.set_ylabel("Löwdin spin polarisation ($\\mu_\\mathrm{B}$)")
-ax.legend(frameon=False, fontsize=8, loc="upper right")
 for s in ["top", "right"]:
     ax.spines[s].set_visible(False)
 fig.tight_layout(); fig.savefig("FigS1_Lowdin_RbVO_v5.png", facecolor="white"); plt.close(fig)
