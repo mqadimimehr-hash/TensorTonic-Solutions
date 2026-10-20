@@ -39,7 +39,7 @@ assert f"{CONTRAST:.2f}" == "5.36"
 S1, S2, S3 = "#2a78d6", "#eb6834", "#1baf7a"
 INK, INK2, GRID, PANEL = "#0b0b0b", "#52514e", "#b9b8b2", "#f3f2ee"
 GOOD, WARN = "#0ca30c", "#fab219"
-TI, OX = "#6da7ec", "#b2182b"                     # Ti blue, O red (same key as Figure 1)
+TI, OX = S1, "#b2182b"                     # Ti blue, O red (same key as Figure 1)
 plt.rcParams.update({"font.family": "DejaVu Sans", "mathtext.fontset": "dejavusans",
                      "pdf.fonttype": 42, "svg.fonttype": "path", "svg.hashsalt": "ga_v5", "axes.linewidth": 0.6})
 MINUS = lambda s: s.replace("-", "−")

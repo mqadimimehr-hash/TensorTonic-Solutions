@@ -16,7 +16,7 @@ from matplotlib.patches import Circle, FancyArrowPatch
 
 S1, S2, S3 = "#2a78d6", "#eb6834", "#1baf7a"
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#d9d8d4"
-TI_C, O_C, RING = "#6da7ec", "#b2182b", "#eda100"   # Ti blue, O red; ring marks the spin-carrying O
+TI_C, O_C, RING = S1, "#b2182b", "#f5d000"   # Ti blue, O red; ring marks the spin-carrying O
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9})
 A, C = 7.63632, 9.77900
 CELL = np.array([A, A, C])
@@ -97,8 +97,9 @@ def draw_plane(ax, sp, f, ideal, vac, disp, moments=None, title="", show_ideal=F
         if sp[i] == "Ti":
             ax.add_patch(Circle((x, z), 0.36, fc=TI_C, ec=INK2, lw=0.6, zorder=3))
         elif sp[i] == "O":
-            spin = moments is not None and moments[i] > 0.1
-            ax.add_patch(Circle((x, z), 0.27, fc=O_C, ec=RING if spin else INK2, lw=2.2 if spin else 0.6, zorder=3))
+            if moments is not None and moments[i] > 0.1:          # spin-carrying O: red disc on a yellow ring
+                ax.add_patch(Circle((x, z), 0.36, fc=RING, ec=INK2, lw=0.6, zorder=3))
+            ax.add_patch(Circle((x, z), 0.27, fc=O_C, ec=INK2, lw=0.6, zorder=3.1))
         else:
             # same dopant colours as Figure 2 and the graphical abstract: Pr orange, Rb green
             ax.add_patch(Circle((x, z), 0.52, fc=S2 if sp[i] == "Pr" else S3, ec=INK, lw=0.8, zorder=4))

@@ -40,6 +40,9 @@ Changes to the manuscript relative to USER_MASTER_2026-10-19/2_Manuscript.docx (
 11. Keys moved from the plots to the captions (20 Oct): no legends in Figures 3, 4, S1 and S2 (the captions give the
     colour key; Figure 3 caption now says solid = |m|, hatched = absolute magnetisation); Figure 4 and S2 panel labels
     are letters only and the Figure 4 axis label no longer carries the spin arrows (the caption states the convention).
+12. Final figure check (20 Oct): O8 ring in Figure 1 now a clear yellow (was orange-gold, too close to Pr orange);
+    Ti drawn in the same blue (#2a78d6) in Figure 1 and the graphical abstract as in Figures 2-4; Figure 4 and S2
+    captions say the dashed vertical line marks the Fermi level; image alt text describes each figure (it named old files).
 
 Highlights and cover letter updated (cover letter: address and signature lines restored) to the 19 Oct numbers (+4.75 eV, no lower bound; smearing result +0.99 eV / 5.11 eV).
 Remaining handbook points (author's choice, not applied): see ../RULES_CHECK_2026-10-20.md.
