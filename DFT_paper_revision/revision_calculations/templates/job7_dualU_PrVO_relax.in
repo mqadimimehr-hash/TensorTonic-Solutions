@@ -1,0 +1,58 @@
+&CONTROL
+    ! Revision job 7 (reviewer Q4, audit R06; P2): dual-U relaxation of
+    ! Pr_VO, U(Ti-3d) = 3.5 eV and U(O-2p) = 5.5 eV, starting from the
+    ! production single-U Pr_VO geometry. Spin seeds Ti 0.3 and Pr 0.5 so
+    ! that a spin-polarised (localised O-2p hole) solution can form.
+    calculation     = 'relax'
+    prefix          = '__PREFIX__'
+    outdir          = '__OUTDIR__'
+    pseudo_dir      = '__PSEUDO_DIR__'
+    verbosity       = 'high'
+    restart_mode    = 'from_scratch'
+    tprnfor         = .true.
+    tstress         = .false.
+    disk_io         = 'low'
+    nstep           = 300
+    forc_conv_thr   = 5.0d-3
+/
+&SYSTEM
+    ibrav           = 0
+    nat             = 47
+    ntyp            = 3
+    ecutwfc         = 40.0
+    ecutrho         = 320.0
+    occupations     = 'smearing'
+    smearing        = 'gaussian'
+    degauss         = __DEGAUSS__
+    nspin           = 2
+    starting_magnetization(1) = 0.3
+    starting_magnetization(2) = 0.0
+    starting_magnetization(3) = 0.5
+/
+&ELECTRONS
+    conv_thr        = 1.0d-8
+    mixing_mode     = 'plain'
+    mixing_beta     = 0.1
+    diagonalization = 'david'
+    electron_maxstep = 300
+    startingwfc     = 'atomic+random'
+/
+&IONS
+    ion_dynamics    = 'bfgs'
+    bfgs_ndim       = 3
+/
+ATOMIC_SPECIES
+  Ti  47.867   Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+  O   15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+  Pr  140.908  Pr.pbe-spdn-kjpaw_psl.1.0.0.UPF
+CELL_PARAMETERS angstrom
+   7.63632000   0.00000000   0.00000000
+   0.00000000   7.63632000   0.00000000
+   0.00000000   0.00000000   9.77900000
+ATOMIC_POSITIONS angstrom
+__ATOMIC_POSITIONS__
+K_POINTS automatic
+1 1 1 0 0 0
+HUBBARD (ortho-atomic)
+U Ti-3d 3.5
+U O-2p 5.5

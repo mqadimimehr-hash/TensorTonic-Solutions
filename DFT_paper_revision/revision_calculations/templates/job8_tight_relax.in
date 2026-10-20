@@ -1,0 +1,57 @@
+&CONTROL
+    ! Revision job 8 (force convergence, audit R09; P2): tighter relaxation,
+    ! forc_conv_thr 0.001 Ry per Bohr instead of 0.005, restarted from the
+    ! production geometry. Everything else as in production. BFGS stops only
+    ! when both the force and the energy (etot_conv_thr, QE default) criteria hold.
+    calculation     = 'relax'
+    prefix          = '__PREFIX__'
+    outdir          = '__OUTDIR__'
+    pseudo_dir      = '__PSEUDO_DIR__'
+    verbosity       = 'high'
+    restart_mode    = 'from_scratch'
+    tprnfor         = .true.
+    tstress         = .false.
+    disk_io         = 'low'
+    nstep           = 300
+    forc_conv_thr   = 1.0d-3
+/
+&SYSTEM
+    ibrav           = 0
+    nat             = __NAT__
+    ntyp            = 3
+    ecutwfc         = 40.0
+    ecutrho         = 320.0
+    occupations     = 'smearing'
+    smearing        = 'gaussian'
+    degauss         = __DEGAUSS__
+    nspin           = 2
+    starting_magnetization(1) = __MAG_TI__
+    starting_magnetization(2) = __MAG_O__
+    starting_magnetization(3) = __MAG_DOP__
+/
+&ELECTRONS
+    conv_thr        = 1.0d-8
+    mixing_mode     = 'plain'
+    mixing_beta     = 0.1
+    diagonalization = 'david'
+    electron_maxstep = 300
+    startingwfc     = 'atomic+random'
+/
+&IONS
+    ion_dynamics    = 'bfgs'
+    bfgs_ndim       = 3
+/
+ATOMIC_SPECIES
+  Ti  47.867   Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+  O   15.999   O.pbe-n-kjpaw_psl.1.0.0.UPF
+__DOPANT_SPECIES__
+CELL_PARAMETERS angstrom
+   7.63632000   0.00000000   0.00000000
+   0.00000000   7.63632000   0.00000000
+   0.00000000   0.00000000   9.77900000
+ATOMIC_POSITIONS angstrom
+__ATOMIC_POSITIONS__
+K_POINTS automatic
+1 1 1 0 0 0
+HUBBARD (ortho-atomic)
+U Ti-3d 3.5
