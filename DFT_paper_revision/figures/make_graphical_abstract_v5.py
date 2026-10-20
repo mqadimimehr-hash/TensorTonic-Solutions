@@ -94,38 +94,39 @@ def status(x, y, ok):
       fontweight="bold", zorder=4)
 
 # --- title: the one central finding, with its condition ------------------------------------------
-T(W / 2, 4.72, "Pr and Rb lower the O-vacancy cost; only Rb makes it spontaneous", FT,
+T(W / 2, 4.72, "Pr and Rb lower the O-vacancy formation energy; only Rb makes it negative", 8,
   ha="center", va="center", fontweight="bold")
-T(W / 2, 4.37, "Anatase TiO$_2$, PBE+U, neutral " + VO + ", O-rich limit "
+T(W / 2, 4.37, "Anatase TiO$_2$  ·  PBE+U  ·  neutral " + VO + "  ·  O-rich limit "
   "$\\mu_\\mathrm{O} = E(\\mathrm{O_2})/2$", FN, INK2, ha="center", va="center")
 
-P = [(0.08, 1.84), (1.92, 3.88), (3.96, 6.46), (6.54, 9.18), (9.26, 12.92)]   # panel x-ranges (cm)
+P = [(0.08, 1.84), (1.92, 3.88), (3.96, 6.46), (6.54, 9.30), (9.38, 12.92)]   # panel x-ranges (cm)
 
 # 1 Build cell -------------------------------------------------------------------------------------
-x0, x1 = P[0]; panel(x0, x1, 1, "Dope")
+x0, x1 = P[0]; panel(x0, x1, 1, "Doping")
 lattice((x0 + x1) / 2, 2.82)
-T(x0 + 0.14, 2.05, "Ti → Pr$^{3{+}}$\nor Rb$^{+}$;\n1 per cell,\n48 atoms", FB, va="top", linespacing=1.25)
+T(x0 + 0.14, 2.05, "Ti → Pr$^{3{+}}$\nor Rb$^{+}$\n(48 atoms)", FB, va="top", linespacing=1.25)
 
 # 2 Remove one O -----------------------------------------------------------------------------------
-x0, x1 = P[1]; panel(x0, x1, 2, "Remove O")
+x0, x1 = P[1]; panel(x0, x1, 2, "O vacancy")
 lattice((x0 + x1) / 2, 2.82, vac=True)
-T(x0 + 0.14, 2.05, "Neutral " + VO + "\nreleases", FB, va="top", linespacing=1.25)
+T(x0 + 0.14, 2.05, "Neutral " + VO + "\ndonates", FB, va="top", linespacing=1.25)
 electron(x0 + 0.24, 1.18); electron(x0 + 0.44, 1.18)
 T(x0 + 0.58, 1.18, "2 e$^{-}$", FB, va="center")
 
 # 3 Protocol and tests -----------------------------------------------------------------------------
-x0, x1 = P[2]; panel(x0, x1, 3, "Protocol")
-T(x0 + 0.14, 3.55, "U(Ti-3d) 3.5 eV\nΓ-only, 40 Ry", FB, va="top", linespacing=1.25)
+x0, x1 = P[2]; panel(x0, x1, 3, "Method")
+T(x0 + 0.14, 3.55, "U(Ti-3d) 3.5 eV\nΓ-point, 40 Ry", FB, va="top", linespacing=1.25)
 status(x0 + 0.24, 2.24, True)
 T(x0 + 0.42, 2.24, f"k-mesh, cut-off,\nD3: Pr–Rb Δ\nshifts ≤ {TEST_MAX:.2f} eV", FN, va="center", linespacing=1.25)
 status(x0 + 0.24, 1.04, False)
-T(x0 + 0.42, 1.04, MINUS(f"smearing: Pr\ncells polarise,\nPr {EF_NARROW['Pr']:+.2f} eV"), FN, va="center",
+T(x0 + 0.42, 1.04, MINUS(f"Smearing: Pr\ncells polarise;\n$E_{{\\mathrm{{f}}}}$(Pr) {EF_NARROW['Pr']:+.2f} eV"), FN, va="center",
   linespacing=1.25)
 
 # 4 Charge bookkeeping -----------------------------------------------------------------------------
-x0, x1 = P[3]; panel(x0, x1, 4, "Bookkeeping")
-hole(x0 + 0.24, 3.42); T(x0 + 0.37, 3.42, "h$^{+}$", FB, va="center")
-electron(x0 + 0.95, 3.42); T(x0 + 1.08, 3.42, "e$^{-}$ (formal)", FB, va="center")
+x0, x1 = P[3]; panel(x0, x1, 4, "Charge balance")
+hole(x0 + 0.24, 3.45); T(x0 + 0.37, 3.45, "hole", FB, va="center")
+electron(x0 + 1.12, 3.45); T(x0 + 1.25, 3.45, "electron", FB, va="center")
+T(x0 + 0.14, 3.17, "formal counts", FN, INK2, va="center")
 DX = 0.20
 CD, CP, CE, CA, CR = 0.48, 0.90, 1.16, 1.66, 1.92      # columns (cm from panel edge): dopant, +, V_O, ->, net
 
@@ -139,25 +140,25 @@ def row(y, label, colour, n_h, result_is_hole, note):
     (hole if result_is_hole else electron)(x0 + CR, y)
     T(x0 + 0.14, y - 0.22, note, FN, INK2, va="top")
 
-row(2.55, "Pr$^{3{+}}$", S2, 1, False, "1 e$^{-}$ left: on Ti-3d")
-row(1.30, "Rb$^{+}$", S3, 3, True, "1 h$^{+}$ left: on O-2p")
+row(2.45, "Pr$^{3{+}}$", S2, 1, False, "net: 1 e$^{-}$ (Ti-3d)")
+row(1.25, "Rb$^{+}$", S3, 3, True, "net: 1 h$^{+}$ (O-2p)")
 
 # 5 Result -----------------------------------------------------------------------------------------
-x0, x1 = P[4]; panel(x0, x1, 5, "Result: $E_\\mathrm{f}$ (eV)")
-ax = fig.add_axes([(x0 + 0.55) / W, 0.52 / H, 3.00 / W, 3.02 / H])
+x0, x1 = P[4]; panel(x0, x1, 5, "Formation energy")
+ax = fig.add_axes([(x0 + 0.76) / W, 0.52 / H, 2.70 / W, 3.02 / H])
 keys = ["pristine", "Pr", "Rb"]; X = [0, 1.35, 2.55]; BW = 0.52
 ax.bar(X, [EF[k] for k in keys], width=BW, color=[S1, S2, S3], zorder=3)
 ax.set_facecolor("none")
 ax.set_xlim(-0.62, 3.55); ax.set_ylim(-5.7, 6.3)
 ax.plot([-0.62, 2.98], [0, 0], color=INK2, lw=0.7, zorder=4)
-ax.set_yticks([-4, 0, 4]); ax.set_yticklabels([MINUS(f"{t:d}") for t in [-4, 0, 4]])
+ax.set_ylabel("$E_\\mathrm{f}$ (eV)", fontsize=FN, color=INK2, labelpad=1); ax.set_yticks([-4, 0, 4]); ax.set_yticklabels([MINUS(f"{t:d}") for t in [-4, 0, 4]])
 ax.tick_params(axis="y", labelsize=FN, length=2.5, width=0.6, colors=INK2, pad=1.5)
 ax.yaxis.grid(True, color="#d9d8d4", lw=0.5, zorder=0)
 ax.set_xticks(X); ax.set_xticklabels(["TiO$_2$", "Pr$^{3{+}}$", "Rb$^{+}$"], fontsize=8, color=INK, va="baseline")
 ax.tick_params(axis="x", length=0, pad=9)
 for s in ["top", "right", "bottom"]: ax.spines[s].set_visible(False)
 ax.spines["left"].set_color(INK2)
-for x, k in zip([X[0] + 0.12, X[1]], keys[:2]):
+for x, k in zip([X[0] + 0.2, X[1]], keys[:2]):
     ax.text(x, EF[k] + 0.3, MINUS(f"{EF[k]:+.2f}"), ha="center", va="bottom", fontsize=8,
             fontweight="bold", color=INK, zorder=5, bbox=dict(fc=PANEL, ec="none", pad=0.3))
 ax.text(X[2] - BW / 2 - 0.07, EF["Rb"], MINUS(f"{EF['Rb']:+.2f}"), ha="right", va="center", fontsize=8,
@@ -169,11 +170,11 @@ ax.annotate("", xy=(XA, EF["Rb"]), xytext=(XA, EF["Pr"]),
             arrowprops=dict(arrowstyle="<->", color=INK, lw=0.7, shrinkA=0, shrinkB=0))
 ax.plot([X[2] + BW / 2, XA + 0.05], [EF["Rb"]] * 2, color=INK2, lw=0.5, ls=(0, (1, 1)), zorder=2)
 ax.plot([X[1] + BW / 2, XA + 0.05], [EF["Pr"]] * 2, color=INK2, lw=0.5, ls=(0, (1, 1)), zorder=2)
-ax.text(XA + 0.1, (EF["Pr"] + EF["Rb"]) / 2, f"Δ {CONTRAST:.2f}", rotation=90, fontsize=FB,
+ax.text(XA + 0.16, (EF["Pr"] + EF["Rb"]) / 2, f"Δ {CONTRAST:.2f}", rotation=90, fontsize=FB,
         color=INK, ha="left", va="center", zorder=6, bbox=dict(fc=PANEL, ec="none", pad=0.4))
-ax.text(0.62, -0.5, "< 0:\nspontaneous", fontsize=FN, color=INK2, ha="center", va="top", linespacing=1.15,
+ax.text(0.85, -0.5, "$E_\\mathrm{f}<0$:\nspontaneous", fontsize=FN, color=INK2, ha="center", va="top", linespacing=1.15,
         bbox=dict(fc=PANEL, ec="none", pad=0.3))
-ax.text(2.6, 6.2, "◇ narrower\nsmearing", fontsize=FN, color=INK2, ha="center", va="top", linespacing=1.15,
+ax.text(2.35, 6.2, "◇ narrower\nsmearing", fontsize=FN, color=INK2, ha="center", va="top", linespacing=1.15,
         bbox=dict(fc=PANEL, ec="none", pad=0.3))
 
 # --- checks: minimum size, every text inside its panel (or the title band), no two texts overlapping
