@@ -19,8 +19,8 @@ Changes to the manuscript relative to USER_MASTER_2026-10-19/2_Manuscript.docx (
    Section 5); "revision runs" / "now exists" wording removed; keywords without verbatim title terms; Figure 2 caption says
    the 2x2x2 ticks are for the doped cells; Table 2 caption points to Table S2b; Table 2 and Table 3 footnote markers
    superscripted and lettered a, b, c in order. SI copy: two "revision" phrases reworded (nothing else).
-   Not changed: ref [48] is still the arXiv preprint; replace it with the J. Chem. Phys. (2020) record once you have
-   the volume, article number and DOI.
+6. Ref [48] updated from the arXiv preprint to the journal record: J. Chem. Phys. 2020, 153, 204704,
+   DOI 10.1063/5.0030658 (checked against the published PDF).
 
 Highlights and cover letter updated to the 19 Oct numbers (+4.75 eV, no lower bound; smearing result +0.99 eV / 5.11 eV).
 Remaining handbook points (author's choice, not applied): see ../RULES_CHECK_2026-10-20.md.
