@@ -99,8 +99,6 @@ def draw_plane(ax, sp, f, ideal, vac, disp, moments=None, title="", show_ideal=F
         elif sp[i] == "O":
             spin = moments is not None and moments[i] > 0.1
             ax.add_patch(Circle((x, z), 0.27, fc=O_C, ec=RING if spin else INK2, lw=2.2 if spin else 0.6, zorder=3))
-            if moments is not None and moments[i] > 0.1:
-                ax.text(x + 0.38, z + 0.25, f"O{i + 1}\n{moments[i]:+.2f} $\\mu_\\mathrm{{B}}$", fontsize=7.5, color=INK, va="bottom")
         else:
             # same dopant colours as Figure 2 and the graphical abstract: Pr orange, Rb green
             ax.add_patch(Circle((x, z), 0.52, fc=S2 if sp[i] == "Pr" else S3, ec=INK, lw=0.8, zorder=4))
@@ -117,7 +115,7 @@ def draw_plane(ax, sp, f, ideal, vac, disp, moments=None, title="", show_ideal=F
     cx, cz = centre[0] * A, centre[2] * C
     ax.set_xlim(cx - 4.1, cx + 4.1); ax.set_ylim(cz - 4.75, cz + 3.75)
     ax.set_aspect("equal"); ax.set_xlabel("$a$ (Å)"); ax.set_ylabel("$c$ (Å)")
-    ax.set_title(title, fontsize=9, color=INK, loc="left")
+    ax.set_title(title, fontsize=10, color=INK, loc="left", fontweight="bold")
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
 
@@ -136,9 +134,9 @@ print("  nearest O:", ", ".join(f"O{i} {d:.3f}" for d, i in st["dop_O"]))
 
 n = 1 + len(cells)
 fig, axes = plt.subplots(1, n, figsize=(3.5 * n, 3.9), dpi=300)
-draw_plane(axes[0], sp, f, ideal, vac, disp, title="(a) ideal anatase sites, (010) plane\n     through the dopant site", show_ideal=True)
+draw_plane(axes[0], sp, f, ideal, vac, disp, title="(a)", show_ideal=True)
 draw_plane(axes[1], sp, f, ideal, vac, disp, moments=mom,
-           title=f"(b) relaxed Rb_VO\n     Rb displaced {st['dop_disp']:.2f} Å towards V$_\\mathrm{{O}}$")
+           title="(b)")
 if len(cells) > 1:
     sp2, f2 = read_pw(cells[1][1]); ideal2, vac2 = assign_ideal(sp2, f2); st2, disp2 = stats(sp2, f2, ideal2, vac2)
     draw_plane(axes[2], sp2, f2, ideal2, vac2, disp2, title=f"(c) relaxed Pr_VO\n     Pr displaced {st2['dop_disp']:.2f} Å")

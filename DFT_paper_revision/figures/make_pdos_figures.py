@@ -59,7 +59,7 @@ for row, (name, lab, zlab) in enumerate(panels):
     d = spin[name]
     ax = fig.add_subplot(gs[row, 0]); spin_panel(ax, d, name, (-6.5, 4.3))
     ax.set_ylim(-37, 37); ax.set_ylabel("PDOS (states eV$^{-1}$)\n← spin down   spin up →", fontsize=8.5)
-    ax.text(0.01, 0.97, lab + f"   ($E_\\mathrm{{F}}$ = {EF[name]:.2f} eV)", transform=ax.transAxes,
+    ax.text(0.01, 0.97, lab, transform=ax.transAxes,
             ha="left", va="top", fontsize=9, fontweight="bold", color=INK)
     if row == 1:
         ax.set_xlabel("$E - E_\\mathrm{F}$ (eV)")
@@ -77,7 +77,7 @@ for row, (name, lab, zlab) in enumerate(panels):
         o = integ(d, "O2p_dn", 0.0, 0.6)
         note = f"empty,\n0 to 0.6 eV:\n↑ {up:.2f}  ↓ {dn:.2f}\n↓: {o / dn:.0%} O-2p"
         print("Rb_VO zoom:", note.replace("\n", " "))
-    az.text(0.03, 0.97, zlab + " zoom", transform=az.transAxes, fontsize=8.5,
+    az.text(0.03, 0.97, zlab, transform=az.transAxes, fontsize=8.5,
             fontweight="bold", color=INK, va="top")
     if row == 1:
         az.set_xlabel("$E - E_\\mathrm{F}$ (eV)")
@@ -97,7 +97,7 @@ for ax, name, lab in zip(axes, ["Pr_VO", "Rb_VO"], ["(a) Pr_VO", "(b) Rb_VO"]):
     ax.plot(E, d["Total"], color=TOT, lw=0.7, label="total")
     ax.axvline(0, color=INK, lw=0.8, ls=(0, (4, 3)))
     ax.set_xlim(-6.5, 4.3); ax.set_ylim(0, 72); ax.set_ylabel("PDOS (states eV$^{-1}$)")
-    ax.text(0.01, 0.96, lab + f"   ($E_\\mathrm{{F}}$ = {EF[name]:.2f} eV)", transform=ax.transAxes,
+    ax.text(0.01, 0.96, lab, transform=ax.transAxes,
             ha="left", va="top", fontsize=9, fontweight="bold")
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)
@@ -117,24 +117,10 @@ for sp, col, mk in [("O", O_C, "o"), ("Ti", TI_C, "s"), ("Rb", RB_C, "D")]:
     m = raw["species"] == sp
     ax.vlines(r[m], 0, raw["polarisation"][m], color=col, lw=1.0)
     ax.scatter(r[m], raw["polarisation"][m], color=col, marker=mk, s=16, zorder=3, label=sp)
-# label the largest moment and the symmetry-equivalent pairs with |value| >= 0.03 (identical distance and value)
-groups = {}
-for i in np.argsort(-np.abs(raw["polarisation"])):
-    if abs(raw["polarisation"][i]) >= 0.1 or raw["species"][i] == "Ti" and abs(raw["polarisation"][i]) >= 0.03:
-        groups.setdefault((round(r[i], 2), round(raw["polarisation"][i], 3)), []).append(i)
-for (_, _), idx in groups.items():
-    i = idx[0]
-    name = ", ".join(f"{raw['species'][j]}{raw['atom'][j]}" for j in idx)
-    lab = f"{name}  {raw['polarisation'][i]:+.2f}" + (" each" if len(idx) > 1 else "")
-    dy = -11 if raw["polarisation"][i] < 0 else 2
-    ax.annotate(lab, (r[i], raw["polarisation"][i]), xytext=(6, dy), textcoords="offset points", fontsize=7, color=INK2)
 ax.set_ylim(-0.08, 0.66)
 ax.axhline(0, color=INK2, lw=0.6)
 ax.set_xlabel("Distance from Rb (Å)"); ax.set_ylabel("Löwdin spin polarisation ($\\mu_\\mathrm{B}$)")
 ax.legend(frameon=False, fontsize=8, loc="upper right")
-tot, ab = raw["polarisation"].sum(), np.abs(raw["polarisation"]).sum()
-ax.text(0.98, 0.62, f"sum {tot:+.2f} $\\mu_\\mathrm{{B}}$\nsum of |values| {ab:.2f} $\\mu_\\mathrm{{B}}$",
-        transform=ax.transAxes, ha="right", fontsize=7.5, color=INK2)
 for s in ["top", "right"]:
     ax.spines[s].set_visible(False)
 fig.tight_layout(); fig.savefig("FigS1_Lowdin_RbVO_v5.png", facecolor="white"); plt.close(fig)

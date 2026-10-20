@@ -30,6 +30,11 @@ Changes to the manuscript relative to USER_MASTER_2026-10-19/2_Manuscript.docx (
    Pr-5d orange dashed), SI Figures S1 and S2, and the graphical abstract (Ti blue). Captions updated to match:
    Figure 1 "Blue: Ti", "the oxygen with the yellow ring (O8)"; Figure 4 and Figure S2 "red: O-2p; orange (dashed):
    Pr-5d"; Figure S1 "Red circles: O".
+9. Explanations and values moved from the plots into the captions (20 Oct): Figure 1 shows only (a)/(b), atoms,
+   arrows and the V_O / Rb labels (caption now gives the 1.27 A Rb shift; O8 +0.59 muB was already there);
+   Figures 2 and 3 have no in-plot title or footer, and the Figure 2 axis is E_f(V_O^0) (eV); Figure 4 and S2 panel
+   labels carry no E_F (Figure 4 caption already gives it; S2 caption now does); Figure S1 has no point labels or sums
+   on the plot (now in its caption).
 
 Highlights and cover letter updated (cover letter: address and signature lines restored) to the 19 Oct numbers (+4.75 eV, no lower bound; smearing result +0.99 eV / 5.11 eV).
 Remaining handbook points (author's choice, not applied): see ../RULES_CHECK_2026-10-20.md.

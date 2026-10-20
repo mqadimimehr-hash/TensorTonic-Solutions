@@ -48,7 +48,7 @@ for i in (1, 2):
     ax.plot(x[i] + BW / 2 + 0.16, valsn[i], marker="D", ms=5.5, mfc="white", mec=INK, mew=1.0, zorder=5)
     ax.text(x[i] + BW / 2 + 0.27, valsn[i], fmt(valsn[i]), fontsize=7.5, color=INK2, va="center", ha="left")
 ax.axhline(0, color=INK2, lw=0.8, zorder=2)
-ax.set_ylabel("$E_{\\mathrm{f}}(V_{\\mathrm{O}}^{0})$ at $\\mu_{\\mathrm{O}} = \\frac{1}{2}E(\\mathrm{O}_2)$  (eV)")
+ax.set_ylabel("$E_{\\mathrm{f}}(\\mathrm{V}_{\\mathrm{O}}^{0})$ (eV)")
 ax.set_xticks(x); ax.set_xticklabels(labels)
 ax.set_ylim(-5.2, 5.6); ax.yaxis.grid(True, color=GRID, lw=0.6, zorder=0); ax.set_axisbelow(True)
 for s in ["top", "right"]: ax.spines[s].set_visible(False)
@@ -59,15 +59,11 @@ for b, v in zip(bars, vals):
     else:
         ax.text(b.get_x() - 0.05, v / 2, fmt(v, " eV"), ha="right", va="center", color=INK,   # beside the bar
                 fontsize=9.5, fontweight="bold", bbox=dict(fc="white", ec="none", pad=1.5))
-ax.text(x[1] - BW / 2 - 0.05, vals222[1], fmt(vals222[1]) + "\n(2×2×2)", fontsize=7, color=INK2, va="center",
-        ha="right", linespacing=1.1)
-ax.text(x[2] - BW / 2 - 0.05, vals222[2] - 0.2, fmt(vals222[2]) + " (2×2×2)", fontsize=7, color=INK2, va="top",
+ax.text(x[1] - BW / 2 - 0.05, vals222[1], fmt(vals222[1]), fontsize=7.5, color=INK2, va="center",
         ha="right")
-ax.set_title("Neutral oxygen-vacancy formation energy, PBE+U, U(Ti-3d) = 3.5 eV", fontsize=9.5, color=INK)
-fig.text(0.5, 0.005, "Bars: Γ-only relaxed cells (Table 2). Dashed ticks: 2×2×2 single points on the Γ geometries (doped cells).\n"
-         "◇: lowest-energy spin solutions with narrower smearing (σ → 0 estimate; Table S11).",
-         ha="center", va="bottom", fontsize=7, color=INK2, linespacing=1.3)
-ax.set_xlim(-0.55, 2.95); fig.tight_layout(rect=(0, 0.07, 1, 1))
+ax.text(x[2] - BW / 2 - 0.05, vals222[2] - 0.2, fmt(vals222[2]), fontsize=7.5, color=INK2, va="top",
+        ha="right")
+ax.set_xlim(-0.55, 2.95); fig.tight_layout()
 
 # layout check: no text overlaps another text, a bar, a tick or a marker
 fig.canvas.draw(); r = fig.canvas.get_renderer()
