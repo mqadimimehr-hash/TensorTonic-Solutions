@@ -25,6 +25,11 @@ Changes to the manuscript relative to USER_MASTER_2026-10-19/2_Manuscript.docx (
 7. Final-check fixes (20 Oct): Table 2 footnotes lettered a, b in reading order; rounding note on the 5.11 eV
    contrast (5.113 eV unrounded); Table 2 caption clause order; SI Table S10 footnotes lettered a, b with the marker
    on 'degauss (Ry)'; SI Table S6 row 'Revision calculations' renamed 'Convergence and robustness calculations'.
+8. One colour key in every figure (20 Oct): Ti blue, O red (#b2182b), Pr orange, Rb green, O vacancy dashed ring.
+   Replaced Figure 1 (Ti blue; O8 marked by a yellow ring), Figure 3 (bars coloured by cell), Figure 4 (O-2p red,
+   Pr-5d orange dashed), SI Figures S1 and S2, and the graphical abstract (Ti blue). Captions updated to match:
+   Figure 1 "Blue: Ti", "the oxygen with the yellow ring (O8)"; Figure 4 and Figure S2 "red: O-2p; orange (dashed):
+   Pr-5d"; Figure S1 "Red circles: O".
 
 Highlights and cover letter updated (cover letter: address and signature lines restored) to the 19 Oct numbers (+4.75 eV, no lower bound; smearing result +0.99 eV / 5.11 eV).
 Remaining handbook points (author's choice, not applied): see ../RULES_CHECK_2026-10-20.md.

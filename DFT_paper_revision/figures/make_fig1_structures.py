@@ -16,7 +16,7 @@ from matplotlib.patches import Circle, FancyArrowPatch
 
 S1, S2, S3 = "#2a78d6", "#eb6834", "#1baf7a"
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#d9d8d4"
-TI_C, O_C = "#b9b8b4", "#d9534f"
+TI_C, O_C, RING = "#6da7ec", "#b2182b", "#eda100"   # Ti blue, O red; ring marks the spin-carrying O
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9})
 A, C = 7.63632, 9.77900
 CELL = np.array([A, A, C])
@@ -97,12 +97,10 @@ def draw_plane(ax, sp, f, ideal, vac, disp, moments=None, title="", show_ideal=F
         if sp[i] == "Ti":
             ax.add_patch(Circle((x, z), 0.36, fc=TI_C, ec=INK2, lw=0.6, zorder=3))
         elif sp[i] == "O":
-            fc = O_C
+            spin = moments is not None and moments[i] > 0.1
+            ax.add_patch(Circle((x, z), 0.27, fc=O_C, ec=RING if spin else INK2, lw=2.2 if spin else 0.6, zorder=3))
             if moments is not None and moments[i] > 0.1:
-                fc = S1
-            ax.add_patch(Circle((x, z), 0.27, fc=fc, ec=INK2, lw=0.6, zorder=3))
-            if moments is not None and moments[i] > 0.1:
-                ax.text(x + 0.38, z + 0.25, f"O{i + 1}\n{moments[i]:+.2f} $\\mu_\\mathrm{{B}}$", fontsize=7.5, color=S1, va="bottom")
+                ax.text(x + 0.38, z + 0.25, f"O{i + 1}\n{moments[i]:+.2f} $\\mu_\\mathrm{{B}}$", fontsize=7.5, color=INK, va="bottom")
         else:
             # same dopant colours as Figure 2 and the graphical abstract: Pr orange, Rb green
             ax.add_patch(Circle((x, z), 0.52, fc=S2 if sp[i] == "Pr" else S3, ec=INK, lw=0.8, zorder=4))
@@ -147,5 +145,5 @@ if len(cells) > 1:
     print(f"Pr_VO: dopant displaced {st2['dop_disp']:.2f} Å; to vacant site {st2['dop_to_vac']:.2f} Å; nearest O:",
           ", ".join(f"O{i} {d:.3f}" for d, i in st2["dop_O"]))
 fig.tight_layout()
-fig.savefig("Fig1_structures_v5.png", facecolor="white"); fig.savefig("Fig1_structures_v5.pdf", facecolor="white")
-print("written Fig1_structures_v5.{png,pdf}")
+fig.savefig("Fig1_structures_v6.png", facecolor="white"); fig.savefig("Fig1_structures_v6.pdf", facecolor="white")
+print("written Fig1_structures_v6.{png,pdf}")

@@ -14,6 +14,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 S1, S2, S3 = "#2a78d6", "#eb6834", "#1baf7a"
+TI_C, O_C, PR_C, RB_C = S1, "#b2182b", S2, S3   # one key for every figure: Ti blue, O red, Pr orange, Rb green
 INK, INK2, GRID, TOT = "#0b0b0b", "#52514e", "#d9d8d4", "#8a8985"
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9, "axes.edgecolor": INK2,
                      "axes.labelcolor": INK, "xtick.color": INK, "ytick.color": INK})
@@ -33,15 +34,15 @@ def integ(d, col, a, b):
 
 def spin_panel(ax, d, name, xlim, zoom=False):
     E = d["E_minus_EF_eV"]
-    ax.fill_between(E, 0, d["Ti3d_up"], color=S1, alpha=0.30, lw=0)
-    ax.fill_between(E, 0, -d["Ti3d_dn"], color=S1, alpha=0.30, lw=0)
-    ax.plot(E, d["Ti3d_up"], color=S1, lw=1.1, label="Ti-3d")
-    ax.plot(E, -d["Ti3d_dn"], color=S1, lw=1.1)
-    ax.plot(E, d["O2p_up"], color=S2, lw=1.1, label="O-2p")
-    ax.plot(E, -d["O2p_dn"], color=S2, lw=1.1)
+    ax.fill_between(E, 0, d["Ti3d_up"], color=TI_C, alpha=0.30, lw=0)
+    ax.fill_between(E, 0, -d["Ti3d_dn"], color=TI_C, alpha=0.30, lw=0)
+    ax.plot(E, d["Ti3d_up"], color=TI_C, lw=1.1, label="Ti-3d")
+    ax.plot(E, -d["Ti3d_dn"], color=TI_C, lw=1.1)
+    ax.plot(E, d["O2p_up"], color=O_C, lw=1.1, label="O-2p")
+    ax.plot(E, -d["O2p_dn"], color=O_C, lw=1.1)
     if name == "Pr_VO":
-        ax.plot(E, PR_SCALE * d["Prd_up"], color=S3, lw=1.0, label=f"Pr-5d (×{PR_SCALE:.0f})")
-        ax.plot(E, -PR_SCALE * d["Prd_dn"], color=S3, lw=1.0)
+        ax.plot(E, PR_SCALE * d["Prd_up"], color=PR_C, lw=1.0, ls=(0, (3, 1.5)), label=f"Pr-5d (×{PR_SCALE:.0f})")
+        ax.plot(E, -PR_SCALE * d["Prd_dn"], color=PR_C, lw=1.0, ls=(0, (3, 1.5)))
     ax.plot(E, d["Total_up"], color=TOT, lw=0.7, label="total")
     ax.plot(E, -d["Total_dn"], color=TOT, lw=0.7)
     ax.axhline(0, color=INK2, lw=0.6)
@@ -80,19 +81,19 @@ for row, (name, lab, zlab) in enumerate(panels):
             fontweight="bold", color=INK, va="top")
     if row == 1:
         az.set_xlabel("$E - E_\\mathrm{F}$ (eV)")
-fig.savefig("Fig4_PDOS_v4.png", bbox_inches="tight", facecolor="white")
-fig.savefig("Fig4_PDOS_v4.pdf", bbox_inches="tight", facecolor="white")
+fig.savefig("Fig4_PDOS_v5.png", bbox_inches="tight", facecolor="white")
+fig.savefig("Fig4_PDOS_v5.pdf", bbox_inches="tight", facecolor="white")
 plt.close(fig)
 
 # ---------- Figure S2: spin-summed PDOS ----------
 fig, axes = plt.subplots(2, 1, figsize=(6.4, 5.6), dpi=300, sharex=True)
 for ax, name, lab in zip(axes, ["Pr_VO", "Rb_VO"], ["(a) Pr_VO", "(b) Rb_VO"]):
     d = summ[name]; E = d["E_minus_EF_eV"]
-    ax.fill_between(E, 0, d["Ti_3d"], color=S1, alpha=0.30, lw=0)
-    ax.plot(E, d["Ti_3d"], color=S1, lw=1.1, label="Ti-3d")
-    ax.plot(E, d["O_2p"], color=S2, lw=1.1, label="O-2p")
+    ax.fill_between(E, 0, d["Ti_3d"], color=TI_C, alpha=0.30, lw=0)
+    ax.plot(E, d["Ti_3d"], color=TI_C, lw=1.1, label="Ti-3d")
+    ax.plot(E, d["O_2p"], color=O_C, lw=1.1, label="O-2p")
     if name == "Pr_VO":
-        ax.plot(E, PR_SCALE * d["Pr_d"], color=S3, lw=1.0, label=f"Pr-5d (×{PR_SCALE:.0f})")
+        ax.plot(E, PR_SCALE * d["Pr_d"], color=PR_C, lw=1.0, ls=(0, (3, 1.5)), label=f"Pr-5d (×{PR_SCALE:.0f})")
     ax.plot(E, d["Total"], color=TOT, lw=0.7, label="total")
     ax.axvline(0, color=INK, lw=0.8, ls=(0, (4, 3)))
     ax.set_xlim(-6.5, 4.3); ax.set_ylim(0, 72); ax.set_ylabel("PDOS (states eV$^{-1}$)")
@@ -103,7 +104,7 @@ for ax, name, lab in zip(axes, ["Pr_VO", "Rb_VO"], ["(a) Pr_VO", "(b) Rb_VO"]):
 axes[1].set_xlabel("$E - E_\\mathrm{F}$ (eV)")
 h, l = axes[0].get_legend_handles_labels()
 fig.legend(h, [x.replace("(×5)", "(×5, Pr_VO only)") for x in l], loc="upper center", ncol=4, fontsize=7.5, frameon=False)
-fig.tight_layout(rect=(0, 0, 1, 0.95)); fig.savefig("FigS2_PDOS_spin_summed_v4.png", facecolor="white"); plt.close(fig)
+fig.tight_layout(rect=(0, 0, 1, 0.95)); fig.savefig("FigS2_PDOS_spin_summed_v5.png", facecolor="white"); plt.close(fig)
 
 # ---------- Figure S1: Loewdin site moments of Rb_VO ----------
 raw = np.genfromtxt("data/lowdin_Rb_VO.csv", delimiter=",", names=True, dtype=None, encoding=None, skip_header=1)
@@ -112,7 +113,7 @@ cell = np.array([7.63632, 7.63632, 9.77900])
 rb = xyz[raw["species"] == "Rb"][0]
 dv = xyz - rb; dv -= cell * np.round(dv / cell); r = np.linalg.norm(dv, axis=1)
 fig, ax = plt.subplots(figsize=(5.6, 3.4), dpi=300)
-for sp, col, mk in [("O", S2, "o"), ("Ti", S1, "s"), ("Rb", S3, "D")]:
+for sp, col, mk in [("O", O_C, "o"), ("Ti", TI_C, "s"), ("Rb", RB_C, "D")]:
     m = raw["species"] == sp
     ax.vlines(r[m], 0, raw["polarisation"][m], color=col, lw=1.0)
     ax.scatter(r[m], raw["polarisation"][m], color=col, marker=mk, s=16, zorder=3, label=sp)
@@ -136,5 +137,5 @@ ax.text(0.98, 0.62, f"sum {tot:+.2f} $\\mu_\\mathrm{{B}}$\nsum of |values| {ab:.
         transform=ax.transAxes, ha="right", fontsize=7.5, color=INK2)
 for s in ["top", "right"]:
     ax.spines[s].set_visible(False)
-fig.tight_layout(); fig.savefig("FigS1_Lowdin_RbVO_v4.png", facecolor="white"); plt.close(fig)
-print("written Fig4_PDOS_v4.{png,pdf}, FigS2_PDOS_spin_summed_v4.png, FigS1_Lowdin_RbVO_v4.png")
+fig.tight_layout(); fig.savefig("FigS1_Lowdin_RbVO_v5.png", facecolor="white"); plt.close(fig)
+print("written Fig4_PDOS_v5.{png,pdf}, FigS2_PDOS_spin_summed_v5.png, FigS1_Lowdin_RbVO_v5.png")
