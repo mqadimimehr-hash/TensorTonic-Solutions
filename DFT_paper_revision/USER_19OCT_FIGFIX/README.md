@@ -3,7 +3,7 @@
 | Item | File |
 |---|---|
 | Manuscript | 2_Manuscript_Fig1-2_fixed.docx |
-| Supporting Information | 6_Supporting_Information.docx (author's file, unchanged) |
+| Supporting Information | 6_Supporting_Information.docx (author's file; only the wording and footnote fixes in item 7) |
 | Graphical abstract | Graphical_Abstract_v5.pdf (or .tiff) |
 | Highlights | Highlights.docx |
 | Cover letter | Cover_Letter.docx (date: 20 October 2026; change it to the upload date) |
@@ -22,5 +22,9 @@ Changes to the manuscript relative to USER_MASTER_2026-10-19/2_Manuscript.docx (
 6. Ref [48] updated from the arXiv preprint to the journal record: J. Chem. Phys. 2020, 153, 204704,
    DOI 10.1063/5.0030658 (checked against the published PDF).
 
-Highlights and cover letter updated to the 19 Oct numbers (+4.75 eV, no lower bound; smearing result +0.99 eV / 5.11 eV).
+7. Final-check fixes (20 Oct): Table 2 footnotes lettered a, b in reading order; rounding note on the 5.11 eV
+   contrast (5.113 eV unrounded); Table 2 caption clause order; SI Table S10 footnotes lettered a, b with the marker
+   on 'degauss (Ry)'; SI Table S6 row 'Revision calculations' renamed 'Convergence and robustness calculations'.
+
+Highlights and cover letter updated (cover letter: address and signature lines restored) to the 19 Oct numbers (+4.75 eV, no lower bound; smearing result +0.99 eV / 5.11 eV).
 Remaining handbook points (author's choice, not applied): see ../RULES_CHECK_2026-10-20.md.

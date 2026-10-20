@@ -1,10 +1,10 @@
-**Universiti Malaya**
-UM Power Energy Dedicated Advanced Centre (UMPEDAC)
+**Universiti Malaya**\
+UM Power Energy Dedicated Advanced Centre (UMPEDAC)\
 59990 Kuala Lumpur, Malaysia
 
 20 October 2026
 
-The Editors
+The Editors\
 *Applied Surface Science*
 
 Dear Editors,
@@ -25,8 +25,8 @@ Thank you for your consideration.
 
 Yours sincerely,
 
-Azimah Binti Omar (corresponding author)
-Department of Electrical Engineering, Faculty of Engineering, and UMPEDAC, Universiti Malaya
+Azimah Binti Omar (corresponding author)\
+Department of Electrical Engineering, Faculty of Engineering, and UMPEDAC, Universiti Malaya\
 azimahomar@um.edu.my
 
 on behalf of Mohammad Ghadimimehr and Siti Rohani Binti Sheikh Raihan
