@@ -163,7 +163,7 @@ for x, k in zip([X[0] + 0.2, X[1]], keys[:2]):
             fontweight="bold", color=INK, zorder=5, bbox=dict(fc=PANEL, ec="none", pad=0.3))
 ax.text(X[2] - BW / 2 - 0.07, EF["Rb"], MINUS(f"{EF['Rb']:+.2f}"), ha="right", va="center", fontsize=8,
         fontweight="bold", color=INK, zorder=5, bbox=dict(fc=PANEL, ec="none", pad=0.3))
-for x, k in [(X[1], "Pr"), (X[2], "Rb")]:                # open diamonds, as in Figure 2
+for x, k in [(X[1], "Pr"), (X[2], "Rb")]:                # open diamonds: narrower-smearing values
     ax.plot(x, EF_NARROW[k], marker="D", ms=4, mfc="white", mec=INK, mew=0.8, zorder=6)
 XA = 3.05
 ax.annotate("", xy=(XA, EF["Rb"]), xytext=(XA, EF["Pr"]),

@@ -35,6 +35,8 @@ Changes to the manuscript relative to USER_MASTER_2026-10-19/2_Manuscript.docx (
    Figures 2 and 3 have no in-plot title or footer, and the Figure 2 axis is E_f(V_O^0) (eV); Figure 4 and S2 panel
    labels carry no E_F (Figure 4 caption already gives it; S2 caption now does); Figure S1 has no point labels or sums
    on the plot (now in its caption).
+10. Figure 2 redrawn in the author's reference style (20 Oct): bars with values and the Pr-Rb arrow only; the
+    2x2x2 and narrower-smearing values are now given in the Figure 2 caption instead of as ticks and diamonds.
 
 Highlights and cover letter updated (cover letter: address and signature lines restored) to the 19 Oct numbers (+4.75 eV, no lower bound; smearing result +0.99 eV / 5.11 eV).
 Remaining handbook points (author's choice, not applied): see ../RULES_CHECK_2026-10-20.md.
